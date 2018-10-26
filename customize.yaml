@@ -1,0 +1,36 @@
+
+
+light.the_voice_group_0:
+  hidden: true
+light.the_voice_group_1:
+  hidden: true
+light.the_voice_group_2:
+  hidden: true
+light.the_voice_group_3:
+  hidden: true
+
+light.hue_lamp_1:
+  hidden: true
+light.hue_lamp_2:
+  hidden: true
+light.hue_lamp_3:
+  hidden: true
+
+light.hue_ambiance_light_1:
+  hidden: true
+light.hue_ambiance_light_1_2:
+  hidden: true
+
+light.naud:
+  hidden: true
+light.hue_lightstrip_1:
+  hidden: true
+
+light.lux_lamp_4:
+  hidden: true
+light.lux_lamp_5:
+  hidden: true
+light.lux_lamp_6:
+  hidden: true
+
+
