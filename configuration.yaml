@@ -32,12 +32,11 @@ config:
 # http:
 #   base_url: example.duckdns.org:8123
 http:
-  base_url: https://tedsluis.duckdns.org:8123
+  base_url: !secret my_base_url
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   trusted_networks: 
     - !secret trusted_networks
-#   - !secret external_ip
   ip_ban_enabled: True
   login_attempts_threshold: 5
 
