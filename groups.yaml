@@ -1,0 +1,35 @@
+beneden_verdieping:
+    name: Beneden verdieping           
+    entities:
+        - light.keuken
+        - light.woonkamer_achter
+        - light.woonkamer_voor
+        - light.dimmer_3
+
+eerste_verdieping:
+    name: Eerste verdieping
+    entities:
+        - light.slaapkamer_annelies__ted
+        - light.slaapkamer_naud
+
+tweede_verdieping:
+    name: Tweede verdieping
+    entities:
+        - light.slaapkamer_stijn   
+
+weather:
+    name: Weersomstandigheden
+    entities:
+        - sensor.yr_temperature
+        - sensor.yr_dewpoint_temperature
+        - sensor.yr_humidity
+        - sensor.yr_pressure
+        - sensor.yr_wind_speed
+        - sensor.yr_wind_direction
+        - sensor.yr_precipitation
+        - sensor.yr_cloudiness
+        - sensor.yr_high_clouds
+        - sensor.yr_medium_clouds
+        - sensor.yr_low_clouds
+        - sensor.yr_fog
+
