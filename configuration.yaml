@@ -52,6 +52,13 @@ updater:
 # Discover some devices automatically
 discovery:
 
+# Media players
+media_player:
+  - platform: samsungtv
+    host: 192.168.1.22
+    port: 8001
+    name: Samsung TV UE32K5600
+
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
@@ -90,9 +97,54 @@ sensor yr:
         - highClouds
         - dewpointTemperature
 
-# Text to speech
-tts:
-  - platform: google
+sensor:
+  - platform: nederlandse_spoorwegen
+    email: ted.sluis@gmail.com
+    password: !secret ns_password
+    routes:
+      - name: Utrecht - Amsterdam Zuid
+        from: ut
+        to: asdz
+      - name: Amsterdam Zuid - Utrecht CS
+        from: asdz
+        to: ut
+  - platform: speedtest
+    minute:
+      - 0
+      - 15
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+  - platform: postnl
+    username: ted.sluis@gmail.com
+    password: !secret post_nl_password
+  - platform: systemmonitor
+    resources:
+      - type: disk_use
+        arg: /
+      - type: disk_free
+        arg: /
+      - type: disk_use_percent
+        arg: /
+      - type: memory_use
+      - type: memory_free
+      - type: memory_use_percent
+      - type: load_1m
+      - type: load_5m
+      - type: load_15m
+      - type: network_in
+        arg: eth0
+      - type: network_out
+        arg: eth0
+      - type: packets_in
+        arg: eth0
+      - type: packets_out
+        arg: eth0
+
+# Text to speech                      
+tts:                                                   
+  - platform: google  
 
 # Cloud
 cloud:

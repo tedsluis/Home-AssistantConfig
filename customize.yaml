@@ -46,28 +46,81 @@ light.slaapkamer_naud:
   friendly_name: slaapkamer naud
 light.slaapkamer_stijn:
   friendly_name: slaapkamer stijn
+
 sensor.yr_temperature:
   friendly_name: temperatuur
 sensor.yr_dewpoint_temperature:
   friendly_name: dauwpunt temperatuur
 sensor.yr_humidity:
   friendly_name: luchtvochtigheid
+  icon: mdi:water-percent
 sensor.yr_pressure:
   friendly_name: luchtdruk
+  incon: mdi:speedometer
 sensor.yr_wind_speed:
   friendly_name: windsnelheid
+  icon: mdi:weather-windy
 sensor.yr_wind_direction:
   friendly_name: windrichting
+  icon: mdi:compass-outline
 sensor.yr_precipitation:
   friendly_name: neerslag
+  icon: mdi:weather-pouring
 sensor.yr_cloudiness:
   friendly_name: bewolking
+  icon: mdi:weather-cloudy
 sensor.yr_high_clouds:
   friendly_name: hoge bewolking
+  icon: mdi:weather-cloudy
 sensor.yr_medium_clouds:
   friendly_name: middel hoge bewolking
+  icon: mdi:weather-cloudy
 sensor.yr_low_clouds:
   friendly_name: lage bewolking
+  icon: mdi:weather-cloudy
 sensor.yr_fog:
   friendly_name: mist
+  icon: mdi:weather-fog
+
+sensor.utrecht__amsterdam_zuid:
+  friendly_name: utrecht cs - amsterdam zuid
+sensor.amsterdam_zuid__utrecht_cs:
+  friendly_name: amsterdam zuid - utrecht cs
+
+sensor.postnl:
+  friendly_name: post nl
+
+sensor.speedtest_download:
+  friendly_name: download speed
+sensor.speedtest_upload:  
+  friendly_name: upload speed
+sensor.speedtest_ping:  
+  friendly_name: latency
+
+sensor.disk_free_:
+  friendly_name: disk vrij
+sensor.disk_use_:
+  friendly_name: disk gebruikt
+sensor.disk_use_percent_:
+  friendly_name: percentage disk gebruikt
+sensor.memory_use:
+  friendly_name: geheugen gebruikt
+sensor.memory_free:
+  friendly_name: geheugen vrij
+sensor.memory_use_percent:
+  friendly_name: percentage geheugen gebruikt
+sensor.load_1m:
+  friendly_name: cpu load 1m 
+sensor.load_5m:
+  friendly_name: cpu load 5m 
+sensor.load_15m:
+  friendly_name: cpu load 15m 
+sensor.network_in_eth0if12:
+  friendly_name: netwerk io in
+sensor.network_out_eth0:
+  friendly_name: netwerk io uit
+sensor.packets_in_eth0:
+  friendly_name: netwerk pakketten in
+sensor.packets_out_eth0:
+  friendly_name: netwerk pakketten uit
 

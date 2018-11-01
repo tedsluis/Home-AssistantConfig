@@ -33,3 +33,38 @@ weather:
         - sensor.yr_low_clouds
         - sensor.yr_fog
 
+trein_utrecht_vu:
+    name: Trein Utrecht - Amsterdam Zuid
+    entities:
+        - sensor.utrecht__amsterdam_zuid
+        - sensor.amsterdam_zuid__utrecht_cs
+
+post_nl:
+    name: post nl
+    entities:
+        - sensor.postnl
+
+internet_access:
+    name: Internet speed
+    entities:
+        - sensor.speedtest_download
+        - sensor.speedtest_upload
+        - sensor.speedtest_ping
+
+system_statistics:                             
+    name: System statistics                  
+    entities: 
+        - sensor.disk_free_
+        - sensor.disk_use_
+        - sensor.disk_use_percent_
+        - sensor.memory_use
+        - sensor.memory_free
+        - sensor.memory_use_percent
+        - sensor.load_1m
+        - sensor.load_5m
+        - sensor.load_15m
+        - sensor.network_in_eth0
+        - sensor.network_out_eth0
+        - sensor.packets_in_eth0
+        - sensor.packets_out_eth0
+
