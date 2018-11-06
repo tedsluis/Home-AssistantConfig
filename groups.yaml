@@ -51,6 +51,32 @@ internet_access:
         - sensor.speedtest_upload
         - sensor.speedtest_ping
 
+slimme_meter:
+    name: Energie meters
+    entities:
+        - sensor.power_consumption
+        - sensor.power_consumption_low
+        - sensor.power_consumption_normal
+        - sensor.power_consumption_phase_l1
+        - sensor.power_consumption_phase_l2
+        - sensor.power_consumption_phase_l3
+        - sensor.power_production
+        - sensor.power_production_low
+        - sensor.power_production_normal
+        - sensor.power_production_phase_l1
+        - sensor.power_production_phase_l2
+        - sensor.power_production_phase_l3
+        - sensor.power_tariff
+        - sensor.voltage_sags_phase_l1
+        - sensor.voltage_sags_phase_l2
+        - sensor.voltage_sags_phase_l3
+        - sensor.voltage_swells_phase_l1
+        - sensor.voltage_swells_phase_l2
+        - sensor.voltage_swells_phase_l3
+        - sensor.gas_consumption
+        - sensor.hourly_gas_consumption
+        - sensor.long_power_failure_count
+
 system_statistics:                             
     name: System statistics                  
     entities: 
@@ -63,8 +89,8 @@ system_statistics:
         - sensor.load_1m
         - sensor.load_5m
         - sensor.load_15m
-        - sensor.network_in_eth0
-        - sensor.network_out_eth0
-        - sensor.packets_in_eth0
-        - sensor.packets_out_eth0
+        - sensor.network_in_wlan0
+        - sensor.network_out_wlan0
+        - sensor.packets_in_wlan0
+        - sensor.packets_out_wlan0
 

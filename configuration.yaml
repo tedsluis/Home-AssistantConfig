@@ -20,7 +20,7 @@ homeassistant:
   temperature_unit: C
 
 # Show links to resources in log and frontend
-introduction:
+#introduction:
 
 # Enables the frontend
 frontend:
@@ -38,7 +38,7 @@ http:
   trusted_networks: 
     - !secret trusted_networks
   ip_ban_enabled: True
-  login_attempts_threshold: 5
+  login_attempts_threshold: 25
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -66,8 +66,9 @@ conversation:
 history:
 
 recorder:
+  db_url: !secret ha_db_url
   purge_interval: 1
-  purge_keep_days: 4
+  purge_keep_days: 2
 
 # View all events in a logbook
 logbook:
@@ -99,7 +100,7 @@ sensor yr:
 
 sensor:
   - platform: nederlandse_spoorwegen
-    email: ted.sluis@gmail.com
+    email: !secret ns_loginname
     password: !secret ns_password
     routes:
       - name: Utrecht - Amsterdam Zuid
@@ -117,7 +118,7 @@ sensor:
       - download
       - upload
   - platform: postnl
-    username: ted.sluis@gmail.com
+    username: !secret post_nl_loginname
     password: !secret post_nl_password
   - platform: systemmonitor
     resources:
@@ -134,13 +135,17 @@ sensor:
       - type: load_5m
       - type: load_15m
       - type: network_in
-        arg: eth0
+        arg: wlan0
       - type: network_out
-        arg: eth0
+        arg: wlan0
       - type: packets_in
-        arg: eth0
+        arg: wlan0
       - type: packets_out
-        arg: eth0
+        arg: wlan0
+  - platform: dsmr
+    host: 192.168.11.129
+    port: 2001
+    dsmr_version: 5
 
 # Text to speech                      
 tts:                                                   

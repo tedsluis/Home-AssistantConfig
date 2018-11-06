@@ -115,12 +115,57 @@ sensor.load_5m:
   friendly_name: cpu load 5m 
 sensor.load_15m:
   friendly_name: cpu load 15m 
-sensor.network_in_eth0if12:
-  friendly_name: netwerk io in
-sensor.network_out_eth0:
-  friendly_name: netwerk io uit
-sensor.packets_in_eth0:
+sensor.network_in_wlan0:
+  friendly_name: netwerk in
+sensor.network_out_wlan0:
+  friendly_name: netwerk uit
+sensor.packets_in_wlan0:
   friendly_name: netwerk pakketten in
-sensor.packets_out_eth0:
+sensor.packets_out_wlan0:
   friendly_name: netwerk pakketten uit
+
+sensor.power_consumption:
+  friendly_name: elektriciteitsverbruik 
+sensor.power_consumption_low:
+  friendly_name: elektriciteitsverbruik laag tarief
+sensor.power_consumption_normal:
+  friendly_name: elektriciteitsverbruik normaal tarief
+sensor.power_consumption_phase_l1:
+  friendly_name: verbruik fase l1
+sensor.power_consumption_phase_l2:
+  hidden: true
+sensor.power_consumption_phase_l3:
+  hidden: true
+sensor.power_production:
+  hidden: true 
+sensor.power_production_low:
+  hidden: true 
+sensor.power_production_normal:
+  hidden: true 
+sensor.power_production_phase_l1:
+  hidden: true
+sensor.power_production_phase_l2:
+  hidden: true
+sensor.power_production_phase_l3:
+  hidden: true
+sensor.power_tariff:
+  friendly_name: energie tarief
+sensor.voltage_sags_phase_l1:
+  friendly_name: spanningsval
+sensor.voltage_sags_phase_l2:
+  hidden: true
+sensor.voltage_sags_phase_l3:
+  hidden: true
+sensor.voltage_swells_phase_l1:
+  friendly_name: spanningspiek 
+sensor.voltage_swells_phase_l2:
+  hidden: true
+sensor.voltage_swells_phase_l3:
+  hidden: true
+sensor.gas_consumption:
+  friendly_name: gasverbruik
+sensor.hourly_gas_consumption:
+  friendly_name: gasverbruik per uur
+sensor.long_power_failure_count:
+  friendly_name: langdurige stroomonderbrekingen
 
