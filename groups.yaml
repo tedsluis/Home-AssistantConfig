@@ -1,21 +1,81 @@
-beneden_verdieping:
-    name: Beneden verdieping           
+woonkamer:
+    name: Woonkamer
     entities:
-        - light.keuken
         - light.woonkamer_achter
         - light.woonkamer_voor
         - light.dimmer_3
+        - switch.plug_158d00024ae109
+        - media_player.bachstraat20
+        - media_player.samsung_tv_ue32k5600
+        - sensor.temperature_158d0002789adf
+        - sensor.humidity_158d0002789adf
+        - sensor.pressure_158d0002789adf
 
-eerste_verdieping:
-    name: Eerste verdieping
+slaapkamer_annelies_ted:
+    name: Slaapkamer Annelies & Ted
     entities:
         - light.slaapkamer_annelies__ted
-        - light.slaapkamer_naud
+        - light.gateway_light_7c49ebb18b86
+        - binary_sensor.wall_switch_both_158d00027c19e9
+        - binary_sensor.wall_switch_left_158d00027c19e9
+        - binary_sensor.wall_switch_right_158d00027c19e9
+        - sensor.temperature_158d000273d342
+        - sensor.humidity_158d000273d342
+        - sensor.illumination_7c49ebb18b86
 
-tweede_verdieping:
-    name: Tweede verdieping
+slaapkamer_naud:
+    name: Slaapkamer Naud
     entities:
-        - light.slaapkamer_stijn   
+        - light.slaapkamer_naud
+        - sensor.temperature_158d000238fcc1
+        - sensor.humidity_158d000238fcc1
+
+slaapkamer_stijn:
+    name: Slaapkamer Stijn
+    entities:
+        - light.slaapkamer_stijn
+        - sensor.temperature_158d00027257cd
+        - sensor.humidity_158d00027257cd
+
+keuken:
+    name: Keuken
+    entities:
+        - light.keuken
+        - sensor.temperature_158d000231046d
+        - sensor.humidity_158d000231046d
+
+studeerkamer:
+    name: Studeerkamer
+    entities:
+        - sensor.temperature_158d00027898b3
+        - sensor.humidity_158d00027898b3
+
+schuur:
+    name: Schuur
+    entities:
+        - sensor.temperature_158d00027725d7
+        - sensor.humidity_158d00027725d7
+
+badkamer:
+    name: Badkamer
+    entities:
+        - sensor.temperature_158d000273424b
+        - sensor.humidity_158d000273424b
+
+overloop:
+    name: Overloop
+    entities:
+        - light.overloop
+        - binary_sensor.motion_sensor_158d00029a5cd2
+        - counter.motion_counter
+        - sensor.illumination_158d00029a5cd2
+
+internet_access:
+    name: Internet speed
+    entities:
+        - sensor.speedtest_download
+        - sensor.speedtest_upload
+        - sensor.speedtest_ping
 
 weather:
     name: Weersomstandigheden
@@ -40,16 +100,9 @@ trein_utrecht_vu:
         - sensor.amsterdam_zuid__utrecht_cs
 
 post_nl:
-    name: post nl
+    name: postnl pakket bezorging
     entities:
         - sensor.postnl
-
-internet_access:
-    name: Internet speed
-    entities:
-        - sensor.speedtest_download
-        - sensor.speedtest_upload
-        - sensor.speedtest_ping
 
 slimme_meter:
     name: Energie meters
@@ -77,9 +130,42 @@ slimme_meter:
         - sensor.hourly_gas_consumption
         - sensor.long_power_failure_count
 
-system_statistics:                             
-    name: System statistics                  
-    entities: 
+temperature_sensors:
+    name: Temperatuur sensoren
+    entities:
+        - sensor.temperature_158d0002789adf
+        - sensor.temperature_158d000273d342
+        - sensor.temperature_158d000238fcc1
+        - sensor.temperature_158d00027257cd
+        - sensor.temperature_158d000231046d
+        - sensor.temperature_158d00027898b3
+        - sensor.temperature_158d00027725d7
+        - sensor.temperature_158d000273424b
+
+humidity_sensors:
+    name: Luchtvochtigheid sensoren
+    entities:
+        - sensor.humidity_158d0002789adf
+        - sensor.humidity_158d000273d342
+        - sensor.humidity_158d000238fcc1
+        - sensor.humidity_158d00027257cd
+        - sensor.humidity_158d000231046d
+        - sensor.humidity_158d00027898b3
+        - sensor.humidity_158d00027725d7
+        - sensor.humidity_158d000273424b
+
+pressure_sensors:
+    name: Luchtdruk sensoren
+    entities:
+        - sensor.pressure_158d0002789adf
+
+system_statistics:
+    name: Home-assistant system statistics
+    entities:
+        - sensor.home_assistant_uptime
+        - sensor.host_uptime
+        - sensor.ssl_cert_expiry
+        - binary_sensor.check_hue_bridge 
         - sensor.disk_free_
         - sensor.disk_use_
         - sensor.disk_use_percent_
@@ -89,8 +175,89 @@ system_statistics:
         - sensor.load_1m
         - sensor.load_5m
         - sensor.load_15m
-        - sensor.network_in_wlan0
-        - sensor.network_out_wlan0
-        - sensor.packets_in_wlan0
-        - sensor.packets_out_wlan0
+        - sensor.network_in_eno1
+        - sensor.network_out_eno1
+        - sensor.packets_in_eno1
+        - sensor.packets_out_eno1
+
+android_camera:
+    name: Android Camera
+    entities:
+        - sensor.webcam_motion
+        - sensor.webcam_light_level
+        - sensor.webcam_proximity
+        - sensor.webcam_pressure
+        - sensor.webcam_battery_level
+        - sensor.webcam_battery_temperature
+        - sensor.webcam_battery_voltage
+        - sensor.webcam_video_connections
+        - sensor.webcam_audio_connections
+        - sensor.webcam_sound
+
+thuis:
+    name: Wie is thuis
+    entities:
+        - device_tracker.devicename
+
+default_view:
+    name: home
+    view: true
+    entities:
+        - group.woonkamer
+        - group.slaapkamer_annelies_ted
+        - group.slaapkamer_naud
+        - group.slaapkamer_stijn
+        - group.keuken
+        - group.studeerkamer
+        - group.schuur
+        - group.badkamer
+        - group.overloop
+
+apis:
+    view: true
+    name: Apis
+    entities:
+        - group.internet_access
+        - group.android_camera
+        - camera.webcam
+        - group.trein_utrecht_vu
+        - group.post_nl
+        - group.thuis
+
+alle_lichten:
+    view: true
+    name: Lichten
+    entities:
+        - light.woonkamer_achter
+        - light.woonkamer_voor
+        - light.dimmer_3
+        - light.slaapkamer_annelies__ted
+        - light.gateway_light_7c49ebb18b86
+        - light.slaapkamer_naud
+        - light.slaapkamer_stijn
+        - light.keuken
+        - light.overloop
+        - group.all_switches
+
+environment:
+    view: true
+    name: Klimaat
+    entities:
+        - group.temperature_sensors
+        - group.humidity_sensors
+        - group.pressure_sensors
+        - group.weather
+
+verbruik:
+    view: true
+    name: Verbruik
+    entities:
+        - group.slimme_meter
+
+home-assistant:
+    view: true
+    name: HA
+    entities:
+        - group.system_statistics
+        - group.all_automations
 
