@@ -1,1 +1,163 @@
-[]
+- alias: Count motion
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00029a5cd2
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter
+
+# Set brightness to 30% after 22:00
+- alias: overloop licht in de avond
+  trigger:
+    platform: time
+    at: '22:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.overloop
+      data:
+        transition: 300
+        brightness_pct: 30
+
+# Set lights to 0% after 02:00
+- alias: overloop licht na 02:00
+  trigger:
+    platform: time
+    at: '02:00:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.overloop
+      data:
+        transition: 300
+        brightness_pct: 0
+
+# Set brightness to 30% when there is motion after 02:00
+- alias: overloop licht in de nacht
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00029a5cd2
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: time
+      after: '02:00:00'
+    - condition: time
+      before: '07:30:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.overloop
+      data:
+        transition: 5
+        brightness_pct: 30
+    - delay: '10:00'
+    - service: light.turn_on
+      entity_id: light.overloop
+      data:
+        transition: 300
+        brightness_pct: 0
+
+# Restore light brightness in the morning
+- alias: overloop licht in de ochtend
+  trigger:
+    platform: time
+    at: '07:30:00'
+  action:
+    - service: light.turn_on
+      entity_id: light.overloop
+      data:
+        transition: 300
+        brightness_pct: 100
+
+# Reset Hue, when it becomes unavailable
+- alias: power-off and power-on hue bridge
+  trigger:
+    platform: state
+    entity_id: binary_sensor.check_hue_bridge
+    from: 'on'
+    to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.plug_158d00024ae109
+    - delay: 0:03
+    - service: switch.turn_on
+      entity_id: switch.plug_158d00024ae109
+
+# Dimm hue light with xiaomi switch
+- alias: Dimm slaapkamer licht
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d00027c19e9
+      click_type: single
+  action:
+    service: light.turn_on
+    entity_id: light.hue_ambiance_slaapkamer
+    data_template:
+      brightness: >-
+        {% if states.light.hue_ambiance_slaapkamer.attributes.brightness %}
+          {% if states.light.hue_ambiance_slaapkamer.attributes.brightness - 60 >= 10 %}
+            {{states.light.hue_ambiance_slaapkamer.attributes.brightness - 60}}
+          {% else %}
+            {{states.light.hue_ambiance_slaapkamer.attributes.brightness}}
+          {% endif %}
+        {% else %}
+          10
+        {% endif %}
+
+# Increase hue light with xiaomi switch
+- alias: Verlicht slaapkamer licht
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d00027c19e9
+      click_type: single
+  action:
+    service: light.turn_on
+    entity_id: light.hue_ambiance_slaapkamer
+    data_template:
+      brightness: >-
+        {% if states.light.hue_ambiance_slaapkamer.attributes.brightness %}
+          {% if states.light.hue_ambiance_slaapkamer.attributes.brightness + 60 <= 255 %}
+            {{states.light.hue_ambiance_slaapkamer.attributes.brightness + 60}}
+          {% else %}
+            {{states.light.hue_ambiance_slaapkamer.attributes.brightness}}
+          {% endif %}
+        {% else %}
+          10
+        {% endif %}
+
+# Turn off hue light with xiaomi switch
+- alias: Uitzetten slaapkamer licht
+  trigger: 
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_both_158d00027c19e9
+      click_type: both
+  condition:
+    - condition: state
+      entity_id: light.hue_ambiance_slaapkamer
+      state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.hue_ambiance_slaapkamer
+ 
+ # Turn on hue light with xiaomi switch
+- alias: Aanzetten slaapkamer licht
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.wall_switch_both_158d00027c19e9
+      click_type: both
+  condition:
+    - condition: state
+      entity_id: light.hue_ambiance_slaapkamer
+      state: 'off'
+  action:
+    service: light.turn_on
+    entity_id: light.hue_ambiance_slaapkamer
+
