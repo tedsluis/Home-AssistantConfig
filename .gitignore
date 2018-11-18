@@ -1,6 +1,8 @@
 *
 !*.yaml
 !.gitignore
+!*.md
+!*.gif
 secrets.yaml
 ip_bans.yaml
 known_devices.yaml
