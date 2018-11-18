@@ -1,3 +1,7 @@
+group.all_automations:
+  hidden: false
+group.all_switches:
+  hidden: false
 
 
 light.the_voice_group_0:
@@ -46,6 +50,8 @@ light.slaapkamer_naud:
   friendly_name: slaapkamer naud
 light.slaapkamer_stijn:
   friendly_name: slaapkamer stijn
+media_player.bachstraat20:
+  friendly_name: Chromecast woonkamer
 
 sensor.yr_temperature:
   friendly_name: temperatuur
@@ -97,6 +103,15 @@ sensor.speedtest_upload:
 sensor.speedtest_ping:  
   friendly_name: latency
 
+
+sensor.home_assistant_uptime:
+  friendly_name: home-assistant uptime
+sensor.host_uptime:
+  friendly_name: host uptime
+sensor.ssl_cert_expiry:
+  friendly_name: ssl certificate expiry
+sensor.check_hue_bridge:
+  friendly_name: hue bridge check
 sensor.disk_free_:
   friendly_name: disk vrij
 sensor.disk_use_:
@@ -115,13 +130,13 @@ sensor.load_5m:
   friendly_name: cpu load 5m 
 sensor.load_15m:
   friendly_name: cpu load 15m 
-sensor.network_in_wlan0:
+sensor.network_in_eno1:
   friendly_name: netwerk in
-sensor.network_out_wlan0:
+sensor.network_out_eno1:
   friendly_name: netwerk uit
-sensor.packets_in_wlan0:
+sensor.packets_in_eno1:
   friendly_name: netwerk pakketten in
-sensor.packets_out_wlan0:
+sensor.packets_out_eno1:
   friendly_name: netwerk pakketten uit
 
 sensor.power_consumption:
@@ -168,4 +183,87 @@ sensor.hourly_gas_consumption:
   friendly_name: gasverbruik per uur
 sensor.long_power_failure_count:
   friendly_name: langdurige stroomonderbrekingen
+
+sensor.humidity_158d000231046d:
+  friendly_name: luchtvochigheid keuken
+sensor.pressure_158d000231046d:
+  friendly_name: luchtdruk keuken
+  hidden: true
+sensor.temperature_158d000231046d:
+  friendly_name: temperatuur keuken
+
+sensor.humidity_158d000238fcc1:
+  friendly_name: luchtvochigheid slaapkamer naud
+sensor.pressure_158d000238fcc1:
+  friendly_name: luchtdruk slaapkamer naud
+  hidden: true
+sensor.temperature_158d000238fcc1:
+  friendly_name: temperatuur slaapkamer naud
+
+sensor.humidity_158d00027257cd:
+  friendly_name: luchtvochigheid slaapkamer stijn
+sensor.pressure_158d00027257cd:
+  friendly_name: luchtdruk slaapkamer stijn
+  hidden: true
+sensor.temperature_158d00027257cd:
+  friendly_name: temperatuur slaapkamer stijn
+
+sensor.humidity_158d000273424b:
+  friendly_name: luchtvochigheid badkamer
+sensor.pressure_158d000273424b: 
+  friendly_name: luchtdruk badkamer
+  hidden: true
+sensor.temperature_158d000273424b:
+  friendly_name: temperatuur badkamer
+
+sensor.humidity_158d000273d342:
+  friendly_name: luchtvochigheid slaapkamer annelies & ted
+sensor.pressure_158d000273d342:
+  friendly_name: luchtdruk slaapkamer annelies & ted
+  hidden: true
+sensor.temperature_158d000273d342:
+  friendly_name: temperatuur  slaapkamer annelies & ted
+binary_sensor.wall_switch_both_158d00027c19e9:
+  hidden: true
+  friendly_name: schakelaar beide slaapkamer annelies & ted
+binary_sensor.wall_switch_left_158d00027c19e9:
+  hidden: true
+  friendly_name: schakelaar links slaapkamer annelies & ted
+binary_sensor.wall_switch_right_158d00027c19e9:
+  hidden: true
+  friendly_name: schakelaar rechts slaapkamer annelies & ted
+light.gateway_light_7c49ebb18b86:
+  friendly_name: nachtlampje slaapkamer annelies & ted
+sensor.illumination_7c49ebb18b86:
+  friendly_name: lichtsensor slaapkamer annelies & ted
+
+binary_sensor.motion_sensor_158d00029a5cd2:
+  friendly_name: bewegingsensor overloop
+sensor.illumination_158d00029a5cd2:
+  friendly_name: lichtsensor overloop
+
+sensor.humidity_158d00027725d7:
+  friendly_name: luchtvochigheid schuur
+sensor.pressure_158d00027725d7:
+  friendly_name: luchtdruk schuur
+  hidden: true
+sensor.temperature_158d00027725d7:
+  friendly_name: temperatuur schuur
+
+sensor.humidity_158d00027898b3:
+  friendly_name: luchtvochigheid studeerkamer
+sensor.pressure_158d00027898b3:
+  friendly_name: luchtdruk studeerkamer
+  hidden: true
+sensor.temperature_158d00027898b3:
+  friendly_name: temperatuur studeerkamer
+
+sensor.humidity_158d0002789adf:
+  friendly_name: luchtvochigheid woonkamer 
+sensor.pressure_158d0002789adf:
+  friendly_name: luchtdruk woonkamer
+sensor.temperature_158d0002789adf:
+  friendly_name: temperatuur woonkamer
+switch.plug_158d00024ae109:
+  friendly_name: stopcontact woonkamer
 
