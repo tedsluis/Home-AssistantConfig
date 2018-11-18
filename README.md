@@ -27,24 +27,24 @@
 * Android ip webcam
   
 
-## HOME  
-[![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/home.gif)(https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/home.gif)  
+## Home  
+[![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/home.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/home.gif)  
   
-## APIS  
-[![apis](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/apis.gif)(https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/apis.gif)  
+## Api's  
+[![apis](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/apis.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/apis.gif)  
   
-## LICHTEN - Lights    
-[![lichten](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/lichten.gif)(https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/lichten.gif)  
+## Lichten - Lights    
+[![lichten](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/lichten.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/lichten.gif)  
   
-## KLIMAAT - Environment  
-[![klimaat](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/klimaat.gif)(https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/klimaat.gif)  
+## Klimaat - Environment  
+[![klimaat](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/klimaat.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/klimaat.gif)  
   
-## VERBRUIK - Energy consumption   
-[![verbruik](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/verbruik.gif)(https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/verbruik.gif)  
+## Verbruik - Energy consumption   
+[![verbruik](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/verbruik.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/verbruik.gif)  
   
 ## HA
-[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/ha.gif)(https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/ha.gif)  
+[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/ha.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/ha.gif)  
   
-## History
-[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/history.gif)(https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/history.gif)  
+## Geschiedenis - History
+[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/history.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/history.gif)  
  
