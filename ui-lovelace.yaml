@@ -1,0 +1,275 @@
+title: My Awesome Home
+# Include external resources
+resources:
+  - url: /local/my-custom-card.js
+    type: js
+  - url: /local/my-webfont.css
+    type: css
+
+# Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
+background: center / cover no-repeat url("/background.png") fixed
+# Exclude entities from "Unused entities" view
+excluded_entities:
+  - weblink.router
+views:
+    # Specify a tab icon if you want the view tab to be an icon.
+  - icon: mdi:home-assistant
+    # Title of the view. Will be used as the tooltip for tab icon
+    title: Second view
+    background: radial-gradient(crimson, skyblue)
+    cards:
+      - type: entities
+        title: Woonkamer
+        entities:
+          - light.woonkamer_achter
+          - light.woonkamer_voor
+          - light.dimmer_3
+          - switch.plug_158d00024ae109
+          - media_player.bachstraat20
+          - media_player.samsung_tv_ue32k5600
+          - sensor.temperature_158d0002789adf
+          - sensor.humidity_158d0002789adf
+          - sensor.pressure_158d0002789adf
+      - type: entities
+        title: Slaapkamer Annelies & Ted
+        entities:
+          - light.slaapkamer_annelies__ted
+          - light.gateway_light_7c49ebb18b86
+          - sensor.temperature_158d000273d342
+          - sensor.humidity_158d000273d342
+          - sensor.illumination_7c49ebb18b86
+      - type: entities
+        title: Slaapkamer Naud
+        entities:
+          - light.slaapkamer_naud
+          - sensor.temperature_158d000238fcc1
+          - sensor.humidity_158d000238fcc1
+      - type: entities
+        title: Slaapkamer Stijn
+        entities:
+          - light.slaapkamer_stijn
+          - sensor.temperature_158d00027257cd
+          - sensor.humidity_158d00027257cd
+      - type: entities
+        title: Keuken
+        entities:
+          - light.keuken
+          - sensor.temperature_158d000231046d
+          - sensor.humidity_158d000231046d
+      - type: entities
+        title: Studeerkamer
+        entities:
+          - sensor.temperature_158d00027898b3
+          - sensor.humidity_158d00027898b3
+      - type: entities
+        title: Schuur
+        entities:
+          - sensor.temperature_158d00027725d7
+          - sensor.humidity_158d00027725d7
+      - type: entities
+        title: Badkamer
+        entities:
+          - sensor.temperature_158d000273424b
+          - sensor.humidity_158d000273424b
+      - type: entities
+        title: Overloop
+        entities:
+          - light.overloop
+          - binary_sensor.motion_sensor_158d00029a5cd2
+          - counter.motion_counter
+          - sensor.illumination_158d00029a5cd2
+        # The filter card will filter entities for their state
+      - id: peoplehome # Every card needs an ID, if you don't specify one, it is added automatically.
+        type: entity-filter
+        entities:
+          - device_tracker.94652dc2aa01
+          - device_tracker.c0eefbe296aa
+          - device_tracker.44c3462e5fdd
+          - device_tracker.8058f897ad84
+        state_filter:
+          - 'home'
+          - 'not_home'
+        card:
+          type: glance
+          title: Wie is er thuis
+        # The markdown card will render markdown text.
+      - type: markdown
+        title: Lovelace
+        content: >
+          Welcome to your **Lovelace UI**.
+    # View tab title.
+  - title: Weer
+    id: Weather
+    # Optional background (overwrites the global background).
+    background: radial-gradient(crimson, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+      - type: weather-forecast
+        entity: weather.dark_sky
+      - id: outsidetemperature
+        type: history-graph
+        title: Buiten temperatuur
+        hours_to_show: 48
+        entities:
+        - entity: sensor.yr_temperature
+        - entity: sensor.yr_dewpoint_temperature
+        - entity: sensor.temperature_158d00027725d7
+      - type: iframe
+        url: https://embed.windy.com/embed2.html
+        aspect_ratio: 100%
+      - id: outsidehumidityoverview
+        type: history-graph
+        title: Buiten luchtvochtingheid
+        hours_to_show: 48
+        entities:
+        - entity: sensor.yr_humidity
+        - entity: sensor.humidity_158d00027725d7
+      - id: pressureoverview
+        type: history-graph
+        title: Luchtdruk
+        hours_to_show: 48
+        entities:
+        - entity: sensor.yr_pressure
+        - entity: sensor.pressure_158d0002789adf
+      - type: iframe
+        url: https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.09083&lng=5.12222&overname=2&zoom=11&naam=utrecht&size=3&voor=1
+        aspect_ratio: 104%
+      - id: windspeedoverview
+        type: history-graph
+        title: Windsnelheid
+        hours_to_show: 48
+        entities:
+        - entity: sensor.yr_wind_speed
+      - id: precipitationoverview
+        type: history-graph
+        title: Neerslag
+        hours_to_show: 48
+        entities:
+        - entity: sensor.yr_precipitation
+      - type: iframe
+        url: https://api.buienradar.nl/image/1.0/RadarMapNL?w=490&h=490
+        aspect_ratio: 100%
+      - id: winddirectionoverview
+        type: history-graph
+        title: Windrichting
+        hours_to_show: 48
+        entities:
+        - entity: sensor.yr_wind_direction
+      - id: cloudnessoverview
+        type: history-graph
+        title: Bewolking en neerslag
+        hours_to_show: 48
+        entities:
+        - entity: sensor.yr_cloudiness
+        - entity: sensor.yr_high_clouds
+        - entity: sensor.yr_medium_clouds
+        - entity: sensor.yr_low_clouds
+        - entity: sensor.yr_fog
+      - id: temperatureoverview
+        type: history-graph
+        title: Binnen temperatuur
+        hours_to_show: 48
+        entities:
+        - entity: sensor.temperature_158d0002789adf
+        - entity: sensor.temperature_158d000273d342
+        - entity: sensor.temperature_158d000238fcc1
+        - entity: sensor.temperature_158d00027257cd
+        - entity: sensor.temperature_158d000231046d
+        - entity: sensor.temperature_158d00027898b3
+        - entity: sensor.temperature_158d000273424b
+      - id: humidityoverview
+        type: history-graph
+        title: Luchtvochtigheid
+        hours_to_show: 48
+        entities:
+        - entity: sensor.humidity_158d0002789adf
+        - entity: sensor.humidity_158d000273d342
+        - entity: sensor.humidity_158d000238fcc1
+        - entity: sensor.humidity_158d00027257cd
+        - entity: sensor.humidity_158d000231046d
+        - entity: sensor.humidity_158d00027898b3
+        - entity: sensor.humidity_158d000273424b
+  - title: Internet
+    id: internet_overview
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    cards:
+      - id: internetspeedgraph
+        type: history-graph
+        title: Internet speed
+        hours_to_show: 48
+        entities:
+          - entity: sensor.speedtest_download
+            name: Download
+          - entity: sensor.speedtest_upload
+            name: Upload
+          - entity: sensor.speedtest_ping
+            name: Latency
+      - type: entities
+        title: Gepubliseerde account inbraken
+        entities:
+          - entity: sensor.breaches_anneliesbuddinghgmailcom
+          - entity: sensor.breaches_infobureaubuddinghnl
+          - entity: sensor.breaches_naudsluisgmailcom
+          - entity: sensor.breaches_stijnsluisgmailcom
+          - entity: sensor.breaches_tedsluisgmailcom
+          - entity: sensor.breaches_tedsluisrabobanknl
+  - title: Verbruik
+    id: verbruik_overview
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    cards:
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.power_consumption
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.power_consumption_low
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.power_consumption_normal
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.power_consumption_phase_l1
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.power_tariff
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.voltage_sags_phase_l1
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.voltage_swells_phase_l1
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.gas_consumption
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.hourly_gas_consumption
+      - type: sensor
+        height: 150
+        hours_to_show: 48
+        detail: 2
+        entity: sensor.long_power_failure_count
+        
+        

@@ -26,25 +26,30 @@
 * Mikrotik router 
 * Android ip webcam
   
+## Lovelace Home
+[![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-home.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-home.png)  
+
+## Lovelace Weer - Weather
+[![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-weer.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-weer.png)  
 
 ## Home  
-[![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/home.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/home.gif)  
+[![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif)  
   
 ## Api's  
-[![apis](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/apis.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/apis.gif)  
+[![apis](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/apis.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/apis.gif)  
   
 ## Lichten - Lights    
-[![lichten](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/lichten.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/lichten.gif)  
+[![lichten](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lichten.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lichten.gif)  
   
 ## Klimaat - Environment  
-[![klimaat](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/klimaat.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/klimaat.gif)  
+[![klimaat](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/klimaat.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/klimaat.gif)  
   
 ## Verbruik - Energy consumption   
-[![verbruik](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/verbruik.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/verbruik.gif)  
+[![verbruik](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/verbruik.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/verbruik.gif)  
   
 ## HA
-[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/ha.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/ha.gif)  
+[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/ha.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/ha.gif)  
   
 ## Geschiedenis - History
-[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/history.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/history.gif)  
+[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/history.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/history.gif)  
  

@@ -185,44 +185,44 @@ sensor.long_power_failure_count:
   friendly_name: langdurige stroomonderbrekingen
 
 sensor.humidity_158d000231046d:
-  friendly_name: luchtvochigheid keuken
+  friendly_name: keuken
 sensor.pressure_158d000231046d:
-  friendly_name: luchtdruk keuken
+  friendly_name: keuken
   hidden: true
 sensor.temperature_158d000231046d:
-  friendly_name: temperatuur keuken
+  friendly_name: keuken
 
 sensor.humidity_158d000238fcc1:
-  friendly_name: luchtvochigheid slaapkamer naud
+  friendly_name: slaapkamer naud
 sensor.pressure_158d000238fcc1:
-  friendly_name: luchtdruk slaapkamer naud
+  friendly_name: slaapkamer naud
   hidden: true
 sensor.temperature_158d000238fcc1:
-  friendly_name: temperatuur slaapkamer naud
+  friendly_name: slaapkamer naud
 
 sensor.humidity_158d00027257cd:
-  friendly_name: luchtvochigheid slaapkamer stijn
+  friendly_name: slaapkamer stijn
 sensor.pressure_158d00027257cd:
-  friendly_name: luchtdruk slaapkamer stijn
+  friendly_name: slaapkamer stijn
   hidden: true
 sensor.temperature_158d00027257cd:
-  friendly_name: temperatuur slaapkamer stijn
+  friendly_name: slaapkamer stijn
 
 sensor.humidity_158d000273424b:
-  friendly_name: luchtvochigheid badkamer
+  friendly_name: badkamer
 sensor.pressure_158d000273424b: 
-  friendly_name: luchtdruk badkamer
+  friendly_name: badkamer
   hidden: true
 sensor.temperature_158d000273424b:
-  friendly_name: temperatuur badkamer
+  friendly_name: badkamer
 
 sensor.humidity_158d000273d342:
-  friendly_name: luchtvochigheid slaapkamer annelies & ted
+  friendly_name: slaapkamer annelies & ted
 sensor.pressure_158d000273d342:
-  friendly_name: luchtdruk slaapkamer annelies & ted
+  friendly_name: slaapkamer annelies & ted
   hidden: true
 sensor.temperature_158d000273d342:
-  friendly_name: temperatuur  slaapkamer annelies & ted
+  friendly_name: slaapkamer annelies & ted
 binary_sensor.wall_switch_both_158d00027c19e9:
   hidden: true
   friendly_name: schakelaar beide slaapkamer annelies & ted
@@ -243,27 +243,35 @@ sensor.illumination_158d00029a5cd2:
   friendly_name: lichtsensor overloop
 
 sensor.humidity_158d00027725d7:
-  friendly_name: luchtvochigheid schuur
+  friendly_name: schuur
 sensor.pressure_158d00027725d7:
-  friendly_name: luchtdruk schuur
+  friendly_name: schuur
   hidden: true
 sensor.temperature_158d00027725d7:
-  friendly_name: temperatuur schuur
+  friendly_name: schuur
 
 sensor.humidity_158d00027898b3:
-  friendly_name: luchtvochigheid studeerkamer
+  friendly_name: studeerkamer
 sensor.pressure_158d00027898b3:
-  friendly_name: luchtdruk studeerkamer
+  friendly_name: studeerkamer
   hidden: true
 sensor.temperature_158d00027898b3:
-  friendly_name: temperatuur studeerkamer
+  friendly_name: studeerkamer
 
 sensor.humidity_158d0002789adf:
-  friendly_name: luchtvochigheid woonkamer 
+  friendly_name: woonkamer 
 sensor.pressure_158d0002789adf:
-  friendly_name: luchtdruk woonkamer
+  friendly_name: woonkamer
 sensor.temperature_158d0002789adf:
-  friendly_name: temperatuur woonkamer
+  friendly_name: woonkamer
 switch.plug_158d00024ae109:
   friendly_name: stopcontact woonkamer
 
+device_tracker.94652dc2aa01:
+  friendly_name: Annelies
+device_tracker.c0eefbe296aa:
+  friendly_name: Ted
+device_tracker.44c3462e5fdd:
+  friendly_name: Stijn
+device_tracker.8058f897ad84:
+  friendly_name: Naud
