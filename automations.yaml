@@ -83,11 +83,11 @@
     - service: switch.turn_on
       entity_id: switch.plug_158d00024ae109
 
-# Dimm hue light with xiaomi switch
+# Dimm hue light with xiaomi switch (single click)
 - alias: Dimm slaapkamer licht
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_left_158d00027c19e9
       click_type: single
@@ -106,11 +106,23 @@
           10
         {% endif %}
 
-# Increase hue light with xiaomi switch
+# Turn off hue light with xiaomi switch (long press)
+- alias: Uitzetten slaapkamer licht
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d00027c19e9
+      click_type: long
+  action:
+    service: light.turn_off
+    entity_id: light.hue_ambiance_slaapkamer
+
+# Increase hue light with xiaomi switch (single click)
 - alias: Verlicht slaapkamer licht
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_right_158d00027c19e9
       click_type: single
@@ -129,35 +141,59 @@
           10
         {% endif %}
 
-# Turn off hue light with xiaomi switch
-- alias: Uitzetten slaapkamer licht
-  trigger: 
-    platform: event
-    event_type: click
-    event_data:
-      entity_id: binary_sensor.wall_switch_both_158d00027c19e9
-      click_type: both
-  condition:
-    - condition: state
-      entity_id: light.hue_ambiance_slaapkamer
-      state: 'on'
-  action:
-    service: light.turn_off
-    entity_id: light.hue_ambiance_slaapkamer
- 
- # Turn on hue light with xiaomi switch
+# Turn on hue light with xiaomi switch (long press)
 - alias: Aanzetten slaapkamer licht
   trigger:
     platform: event
-    event_type: click
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d00027c19e9
+      click_type: long
+  action:
+    service: light.turn_on
+    entity_id: light.hue_ambiance_slaapkamer
+    data_template:
+      brightness: >-
+        100
+
+# Turn off xiaomi gateway light with xiaomi switch (both press)
+- alias: Uitzetten gateway licht
+  trigger: 
+    platform: event
+    event_type: xiaomi_aqara.click
     event_data:
       entity_id: binary_sensor.wall_switch_both_158d00027c19e9
       click_type: both
   condition:
     - condition: state
-      entity_id: light.hue_ambiance_slaapkamer
+      entity_id: light.gateway_light_7c49ebb18b86
+      state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.gateway_light_7c49ebb18b86
+ 
+ # Turn on xiaomi gatway light with xiaomi switch (both press)
+- alias: Aanzetten gateway licht
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_both_158d00027c19e9
+      click_type: both
+  condition:
+    - condition: state
+      entity_id: light.gateway_light_7c49ebb18b86
       state: 'off'
   action:
     service: light.turn_on
-    entity_id: light.hue_ambiance_slaapkamer
+    entity_id: light.gateway_light_7c49ebb18b86
 
+# tracking notifications
+- alias: name entered zone
+  trigger:
+    platform: state
+    entity_id: device_tracker.94652dc2aa01, device_tracker.c0eefbe296aa, device_tracker.44c3462e5fdd, device_tracker.8058f897ad84, device_tracker.google_maps_103666873320035558501
+  action:     
+    service: persistent_notification.create
+    data_template:
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ trigger.to_state.name }} is in {{ trigger.to_state.state }}'
