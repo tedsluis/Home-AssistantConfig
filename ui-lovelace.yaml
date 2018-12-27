@@ -15,7 +15,7 @@ views:
     # Specify a tab icon if you want the view tab to be an icon.
   - icon: mdi:home-assistant
     # Title of the view. Will be used as the tooltip for tab icon
-    title: Second view
+    title: home-assistant
     background: radial-gradient(crimson, skyblue)
     cards:
       - type: entities
@@ -78,27 +78,50 @@ views:
           - binary_sensor.motion_sensor_158d00029a5cd2
           - counter.motion_counter
           - sensor.illumination_158d00029a5cd2
-        # The filter card will filter entities for their state
-      - id: peoplehome # Every card needs an ID, if you don't specify one, it is added automatically.
+  - title: Map
+    icon: mdi:map
+    background: radial-gradient(crimson, skyblue)
+    cards:
+      - id: peoplewhere # Every card needs an ID, if you don't specify one, it is added automatically.
         type: entity-filter
         entities:
           - device_tracker.94652dc2aa01
           - device_tracker.c0eefbe296aa
           - device_tracker.44c3462e5fdd
           - device_tracker.8058f897ad84
+          - device_tracker.google_maps_103666873320035558501
         state_filter:
           - 'home'
           - 'not_home'
+          - 'de_munt'
+          - 'maaike'
+          - 'mieke_en_theo'
+          - 'stad'
+          - 'station'
+          - 'werk_utrecht'
+          - 'werk_zeist'
+          - 'winkels'
         card:
           type: glance
-          title: Wie is er thuis
-        # The markdown card will render markdown text.
-      - type: markdown
-        title: Lovelace
-        content: >
-          Welcome to your **Lovelace UI**.
-    # View tab title.
+          title: Waar is iedereen?
+      - type: map
+        entities:
+          - device_tracker.94652dc2aa01
+          - device_tracker.c0eefbe296aa
+          - device_tracker.44c3462e5fdd
+          - device_tracker.8058f897ad84
+          - device_tracker.google_maps_103666873320035558501
+          - zone.de_munt
+          - zone.maaike
+          - zone.mieke_en_theo
+          - zone.stad
+          - zone.station
+          - zone.werk_utrecht
+          - zone.werk_zeist
+          - zone.winkels
+     # View tab title.
   - title: Weer
+    icon: mdi:weather-partlycloudy
     id: Weather
     # Optional background (overwrites the global background).
     background: radial-gradient(crimson, skyblue)
@@ -192,6 +215,7 @@ views:
         - entity: sensor.humidity_158d00027898b3
         - entity: sensor.humidity_158d000273424b
   - title: Internet
+    icon: mdi:web
     id: internet_overview
     background: radial-gradient(crimson, skyblue)
     theme: dark-mode
@@ -216,60 +240,236 @@ views:
           - entity: sensor.breaches_stijnsluisgmailcom
           - entity: sensor.breaches_tedsluisgmailcom
           - entity: sensor.breaches_tedsluisrabobanknl
+  - title: trein
+    icon: mdi:train
+    id: trein_overview
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    cards:
+      - id: treintijden
+        type: history-graph
+        title: treintijden
+        hours_to_show: 1
+        entities:
+          - entity: sensor.utrecht__amsterdam_zuid
+            name: utrecht
+          - entity: sensor.amsterdam_zuid__utrecht_cs
+            name: amsterdam
+      - type: entities
+        title: trein utrecht - amsterdam zuid
+        entities:
+          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_going
+            icon: mdi:train
+          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_time_planned
+            icon: mdi:clock-outline
+          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_time_actual
+            icon: mdi:clock-outline
+          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_delay
+            icon: mdi:train
+          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_platform
+            icon: mdi:hail
+          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_platform_changed
+            icon: mdi:hail
+          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_time_planned
+            icon: mdi:clock-outline
+          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_time_actual
+            icon: mdi:clock-outline
+          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_delay
+            icon: mdi:train
+          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_platform
+            icon: mdi:hail
+          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_platform_changed
+            icon: mdi:hail
+          - entity: sensor.trein_utrecht_amsterdam_zuid_next
+            icon: mdi:fast-forward
+          - entity: sensor.trein_utrecht_amsterdam_zuid_status
+            icon: mdi:train
+          - entity: sensor.trein_utrecht_amsterdam_zuid_transfers
+            icon: mdi:walk
+          - entity: sensor.trein_utrecht_amsterdam_zuid_remarks
+            icon: mdi:comment-text-outline
+      - type: entities
+        title: trein amsterdam zuid - utrecht
+        entities:
+          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_going
+            icon: mdi:train
+          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_time_planned
+            icon: mdi:clock-outline
+          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_time_actual
+            icon: mdi:clock-outline
+          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_delay
+            icon: mdi:train
+          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_platform
+            icon: mdi:hail
+          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_platform_changed
+            icon: mdi:hail
+          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_time_planned
+            icon: mdi:clock-outline
+          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_time_actual
+            icon: mdi:clock-outline
+          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_delay
+            icon: mdi:train
+          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_platform
+            icon: mdi:hail
+          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_platform_changed
+            icon: mdi:hail
+          - entity: sensor.trein_amsterdam_zuid_utrecht_next
+            icon: mdi:fast-forward
+          - entity: sensor.trein_amsterdam_zuid_utrecht_status
+            icon: mdi:train
+          - entity: sensor.trein_amsterdam_zuid_utrecht_transfers
+            icon: mdi:walk
+          - entity: sensor.trein_amsterdam_zuid_utrecht_remarks
+            icon: mdi:comment-text-outline
+  - title: postpakketten
+    icon: mdi:package-variant
+    id: postpakketten_overview
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    cards:
+      - id: nlpostpakketten
+        type: history-graph
+        title: pakketten bezorging postnl
+        hours_to_show: 96
+        entities:
+          - entity: sensor.postnl
   - title: Verbruik
+    icon: mdi:flash-outline
     id: verbruik_overview
     background: radial-gradient(crimson, skyblue)
     theme: dark-mode
     cards:
-      - type: sensor
-        height: 150
+      - type: entities
+        title: energie
+        entities:
+          - sensor.power_tariff
+          - sensor.voltage_sags_phase_l1
+          - sensor.voltage_swells_phase_l1
+          - sensor.long_power_failure_count
+      - id: power_consumption
+        type: history-graph
+        title: elektriciteitsverbruik
         hours_to_show: 48
-        detail: 2
-        entity: sensor.power_consumption
-      - type: sensor
-        height: 150
+        entities: 
+          - entity: sensor.power_consumption
+      - id: power_consumption_overview
+        type: history-graph
+        title: elektriciteitsverbruik
         hours_to_show: 48
-        detail: 2
-        entity: sensor.power_consumption_low
-      - type: sensor
-        height: 150
+        entities:
+          - entity: sensor.power_consumption_low
+          - entity: sensor.power_consumption_normal
+      - id: gas_consumption_overview
+        type: history-graph
+        title: gasverbruik
         hours_to_show: 48
-        detail: 2
-        entity: sensor.power_consumption_normal
-      - type: sensor
-        height: 150
+        entities: 
+          - entity: sensor.hourly_gas_consumption
+      - id: gas_consumption
+        type: history-graph
+        title: gasverbruik
         hours_to_show: 48
-        detail: 2
-        entity: sensor.power_consumption_phase_l1
-      - type: sensor
-        height: 150
+        entities: 
+          - entity: sensor.gas_consumption
+  - title: Settings home-assistant
+    icon: mdi:settings-outline
+    id: ha_settings_overview
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    cards:
+      - type: entities
+        title: Home Assistant
+        entities:
+          - binary_sensor.check_hue_bridge
+      - type: entities
+        title: Automation
+        entities:
+          - group.all_automations
+          - automation.count_motion
+          - automation.name_entered_zone
+          - automation.overloop_licht_in_de_avond
+          - automation.overloop_licht_in_de_nacht
+          - automation.overloop_licht_in_de_ochtend
+          - automation.overloop_licht_na_0200
+          - automation.poweroff_and_poweron_hue_bridge
+          - automation.aanzetten_slaapkamer_licht
+          - automation.uitzetten_slaapkamer_licht
+          - automation.dimm_slaapkamer_licht
+          - automation.verlicht_slaapkamer_licht
+          - automation.aanzetten_gateway_licht
+          - automation.uitzetten_gateway_licht
+      - type: entities
+        title: Batterij capaciteit
+        entities:
+          - sensor.batterij_158d0002789adf
+          - sensor.batterij_158d000273d342
+          - sensor.batterij_158d000238fcc1
+          - sensor.batterij_158d00027c19e9
+          - sensor.batterij_158d000231046d
+          - sensor.batterij_158d00027898b3
+          - sensor.batterij_158d00027725d7
+          - sensor.batterij_158d000273424b
+          - sensor.batterij_158d00027c19e9
+          - sensor.batterij_158d00027c19e9
+  - title: home-assistant host
+    icon: mdi:server-network
+    id: ha_host_overview
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    cards:
+      - type: entities
+        title: Home Assistant
+        entities:
+          - sensor.ssl_cert_expiry
+          - sensor.home_assistant_uptime
+          - sensor.host_uptime
+      - id: diskspace
+        type: history-graph
+        title: disk space
         hours_to_show: 48
-        detail: 2
-        entity: sensor.power_tariff
-      - type: sensor
-        height: 150
+        entities:
+          - entity: sensor.disk_free_
+          - entity: sensor.disk_use_
+      - id: diskspace_percent
+        type: history-graph
+        title: disk space %
         hours_to_show: 48
-        detail: 2
-        entity: sensor.voltage_sags_phase_l1
-      - type: sensor
-        height: 150
+        entities:
+          - entity: sensor.disk_use_percent_
+      - id: memoryusage
+        type: history-graph
+        title: memory usage
         hours_to_show: 48
-        detail: 2
-        entity: sensor.voltage_swells_phase_l1
-      - type: sensor
-        height: 150
+        entities:
+          - entity: sensor.memory_use
+          - entity: sensor.memory_free
+      - id: memoryusage_percent
+        type: history-graph
+        title: memory usage %
         hours_to_show: 48
-        detail: 2
-        entity: sensor.gas_consumption
-      - type: sensor
-        height: 150
+        entities:
+          - entity: sensor.memory_use_percent
+      - id: cpu_load
+        type: history-graph
+        title: cpu load
         hours_to_show: 48
-        detail: 2
-        entity: sensor.hourly_gas_consumption
-      - type: sensor
-        height: 150
+        entities:
+          - entity: sensor.load_1m
+          - entity: sensor.load_5m
+          - entity: sensor.load_15m
+      - id: networkoverview
+        type: history-graph
+        title: network throughput
         hours_to_show: 48
-        detail: 2
-        entity: sensor.long_power_failure_count
+        entities:
+          - entity: sensor.network_in_eno1
+          - entity: sensor.network_out_eno1
+      - id: networkoverview_packets
+        type: history-graph
+        title: network packets
+        hours_to_show: 48
+        entities:
+          - entity: sensor.packets_in_eno1
+          - entity: sensor.packets_out_eno1
         
         
