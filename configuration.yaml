@@ -18,6 +18,9 @@ homeassistant:
   
   # Customization file
   customize: !include customize.yaml
+
+  # customize glob file
+  customize_glob: !include customize_glob.yaml
   
   # C for Celcius, F for Fahrenheit
   temperature_unit: C
@@ -47,8 +50,20 @@ http:
 lovelace:
   mode: yaml
 
-#logger:
-#   default: debug
+logger:
+  default: warn
+#  default: debug
+  logs:
+    xiaomi_gateway: debug
+    homeassistant.components.xiaomi_aqara: debug
+    homeassistant.components.switch.xiaomi_aqara: debug
+
+#    homeassistant.components.automation: debug
+#    homeassistant.bootstrap: info
+#    homeassistant.components.device_tracker: info
+#    homeassistant.loader: info
+#    homeassistant.core: debug
+
 
 # to update duckdns dns record dynamicly
 duckdns:
@@ -125,6 +140,8 @@ weather:
     api_key: !secret darksky_api_key
 
 sensor:
+  - platform: uptime
+    name: Home Assistant uptime
   - platform: nederlandse_spoorwegen
     email: !secret ns_loginname
     password: !secret ns_password
@@ -183,13 +200,6 @@ sensor:
     unit_of_measurement: days
     scan_interval: 3600
     command: echo $(($(cat /proc/uptime | sed 's/^\([0-9]*\)[ \.].*$/\1/g') / 86400))
-  - platform: command_line
-    name: Home Assistant uptime
-    unit_of_measurement: days
-    scan_interval: 3600
-    #command: echo $(( $(( $(date +%s) - $(ps -ef | grep python | grep homeassistant | grep config | awk '{print $5}' |  xargs date +%s -d) )) / 86400 ))
-    #command: echo $(( $(( $(date +%s) - $(echo "32 45 67 88 nov10" | awk '{print $5}' |  xargs date +%s -d) )) / 86400 ))
-    command: echo $(( $(( $(date +%s) - $(ps -ef | grep python | grep homeassistant | grep config | awk '{print $5}' | xargs date +%s -d) )) / 86400 ))
   - platform: haveibeenpwned
     email: 
       - !secret email1
@@ -198,6 +208,288 @@ sensor:
       - !secret email4
       - !secret email5
       - !secret email6
+  - platform: template
+    sensors:
+      batterij_158d0002789adf:
+        friendly_name: temperatuur sensor woonkamer
+        value_template: >
+          {% if is_state('sensor.temperature_158d0002789adf', 'unknown') %}
+            110
+          {% else %}
+            {{ states.sensor.temperature_158d0002789adf.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d0002789adf = states.sensor.temperature_158d0002789adf.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d0002789adf = (battery_level_158d0002789adf / 10) |int * 10 %}
+          {% if battery_round_158d0002789adf >= 100 or is_state('sensor.temperature_158d0002789adf', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d0002789adf > 0 %}
+            mdi:battery-{{ battery_round_158d0002789adf }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      batterij_158d000273d342:
+        friendly_name: temperatuur sensor slaapkamer annelies en ted
+        value_template: >
+          {% if is_state('sensor.temperature_158d000273d342', 'unknown') %}
+            110
+          {% else %}
+            {{ states.sensor.temperature_158d000273d342.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d000273d342 = states.sensor.temperature_158d000273d342.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d000273d342 = (battery_level_158d000273d342 / 10) |int * 10 %}
+          {% if battery_round_158d000273d342 >= 100 or is_state('sensor.temperature_158d000273d342', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d000273d342 > 0 %}
+            mdi:battery-{{ battery_round_158d000273d342 }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      batterij_158d000238fcc1:
+        friendly_name: temperatuur sensor naud 
+        value_template: >
+          {% if is_state('sensor.temperature_158d000238fcc1', 'unknown') %}
+            110
+          {% else %}
+            {{ states.sensor.temperature_158d000238fcc1.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d000238fcc1 = states.sensor.temperature_158d000238fcc1.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d000238fcc1 = (battery_level_158d000238fcc1 / 10) |int * 10 %}
+          {% if battery_round_158d000238fcc1 >= 100 or is_state('sensor.temperature_158d000238fcc1', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d000238fcc1 > 0 %}
+            mdi:battery-{{ battery_round_158d000238fcc1 }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      batterij_158d00027257cd:
+        friendly_name: temperatuur sensor stijn 
+        value_template: >
+          {% if is_state('sensor.temperature_158d00027257cd', 'unknown') %}
+            110
+          {% else %}
+            {{ states.sensor.temperature_158d00027257cd.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d00027257cd = states.sensor.temperature_158d00027257cd.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d00027257cd = (battery_level_158d00027257cd / 10) |int * 10 %}
+          {% if battery_round_158d00027257cd >= 100 or is_state('sensor.temperature_158d00027257cd', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d00027257cd > 0 %}
+            mdi:battery-{{ battery_round_158d00027257cd }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      batterij_158d000231046d:
+        friendly_name: temperatuur sensor keuken 
+        value_template: >
+          {% if is_state('sensor.temperature_158d000231046d', 'unknown') %}
+            110
+          {% else %}
+            {{ states.sensor.temperature_158d000231046d.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d000231046d = states.sensor.temperature_158d000231046d.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d000231046d = (battery_level_158d000231046d / 10) |int * 10 %}
+          {% if battery_round_158d000231046d >= 100 or is_state('sensor.temperature_158d000231046d', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d000231046d > 0 %}
+            mdi:battery-{{ battery_round_158d000231046d }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      batterij_158d00027898b3:
+        friendly_name: temperatuur sensor studeerkamer 
+        value_template: >
+          {% if is_state('sensor.temperature_158d00027898b3', 'unknown') %}
+            110
+          {% else %}
+            {{ states.sensor.temperature_158d00027898b3.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d00027898b3 = states.sensor.temperature_158d00027898b3.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d00027898b3 = (battery_level_158d00027898b3 / 10) |int * 10 %}
+          {% if battery_round_158d00027898b3 >= 100 or is_state('sensor.temperature_158d00027898b3', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d00027898b3 > 0 %}
+            mdi:battery-{{ battery_round_158d00027898b3 }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      batterij_158d00027725d7:
+        friendly_name: temperatuur sensor schuur 
+        value_template: >
+          {% if is_state('sensor.temperature_158d00027725d7', 'unknown') %}
+            110
+          {% else %}
+            {{ states.sensor.temperature_158d00027725d7.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d00027725d7 = states.sensor.temperature_158d00027725d7.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d00027725d7 = (battery_level_158d00027725d7 / 10) |int * 10 %}
+          {% if battery_round_158d00027725d7 >= 100 or is_state('sensor.temperature_158d00027725d7', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d00027725d7 > 0 %}
+            mdi:battery-{{ battery_round_158d00027725d7 }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      batterij_158d000273424b:
+        friendly_name: temperatuur sensor badkamer 
+        value_template: >
+          {% if is_state('sensor.temperature_158d000273424b', 'unknown') %}
+            110
+          {% else %}
+            {{ states.sensor.temperature_158d000273424b.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d000273424b = states.sensor.temperature_158d000273424b.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d000273424b = (battery_level_158d000273424b / 10) |int * 10 %}
+          {% if battery_round_158d000273424b >= 100 or is_state('sensor.temperature_158d000273424b', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d000273424b > 0 %}
+            mdi:battery-{{ battery_round_158d000273424b }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      batterij_158d00029a5cd2:
+        friendly_name: temperatuur sensor overloop 
+        value_template: >
+          {% if is_state('binary_sensor.motion_sensor_158d00029a5cd2', 'unknown') %}
+            110
+          {% else %}
+            {{ states.binary_sensor.motion_sensor_158d00029a5cd2.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d00029a5cd2 = states.binary_sensor.motion_sensor_158d00029a5cd2.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d00029a5cd2 = (battery_level_158d00029a5cd2 / 10) |int * 10 %}
+          {% if battery_round_158d00029a5cd2 >= 100 or is_state('binary_sensor.motion_sensor_158d00029a5cd2', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d00029a5cd2 > 0 %}
+            mdi:battery-{{ battery_round_158d00029a5cd2 }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      batterij_158d00027c19e9:
+        friendly_name: schakelaar slaapkamer annelies en ted
+        value_template: >
+          {% if is_state('binary_sensor.wall_switch_left_158d00027c19e9', 'unknown') %}
+            110
+          {% else %}
+            {{ states.binary_sensor.wall_switch_left_158d00027c19e9.attributes["battery_level"] | float}}
+          {% endif %}
+        icon_template: >
+          {% set battery_level_158d00027c19e9 = states.binary_sensor.wall_switch_left_158d00027c19e9.attributes.battery_level|default(0)|int %}
+          {% set battery_round_158d00027c19e9 = (battery_level_158d00027c19e9 / 10) |int * 10 %}
+          {% if battery_round_158d00027c19e9 >= 100 or is_state('binary_sensor.wall_switch_left_158d00027c19e9', 'unknown') %}
+            mdi:battery
+          {% elif battery_round_158d00027c19e9 > 0 %}
+            mdi:battery-{{ battery_round_158d00027c19e9 }}
+          {% else %}
+            mdi:battery-charging-wireless-outline
+          {% endif %}
+        unit_of_measurement: '%'
+      trein_utrecht_amsterdam_zuid_departure_going:
+        friendly_name: vertrekt
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.going }}’
+      trein_utrecht_amsterdam_zuid_departure_time_planned:
+        friendly_name: vertrek gepland om
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_time_planned }}’
+      trein_utrecht_amsterdam_zuid_departure_time_actual:
+        friendly_name: actuele vertrekttijd
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_time_actual }}’
+      trein_utrecht_amsterdam_zuid_departure_delay:
+        friendly_name: vertrek vertraging
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_delay }}’
+      trein_utrecht_amsterdam_zuid_departure_platform:
+        friendly_name: vertrekt vanaf perron
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_platform }}’
+      trein_utrecht_amsterdam_zuid_departure_platform_changed:
+        friendly_name: vertrek perron gewijzigd
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_platform_changed }}’
+      trein_utrecht_amsterdam_zuid_arrival_time_planned:
+        friendly_name: geplande aankomst
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_time_planned }}’
+      trein_utrecht_amsterdam_zuid_arrival_time_actual:
+        friendly_name: actuele aankomst
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_time_actual }}’
+      trein_utrecht_amsterdam_zuid_arrival_delay:
+        friendly_name: aankomst vertraging
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_delay }}’
+      trein_utrecht_amsterdam_zuid_arrival_platform:
+        friendly_name: komt aan op perron
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_platform }}’
+      trein_utrecht_amsterdam_zuid_arrival_platform_changed:
+        friendly_name: aankomst perron gewijzigd
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_platform_changed }}’
+      trein_utrecht_amsterdam_zuid_next:
+        friendly_name: volgende
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.next }}’
+      trein_utrecht_amsterdam_zuid_status:
+        friendly_name: status
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.status }}’
+      trein_utrecht_amsterdam_zuid_transfers:
+        friendly_name: overstaps
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.transfers }}’
+      trein_utrecht_amsterdam_zuid_remarks:
+        friendly_name: opmerkingen
+        value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.remarks }}’
+      trein_amsterdam_zuid_utrecht_departure_going:
+        friendly_name: vertrekt
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.going }}’
+      trein_amsterdam_zuid_utrecht_departure_time_planned:
+        friendly_name: vertrek gepland om
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_time_planned }}’
+      trein_amsterdam_zuid_utrecht_departure_time_actual:
+        friendly_name: actuele vertrekttijd
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_time_actual }}’
+      trein_amsterdam_zuid_utrecht_departure_delay:
+        friendly_name: vertrek vertraging
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_delay }}’
+      trein_amsterdam_zuid_utrecht_departure_platform:
+        friendly_name: vertrekt vanaf perron
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_platform }}’
+      trein_amsterdam_zuid_utrecht_departure_platform_changed:
+        friendly_name: vertrek perron gewijzigd
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_platform_changed }}’
+      trein_amsterdam_zuid_utrecht_arrival_time_planned:
+        friendly_name: geplande aankomst
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_time_planned }}’
+      trein_amsterdam_zuid_utrecht_arrival_time_actual:
+        friendly_name: actuele aankomst
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_time_actual }}’
+      trein_amsterdam_zuid_utrecht_arrival_delay:
+        friendly_name: aankomst vertraging
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_delay }}’
+      trein_amsterdam_zuid_utrecht_arrival_platform:
+        friendly_name: komt aan op perron
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_platform }}’
+      trein_amsterdam_zuid_utrecht_arrival_platform_changed:
+        friendly_name: aankomst perron gewijzigd
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_platform_changed }}’
+      trein_amsterdam_zuid_utrecht_next:
+        friendly_name: volgende
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.next }}’
+      trein_amsterdam_zuid_utrecht_status:
+        friendly_name: status
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.status }}’
+      trein_amsterdam_zuid_utrecht_transfers:
+        friendly_name: overstaps
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.transfers }}’
+      trein_amsterdam_zuid_utrecht_remarks:
+        friendly_name: opmerkingen
+        value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.remarks }}’
  
 binary_sensor: 
   - platform: command_line
@@ -209,15 +501,15 @@ binary_sensor:
     payload_off: 0
 
 device_tracker:
-  - platform: mikrotik
-    host: !secret mikrotik_hostname
-    port: !secret mikrotik_port
-    username: !secret mikrotik_username
-    password: !secret mikrotik_password
-    track_new_devices: false
+#  - platform: mikrotik
+#    host: !secret mikrotik_hostname
+#    port: !secret mikrotik_port
+#    username: !secret mikrotik_username
+#    password: !secret mikrotik_password
+#    track_new_devices: false
   # track smartphone using their WIFI ip address
   - platform: nmap_tracker
-    home_interval: 2
+    home_interval: 1
     hosts:
       - !secret device_ip_ted
       - !secret device_ip_annelies
@@ -227,26 +519,46 @@ device_tracker:
   - platform: google_maps
     username: !secret google_gps_username
     password: !secret google_gps_password
-    max_gps_accuracy: 10
+    max_gps_accuracy: 30
 
 zone:
-  - name: Werk Utrecht
+  - name: werk utrecht
     latitude: !secret latitude_werk_utrecht
     longitude: !secret longitude_werk_utrecht
-    radius: 250
-  - name: Werk Zeist
-    radius: 250
+    radius: 150
+  - name: werk zeist
     latitude: !secret latitude_werk_zeist
     longitude: !secret longitude_werk_zeist
-  - name: Mieke en Theo
-    radius: 100
+    radius: 250
+  - name: mieke en theo
     latitude: !secret  latitude_ouders
     longitude: !secret longitude_ouders
+    radius: 100
   # This will override the default home zone
   - name: Home
     latitude: !secret latitude_home
     longitude: !secret longitude_home
-    radius: 20
+    radius: 30
+  - name: maaike
+    latitude: !secret latitude_maaike
+    longitude: !secret longitude_maaike
+    radius: 30
+  - name: stad
+    latitude: !secret latitude_city_center
+    longitude: !secret longitude_city_center
+    radius: 500
+  - name: winkels
+    latitude: !secret latitude_shops
+    longitude: !secret longitude_shops
+    radius: 75
+  - name: station
+    latitude: !secret latitude_central_station
+    longitude: !secret longitude_central_station
+    radius: 200
+  - name: de munt
+    latitude: !secret latitude_munt
+    longitude: !secret longitude_munt
+    radius: 70
 
 history_graph:
   temperatures:
@@ -275,23 +587,23 @@ history_graph:
         - sensor.speedtest_upload
         - sensor.speedtest_ping
 
-android_ip_webcam:
-  - host: !secret android_ip_webcam_host
-    name: webcam
-    username: !secret android_ip_webcam_username
-    password: !secret android_ip_webcam_password
-    scan_interval: 10
-    sensors:
-      - audio_connections
-      - battery_level
-      - battery_temp
-      - battery_voltage
-      - light
-      - motion
-      - pressure
-      - proximity
-      - sound
-      - video_connections
+#android_ip_webcam:
+#  - host: !secret android_ip_webcam_host
+#    name: webcam
+#    username: !secret android_ip_webcam_username
+#    password: !secret android_ip_webcam_password
+#    scan_interval: 10
+#    sensors:
+#      - audio_connections
+#      - battery_level
+#      - battery_temp
+#      - battery_voltage
+#      - light
+#      - motion
+#      - pressure
+#      - proximity
+#      - sound
+#      - video_connections
 
 # Text to speech                      
 tts:                                                   
@@ -310,9 +622,3 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
-# Link to the native home assistant GUI
-panel_iframe:
-  states:
-    title: 'Native GUI'
-    icon: mdi:wrench
-    url: https://tedsluis.duckdns.org:8123/states
