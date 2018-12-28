@@ -1,0 +1,12 @@
+#default: warn
+default: debug
+  logs:
+#    xiaomi_gateway: debug
+#    homeassistant.components.xiaomi_aqara: debug
+#    homeassistant.components.switch.xiaomi_aqara: debug
+#
+#    homeassistant.components.automation: debug
+#    homeassistant.bootstrap: info
+#    homeassistant.components.device_tracker: info
+#    homeassistant.loader: info
+    homeassistant.core: debug
