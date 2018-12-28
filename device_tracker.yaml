@@ -1,0 +1,19 @@
+#  - platform: mikrotik
+#    host: !secret mikrotik_hostname
+#    port: !secret mikrotik_port
+#    username: !secret mikrotik_username
+#    password: !secret mikrotik_password
+#    track_new_devices: false
+# track smartphone using their WIFI ip address
+- platform: nmap_tracker
+  home_interval: 1
+  hosts:
+    - !secret device_ip_ted
+    - !secret device_ip_annelies
+    - !secret device_ip_naud
+    - !secret device_ip_stijn
+# track google maps shared peaple
+- platform: google_maps
+  username: !secret google_gps_username
+  password: !secret google_gps_password
+  max_gps_accuracy: 30
