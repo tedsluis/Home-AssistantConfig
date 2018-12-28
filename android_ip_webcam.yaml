@@ -1,0 +1,16 @@
+- host: !secret android_ip_webcam_host
+  name: webcam
+  username: !secret android_ip_webcam_username
+  password: !secret android_ip_webcam_password
+  scan_interval: 10
+  sensors:
+    - audio_connections
+    - battery_level
+    - battery_temp
+    - battery_voltage
+    - light
+    - motion
+    - pressure
+    - proximity
+    - sound
+    - video_connections
