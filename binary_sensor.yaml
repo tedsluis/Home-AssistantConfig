@@ -1,0 +1,7 @@
+- platform: command_line
+  name: check Hue bridge
+  scan_interval: 120
+  command: echo $(curl -o /dev/null --silent --head --write-out '%{http_code}' "http://192.168.1.21/debug/clip.html") | sed 's/^.*200.*$/1/g' | sed 's/^.*000.*$/0/g'
+  device_class: connectivity
+  payload_on: 1
+  payload_off: 0
