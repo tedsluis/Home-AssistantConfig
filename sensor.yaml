@@ -1,0 +1,370 @@
+- platform: uptime
+  name: Home Assistant uptime
+
+# dutch rail road API
+- platform: nederlandse_spoorwegen
+  email: !secret ns_loginname
+  password: !secret ns_password
+  routes:
+    - name: Utrecht - Amsterdam Zuid
+      from: ut
+      to: asdz
+    - name: Amsterdam Zuid - Utrecht CS
+      from: asdz
+      to: ut
+
+# Internet latency, up and download speed     
+- platform: speedtest
+  minute:
+    - 0
+    - 15
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+# Dutch post packages delivery API    
+- platform: postnl
+  username: !secret post_nl_loginname
+  password: !secret post_nl_password
+
+# Home assistant host monitoring
+- platform: systemmonitor
+  resources:
+    - type: disk_use
+      arg: /
+    - type: disk_free
+      arg: /
+    - type: disk_use_percent
+      arg: /
+    - type: memory_use
+    - type: memory_free
+    - type: memory_use_percent
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
+    - type: network_in
+      arg: eno1
+    - type: network_out
+      arg: eno1
+    - type: packets_in
+      arg: eno1
+    - type: packets_out
+      arg: eno1
+
+# Electricity & gas consumption API 
+- platform: dsmr
+  host: !secret dsmr_ip_address
+  port: 2001
+  dsmr_version: 5
+
+# Check home assistant certificate expiry  
+- platform: command_line
+  name: SSL cert expiry
+  unit_of_measurement: days
+  scan_interval: 10800
+  # certificate expiry check: https://github.com/Matty9191/ssl-cert-check
+  command: "/ssl/ssl-cert-check -b -c /ssl/fullchain.pem | awk '{ print $NF }'"
+
+# Check home assistant host uptime
+- platform: command_line
+  name: Host uptime
+  unit_of_measurement: days
+  scan_interval: 3600
+  command: echo $(($(cat /proc/uptime | sed 's/^\([0-9]*\)[ \.].*$/\1/g') / 86400))
+
+# check for compromised login accounts  
+- platform: haveibeenpwned
+  email: 
+    - !secret email1
+    - !secret email2
+    - !secret email3
+    - !secret email4
+    - !secret email5
+    - !secret email6
+
+# Battery capacity icon 
+- platform: template
+  sensors:
+    batterij_158d0002789adf:
+      friendly_name: temperatuur sensor woonkamer
+      value_template: >
+        {% if is_state('sensor.temperature_158d0002789adf', 'unknown') %}
+          110
+        {% else %}
+          {{ states.sensor.temperature_158d0002789adf.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d0002789adf = states.sensor.temperature_158d0002789adf.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d0002789adf = (battery_level_158d0002789adf / 10) |int * 10 %}
+        {% if battery_round_158d0002789adf >= 100 or is_state('sensor.temperature_158d0002789adf', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d0002789adf > 0 %}
+          mdi:battery-{{ battery_round_158d0002789adf }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+    batterij_158d000273d342:
+      friendly_name: temperatuur sensor slaapkamer annelies en ted
+      value_template: >
+        {% if is_state('sensor.temperature_158d000273d342', 'unknown') %}
+          110
+        {% else %}
+          {{ states.sensor.temperature_158d000273d342.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d000273d342 = states.sensor.temperature_158d000273d342.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d000273d342 = (battery_level_158d000273d342 / 10) |int * 10 %}
+        {% if battery_round_158d000273d342 >= 100 or is_state('sensor.temperature_158d000273d342', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d000273d342 > 0 %}
+          mdi:battery-{{ battery_round_158d000273d342 }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+    batterij_158d000238fcc1:
+      friendly_name: temperatuur sensor naud 
+      value_template: >
+        {% if is_state('sensor.temperature_158d000238fcc1', 'unknown') %}
+          110
+        {% else %}
+          {{ states.sensor.temperature_158d000238fcc1.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d000238fcc1 = states.sensor.temperature_158d000238fcc1.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d000238fcc1 = (battery_level_158d000238fcc1 / 10) |int * 10 %}
+        {% if battery_round_158d000238fcc1 >= 100 or is_state('sensor.temperature_158d000238fcc1', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d000238fcc1 > 0 %}
+          mdi:battery-{{ battery_round_158d000238fcc1 }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+    batterij_158d00027257cd:
+      friendly_name: temperatuur sensor stijn 
+      value_template: >
+        {% if is_state('sensor.temperature_158d00027257cd', 'unknown') %}
+          110
+        {% else %}
+          {{ states.sensor.temperature_158d00027257cd.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d00027257cd = states.sensor.temperature_158d00027257cd.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d00027257cd = (battery_level_158d00027257cd / 10) |int * 10 %}
+        {% if battery_round_158d00027257cd >= 100 or is_state('sensor.temperature_158d00027257cd', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d00027257cd > 0 %}
+          mdi:battery-{{ battery_round_158d00027257cd }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+    batterij_158d000231046d:
+      friendly_name: temperatuur sensor keuken 
+      value_template: >
+        {% if is_state('sensor.temperature_158d000231046d', 'unknown') %}
+          110
+        {% else %}
+          {{ states.sensor.temperature_158d000231046d.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d000231046d = states.sensor.temperature_158d000231046d.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d000231046d = (battery_level_158d000231046d / 10) |int * 10 %}
+        {% if battery_round_158d000231046d >= 100 or is_state('sensor.temperature_158d000231046d', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d000231046d > 0 %}
+          mdi:battery-{{ battery_round_158d000231046d }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+    batterij_158d00027898b3:
+      friendly_name: temperatuur sensor studeerkamer 
+      value_template: >
+        {% if is_state('sensor.temperature_158d00027898b3', 'unknown') %}
+          110
+        {% else %}
+          {{ states.sensor.temperature_158d00027898b3.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d00027898b3 = states.sensor.temperature_158d00027898b3.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d00027898b3 = (battery_level_158d00027898b3 / 10) |int * 10 %}
+        {% if battery_round_158d00027898b3 >= 100 or is_state('sensor.temperature_158d00027898b3', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d00027898b3 > 0 %}
+          mdi:battery-{{ battery_round_158d00027898b3 }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+    batterij_158d00027725d7:
+      friendly_name: temperatuur sensor schuur 
+      value_template: >
+        {% if is_state('sensor.temperature_158d00027725d7', 'unknown') %}
+          110
+        {% else %}
+          {{ states.sensor.temperature_158d00027725d7.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d00027725d7 = states.sensor.temperature_158d00027725d7.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d00027725d7 = (battery_level_158d00027725d7 / 10) |int * 10 %}
+        {% if battery_round_158d00027725d7 >= 100 or is_state('sensor.temperature_158d00027725d7', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d00027725d7 > 0 %}
+          mdi:battery-{{ battery_round_158d00027725d7 }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+    batterij_158d000273424b:
+      friendly_name: temperatuur sensor badkamer 
+      value_template: >
+        {% if is_state('sensor.temperature_158d000273424b', 'unknown') %}
+          110
+        {% else %}
+          {{ states.sensor.temperature_158d000273424b.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d000273424b = states.sensor.temperature_158d000273424b.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d000273424b = (battery_level_158d000273424b / 10) |int * 10 %}
+        {% if battery_round_158d000273424b >= 100 or is_state('sensor.temperature_158d000273424b', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d000273424b > 0 %}
+          mdi:battery-{{ battery_round_158d000273424b }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+    batterij_158d00029a5cd2:
+      friendly_name: temperatuur sensor overloop 
+      value_template: >
+        {% if is_state('binary_sensor.motion_sensor_158d00029a5cd2', 'unknown') %}
+          110
+        {% else %}
+          {{ states.binary_sensor.motion_sensor_158d00029a5cd2.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d00029a5cd2 = states.binary_sensor.motion_sensor_158d00029a5cd2.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d00029a5cd2 = (battery_level_158d00029a5cd2 / 10) |int * 10 %}
+        {% if battery_round_158d00029a5cd2 >= 100 or is_state('binary_sensor.motion_sensor_158d00029a5cd2', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d00029a5cd2 > 0 %}
+          mdi:battery-{{ battery_round_158d00029a5cd2 }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+    batterij_158d00027c19e9:
+      friendly_name: schakelaar slaapkamer annelies en ted
+      value_template: >
+        {% if is_state('binary_sensor.wall_switch_left_158d00027c19e9', 'unknown') %}
+          110
+        {% else %}
+          {{ states.binary_sensor.wall_switch_left_158d00027c19e9.attributes["battery_level"] | float}}
+        {% endif %}
+      icon_template: >
+        {% set battery_level_158d00027c19e9 = states.binary_sensor.wall_switch_left_158d00027c19e9.attributes.battery_level|default(0)|int %}
+        {% set battery_round_158d00027c19e9 = (battery_level_158d00027c19e9 / 10) |int * 10 %}
+        {% if battery_round_158d00027c19e9 >= 100 or is_state('binary_sensor.wall_switch_left_158d00027c19e9', 'unknown') %}
+          mdi:battery
+        {% elif battery_round_158d00027c19e9 > 0 %}
+          mdi:battery-{{ battery_round_158d00027c19e9 }}
+        {% else %}
+          mdi:battery-charging-wireless-outline
+        {% endif %}
+      unit_of_measurement: '%'
+
+    # Dutch rail road API  
+    trein_utrecht_amsterdam_zuid_departure_going:
+      friendly_name: vertrekt
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.going }}’
+    trein_utrecht_amsterdam_zuid_departure_time_planned:
+      friendly_name: vertrek gepland om
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_time_planned }}’
+    trein_utrecht_amsterdam_zuid_departure_time_actual:
+      friendly_name: actuele vertrekttijd
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_time_actual }}’
+    trein_utrecht_amsterdam_zuid_departure_delay:
+      friendly_name: vertrek vertraging
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_delay }}’
+    trein_utrecht_amsterdam_zuid_departure_platform:
+      friendly_name: vertrekt vanaf perron
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_platform }}’
+    trein_utrecht_amsterdam_zuid_departure_platform_changed:
+      friendly_name: vertrek perron gewijzigd
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_platform_changed }}’
+    trein_utrecht_amsterdam_zuid_arrival_time_planned:
+      friendly_name: geplande aankomst
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_time_planned }}’
+    trein_utrecht_amsterdam_zuid_arrival_time_actual:
+      friendly_name: actuele aankomst
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_time_actual }}’
+    trein_utrecht_amsterdam_zuid_arrival_delay:
+      friendly_name: aankomst vertraging
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_delay }}’
+    trein_utrecht_amsterdam_zuid_arrival_platform:
+      friendly_name: komt aan op perron
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_platform }}’
+    trein_utrecht_amsterdam_zuid_arrival_platform_changed:
+      friendly_name: aankomst perron gewijzigd
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_platform_changed }}’
+    trein_utrecht_amsterdam_zuid_next:
+      friendly_name: volgende
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.next }}’
+    trein_utrecht_amsterdam_zuid_status:
+      friendly_name: status
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.status }}’
+    trein_utrecht_amsterdam_zuid_transfers:
+      friendly_name: overstaps
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.transfers }}’
+    trein_utrecht_amsterdam_zuid_remarks:
+      friendly_name: opmerkingen
+      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.remarks }}’
+    trein_amsterdam_zuid_utrecht_departure_going:
+      friendly_name: vertrekt
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.going }}’
+    trein_amsterdam_zuid_utrecht_departure_time_planned:
+      friendly_name: vertrek gepland om
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_time_planned }}’
+    trein_amsterdam_zuid_utrecht_departure_time_actual:
+      friendly_name: actuele vertrekttijd
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_time_actual }}’
+    trein_amsterdam_zuid_utrecht_departure_delay:
+      friendly_name: vertrek vertraging
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_delay }}’
+    trein_amsterdam_zuid_utrecht_departure_platform:
+      friendly_name: vertrekt vanaf perron
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_platform }}’
+    trein_amsterdam_zuid_utrecht_departure_platform_changed:
+      friendly_name: vertrek perron gewijzigd
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_platform_changed }}’
+    trein_amsterdam_zuid_utrecht_arrival_time_planned:
+      friendly_name: geplande aankomst
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_time_planned }}’
+    trein_amsterdam_zuid_utrecht_arrival_time_actual:
+      friendly_name: actuele aankomst
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_time_actual }}’
+    trein_amsterdam_zuid_utrecht_arrival_delay:
+      friendly_name: aankomst vertraging
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_delay }}’
+    trein_amsterdam_zuid_utrecht_arrival_platform:
+      friendly_name: komt aan op perron
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_platform }}’
+    trein_amsterdam_zuid_utrecht_arrival_platform_changed:
+      friendly_name: aankomst perron gewijzigd
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_platform_changed }}’
+    trein_amsterdam_zuid_utrecht_next:
+      friendly_name: volgende
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.next }}’
+    trein_amsterdam_zuid_utrecht_status:
+      friendly_name: status
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.status }}’
+    trein_amsterdam_zuid_utrecht_transfers:
+      friendly_name: overstaps
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.transfers }}’
+    trein_amsterdam_zuid_utrecht_remarks:
+      friendly_name: opmerkingen
+      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.remarks }}’
