@@ -1,0 +1,25 @@
+temperatures:
+  entities:
+    - sensor.temperature_158d0002789adf
+    - sensor.temperature_158d000273d342
+    - sensor.temperature_158d000238fcc1
+    - sensor.temperature_158d00027257cd
+    - sensor.temperature_158d000231046d
+    - sensor.temperature_158d00027898b3
+    - sensor.temperature_158d00027725d7
+    - sensor.temperature_158d000273424b
+humidities:
+  entities:
+    - sensor.humidity_158d0002789adf
+    - sensor.humidity_158d000273d342
+    - sensor.humidity_158d000238fcc1
+    - sensor.humidity_158d00027257cd
+    - sensor.humidity_158d000231046d
+    - sensor.humidity_158d00027898b3
+    - sensor.humidity_158d00027725d7
+    - sensor.humidity_158d000273424b
+internet_speed:
+  entities:
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      - sensor.speedtest_ping
