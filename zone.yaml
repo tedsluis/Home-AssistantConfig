@@ -1,0 +1,38 @@
+- name: werk utrecht
+  latitude: !secret latitude_werk_utrecht
+  longitude: !secret longitude_werk_utrecht
+  radius: 150
+- name: werk zeist
+  latitude: !secret latitude_werk_zeist
+  longitude: !secret longitude_werk_zeist
+  radius: 250
+- name: mieke en theo
+  latitude: !secret  latitude_ouders
+  longitude: !secret longitude_ouders
+  radius: 100
+# This will override the default home zone
+- name: Home
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  radius: 30
+- name: maaike
+  latitude: !secret latitude_maaike
+  longitude: !secret longitude_maaike
+  radius: 30
+- name: stad
+  latitude: !secret latitude_city_center
+  longitude: !secret longitude_city_center
+  radius: 500
+- name: winkels
+  latitude: !secret latitude_shops
+  longitude: !secret longitude_shops
+  radius: 75
+- name: station
+  latitude: !secret latitude_central_station
+  longitude: !secret longitude_central_station
+  radius: 200
+- name: de munt
+  latitude: !secret latitude_munt
+  longitude: !secret longitude_munt
+  radius: 70
+
