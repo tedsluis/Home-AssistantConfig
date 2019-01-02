@@ -1,3 +1,29 @@
+#############################################################################
+# Motion counter voordeur buiten
+- alias: Count motion voordeur buiten
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0002e8d2f1
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counteri_voordeur_buiten
+
+#############################################################################
+# Motion counter studeerkamer
+- alias: Count motion studeerkamer
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0002584585
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_studeerkamer
+
+#############################################################################
+# Motion counter overloop
 - alias: Count motion
   trigger:
     platform: state
@@ -8,7 +34,8 @@
     - service: counter.increment
       entity_id: counter.motion_counter
 
-# Set brightness to 30% after 22:00
+#############################################################################
+# Set brightness to 30% after 22:00 overloop
 - alias: overloop licht in de avond
   trigger:
     platform: time
@@ -20,19 +47,19 @@
         transition: 300
         brightness_pct: 30
 
-# Set lights to 0% after 02:00
-- alias: overloop licht na 02:00
+# Set lights to 0% after 00:00 overloop
+- alias: overloop licht na 00:00
   trigger:
     platform: time
-    at: '02:00:00'
+    at: '23:55:00'
   action:
-    - service: light.turn_on
+    - service: light.turn_off
       entity_id: light.overloop
       data:
         transition: 300
         brightness_pct: 0
 
-# Set brightness to 30% when there is motion after 02:00
+# Set brightness to 10% when there is motion after 00:00 overloop
 - alias: overloop licht in de nacht
   trigger:
     platform: state
@@ -41,7 +68,7 @@
     to: 'on'
   condition:
     - condition: time
-      after: '02:00:00'
+      after: '00:00:00'
     - condition: time
       before: '07:30:00'
   action:
@@ -49,15 +76,20 @@
       entity_id: light.overloop
       data:
         transition: 5
-        brightness_pct: 30
-    - delay: '10:00'
+        brightness_pct: 10
+    - delay: 
+        seconds: 300
     - service: light.turn_on
       entity_id: light.overloop
       data:
         transition: 300
         brightness_pct: 0
+    - delay: 
+        seconds: 300
+    - service: light.turn_off
+      entity_id: light.overloop
 
-# Restore light brightness in the morning
+# Restore light brightness in the morning overloop
 - alias: overloop licht in de ochtend
   trigger:
     platform: time
@@ -69,6 +101,7 @@
         transition: 300
         brightness_pct: 100
 
+#############################################################################
 # Reset Hue, when it becomes unavailable
 - alias: power-off and power-on hue bridge
   trigger:
@@ -83,6 +116,7 @@
     - service: switch.turn_on
       entity_id: switch.plug_158d00024ae109
 
+#############################################################################
 # Dimm hue light with xiaomi switch (single click)
 - alias: Dimm slaapkamer licht
   trigger:
@@ -152,10 +186,10 @@
   action:
     service: light.turn_on
     entity_id: light.hue_ambiance_slaapkamer
-    data_template:
-      brightness: >-
-        100
+    data:
+      brightness_pct: 100
 
+#############################################################################
 # Turn off xiaomi gateway light with xiaomi switch (both press)
 - alias: Uitzetten gateway licht
   trigger: 
@@ -188,6 +222,7 @@
     service: light.turn_on
     entity_id: light.gateway_light_7c49ebb18b86
 
+#############################################################################
 # tracking notifications
 - alias: name entered zone
   trigger:
@@ -197,3 +232,93 @@
     service: persistent_notification.create
     data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ trigger.to_state.name }} is in {{ trigger.to_state.state }}'
+
+#############################################################################
+- alias: Turn on studyroom light when there is movement 
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0002584585
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '-01:00:00'         
+      - condition: sun
+        before: sunrise 
+        before_offset: '01:00:00'
+      - condition: numeric_state
+        entity_id: sensor.illumination_158d0002584585
+        below: 300
+  action:
+    service: light.turn_on
+    entity_id: light.studeerkamer
+    data:
+      transition: 0
+      brightness_pct: 100
+
+- alias: Turn off studyroom light 30 minutes after last movement
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0002584585
+    to: 'off'
+    for:
+      minutes: 30
+  action:
+    service: light.turn_off
+    entity_id: light.studeerkamer
+
+- alias: Turn off studyroom light 1 hour after sunrise
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "01:00:00"
+  action: 
+    service: light.turn_off
+    entity_id: light.studeerkamer
+
+#############################################################################
+- alias: Turn on voordeur buiten light when there is movement 
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0002e8d2f1
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+        after_offset: '-00:30:00'         
+      - condition: sun
+        before: sunrise 
+        before_offset: '00:30:00'
+  action:
+    service: light.turn_on
+    entity_id: light.hue_white_light_1_3
+    data:
+      transition: 5
+      brightness_pct: 60
+
+- alias: Turn off voordeur buiten light 5 minutes after last movement
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d0002e8d2f1
+    from: 'on'
+    to: 'off'
+    for:
+      minutes: 5
+  action:
+    service: light.turn_off
+    entity_id: light.hue_white_light_1_3
+    
+- alias: Turn off voordeur buiten light 30 minutes after sunrise
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "00:30:00"
+  action: 
+    service: light.turn_off
+    entity_id: light.hue_white_light_1_3
