@@ -47,9 +47,21 @@ keuken:
 studeerkamer:
     name: Studeerkamer
     entities:
+        - light.studeerkamer
+        - binary_sensor.motion_sensor_158d0002584585
+        - counter.motion_counter_studeerkamer
         - sensor.temperature_158d00027898b3
         - sensor.humidity_158d00027898b3
+        - sensor.illumination_158d0002584585
 
+voordeur:
+    name: voordeur buiten
+    entities:
+        - light.hue_white_light_1_3
+        - binary_sensor.motion_sensor_158d0002e8d2f1
+        - counter.motion_counter_voordeur_buiten
+        - sensor.illumination_158d0002e8d2f1
+ 
 schuur:
     name: Schuur
     entities:
@@ -212,6 +224,7 @@ default_view:
         - group.schuur
         - group.badkamer
         - group.overloop
+        - group.voordeur
 
 apis:
     view: true
@@ -237,6 +250,8 @@ alle_lichten:
         - light.slaapkamer_stijn
         - light.keuken
         - light.overloop
+        - light.studeerkamer
+        - light.hue_white_light_1_3
         - group.all_switches
 
 environment:
