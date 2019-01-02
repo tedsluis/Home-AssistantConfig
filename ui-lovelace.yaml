@@ -402,22 +402,44 @@ views:
         entities:
           - binary_sensor.check_hue_bridge
       - type: entities
-        title: Automation
+        title: Automation slaapkamer Annelies & Ted
         entities:
-          - group.all_automations
-          - automation.count_motion
-          - automation.name_entered_zone
-          - automation.overloop_licht_in_de_avond
-          - automation.overloop_licht_in_de_nacht
-          - automation.overloop_licht_in_de_ochtend
-          - automation.overloop_licht_na_0000
-          - automation.poweroff_and_poweron_hue_bridge
-          - automation.aanzetten_slaapkamer_licht
-          - automation.uitzetten_slaapkamer_licht
-          - automation.dimm_slaapkamer_licht
-          - automation.verlicht_slaapkamer_licht
           - automation.aanzetten_gateway_licht
           - automation.uitzetten_gateway_licht
+          - automation.aanzetten_slaapkamer_licht
+          - automation.uitzetten_slaapkamer_licht
+          - automation.verlicht_slaapkamer_licht
+          - automation.dimm_slaapkamer_licht
+      - type: entities
+        title: Automation Overloop
+        entities:
+          - automation.count_motion
+          - automation.overloop_licht_in_de_avond
+          - automation.overloop_licht_na_0000
+          - automation.overloop_licht_in_de_nacht
+          - automation.overloop_licht_in_de_ochtend
+      - type: entities
+        title: Automation Studeerkamer
+        entities:
+          - automation.count_motion_studeerkamer
+          - automation.turn_on_studyroom_light_when_there_is_movement
+          - automation.turn_off_studyroom_light_1_hour_after_sunrise
+          - automation.turn_off_studyroom_light_30_minutes_after_last_movement
+      - type: entities
+        title: Automation Voordeur buiten
+        entities:
+          - automation.turn_on_voordeur_buiten_light_when_there_is_movement
+          - automation.count_motion_voordeur_buiten
+          - automation.turn_off_voordeur_buiten_light_30_minutes_after_sunrise
+          - automation.turn_off_voordeur_buiten_light_5_minutes_after_last_movement
+      - type: entities
+        title: Automation hue bridge
+        entities:
+          - automation.poweroff_and_poweron_hue_bridge
+      - type: entities
+        title: Automation zones
+        entities:
+          - automation.name_entered_zone
 
       - type: entities
         title: Batterij capaciteit
