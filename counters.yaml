@@ -1,3 +1,9 @@
 motion_counter:
   name: bewegingsteller
   icon: mdi:account
+motion_counter_studeerkamer:
+  name: bewegingsteller studeerkamer
+  icon: mdi:account
+motion_counter_buiten:
+  name: bewegingsteller voordeur buiten
+  icon: mdi:account
