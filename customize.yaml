@@ -37,6 +37,7 @@ light.lux_lamp_5:
 light.lux_lamp_6:
   hidden: true
 
+
 # Friendly names
 light.dimmer_3:
   friendly_name: dimmer woonkamer
@@ -52,6 +53,12 @@ light.slaapkamer_stijn:
   friendly_name: slaapkamer stijn
 media_player.bachstraat20:
   friendly_name: Chromecast woonkamer
+light.hue_white_light_1:
+  friendly_name: overloop
+light.hue_white_light_1_2:
+  friendly_name: studeerkamer (klein)
+light.hue_white_light_1_3:
+  friendly_name: voordeur buiten
 
 sensor.yr_temperature:
   friendly_name: temperatuur
@@ -102,7 +109,6 @@ sensor.speedtest_upload:
   friendly_name: upload speed
 sensor.speedtest_ping:  
   friendly_name: latency
-
 
 sensor.home_assistant_uptime:
   friendly_name: home-assistant uptime
@@ -257,6 +263,15 @@ sensor.pressure_158d00027898b3:
   hidden: true
 sensor.temperature_158d00027898b3:
   friendly_name: studeerkamer
+binary_sensor.motion_sensor_158d0002584585:
+  friendly_name: bewegingsensor studeerkamer
+sensor.illumination_158d0002584585:
+  friendly_name: lichtsensor studeerkamer
+
+binary_sensor.motion_sensor_158d0002e8d2f1:
+  friendly_name: bewegingsensor voordeur buiten
+sensor.illumination_158d0002e8d2f1:
+  friendly_name: lichtsensor voordeur buiten
 
 sensor.humidity_158d0002789adf:
   friendly_name: woonkamer 
