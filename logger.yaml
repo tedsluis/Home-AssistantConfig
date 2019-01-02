@@ -9,4 +9,5 @@ default: debug
 #    homeassistant.bootstrap: info
 #    homeassistant.components.device_tracker: info
 #    homeassistant.loader: info
+    homeassistant.components.mqtt: debug
     homeassistant.core: debug
