@@ -1,3 +1,5 @@
 broker: 192.168.11.100
+discovery_prefix: homeassistant
+discovery: true
 username: !secret mqtt_username
 password: !secret mqtt_password
