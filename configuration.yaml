@@ -40,7 +40,7 @@ http: !include http.yaml
 # Edit lovelace interface in yaml   
 lovelace: !include lovelace.yaml
 
-#logger: !include logger.yaml
+logger: !include logger.yaml
 
 # to update duckdns dns record dynamicly
 duckdns: !include duckdns.yaml
@@ -96,6 +96,8 @@ weather:
 sensor: !include sensor.yaml
  
 binary_sensor: !include binary_sensor.yaml
+
+switch: !include switch.yaml
 
 device_tracker: !include device_tracker.yaml
 
