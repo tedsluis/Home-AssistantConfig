@@ -45,7 +45,7 @@ light.woonkamer_voor:
   friendly_name: woonkamer voor
 light.woonkamer_achter:      
   friendly_name: woonkamer achter
-light.slaapkamer_annelies__ted:
+light.slaapkamer_annelies_ted:
   friendly_name: slaapkamer annelies en ted
 light.slaapkamer_naud:
   friendly_name: slaapkamer naud
@@ -95,7 +95,7 @@ sensor.yr_fog:
   friendly_name: mist
   icon: mdi:weather-fog
 
-sensor.utrecht__amsterdam_zuid:
+sensor.utrecht_amsterdam_zuid:
   friendly_name: utrecht cs - amsterdam zuid
 sensor.amsterdam_zuid__utrecht_cs:
   friendly_name: amsterdam zuid - utrecht cs
