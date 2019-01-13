@@ -276,95 +276,102 @@
           mdi:battery-charging-wireless-outline
         {% endif %}
       unit_of_measurement: '%'
+    #
+    viberate_158d0002b83c5b:
+      friendly_name: viberate_sensor_action1
+      value_template: '{{ states.binary_sensor.vibration_158d0002b83c5b.attributes["last_action"] }}'
+    viberate_158d0002b78209:
+      friendly_name: viberate_sensor_action2
+      value_template: '{{ states.binary_sensor.vibration_158d0002b78209.attributes["last_action"] }}'
 
     # Dutch rail road API  
     trein_utrecht_amsterdam_zuid_departure_going:
       friendly_name: vertrekt
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.going }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.going }}’
     trein_utrecht_amsterdam_zuid_departure_time_planned:
       friendly_name: vertrek gepland om
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_time_planned }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.departure_time_planned }}’
     trein_utrecht_amsterdam_zuid_departure_time_actual:
       friendly_name: actuele vertrekttijd
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_time_actual }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.departure_time_actual }}’
     trein_utrecht_amsterdam_zuid_departure_delay:
       friendly_name: vertrek vertraging
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_delay }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.departure_delay }}’
     trein_utrecht_amsterdam_zuid_departure_platform:
       friendly_name: vertrekt vanaf perron
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_platform }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.departure_platform }}’
     trein_utrecht_amsterdam_zuid_departure_platform_changed:
       friendly_name: vertrek perron gewijzigd
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.departure_platform_changed }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.departure_platform_changed }}’
     trein_utrecht_amsterdam_zuid_arrival_time_planned:
       friendly_name: geplande aankomst
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_time_planned }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.arrival_time_planned }}’
     trein_utrecht_amsterdam_zuid_arrival_time_actual:
       friendly_name: actuele aankomst
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_time_actual }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.arrival_time_actual }}’
     trein_utrecht_amsterdam_zuid_arrival_delay:
       friendly_name: aankomst vertraging
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_delay }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.arrival_delay }}’
     trein_utrecht_amsterdam_zuid_arrival_platform:
       friendly_name: komt aan op perron
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_platform }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.arrival_platform }}’
     trein_utrecht_amsterdam_zuid_arrival_platform_changed:
       friendly_name: aankomst perron gewijzigd
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.arrival_platform_changed }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.arrival_platform_changed }}’
     trein_utrecht_amsterdam_zuid_next:
       friendly_name: volgende
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.next }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.next }}’
     trein_utrecht_amsterdam_zuid_status:
       friendly_name: status
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.status }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.status }}’
     trein_utrecht_amsterdam_zuid_transfers:
       friendly_name: overstaps
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.transfers }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.transfers }}’
     trein_utrecht_amsterdam_zuid_remarks:
       friendly_name: opmerkingen
-      value_template: ‘{{ states.sensor.utrecht__amsterdam_zuid.attributes.remarks }}’
+      value_template: ‘{{ states.sensor.utrecht_amsterdam_zuid.attributes.remarks }}’
     trein_amsterdam_zuid_utrecht_departure_going:
       friendly_name: vertrekt
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.going }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.going }}’
     trein_amsterdam_zuid_utrecht_departure_time_planned:
       friendly_name: vertrek gepland om
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_time_planned }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.departure_time_planned }}’
     trein_amsterdam_zuid_utrecht_departure_time_actual:
       friendly_name: actuele vertrekttijd
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_time_actual }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.departure_time_actual }}’
     trein_amsterdam_zuid_utrecht_departure_delay:
       friendly_name: vertrek vertraging
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_delay }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.departure_delay }}’
     trein_amsterdam_zuid_utrecht_departure_platform:
       friendly_name: vertrekt vanaf perron
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_platform }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.departure_platform }}’
     trein_amsterdam_zuid_utrecht_departure_platform_changed:
       friendly_name: vertrek perron gewijzigd
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.departure_platform_changed }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.departure_platform_changed }}’
     trein_amsterdam_zuid_utrecht_arrival_time_planned:
       friendly_name: geplande aankomst
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_time_planned }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.arrival_time_planned }}’
     trein_amsterdam_zuid_utrecht_arrival_time_actual:
       friendly_name: actuele aankomst
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_time_actual }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.arrival_time_actual }}’
     trein_amsterdam_zuid_utrecht_arrival_delay:
       friendly_name: aankomst vertraging
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_delay }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.arrival_delay }}’
     trein_amsterdam_zuid_utrecht_arrival_platform:
       friendly_name: komt aan op perron
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_platform }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.arrival_platform }}’
     trein_amsterdam_zuid_utrecht_arrival_platform_changed:
       friendly_name: aankomst perron gewijzigd
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.arrival_platform_changed }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.arrival_platform_changed }}’
     trein_amsterdam_zuid_utrecht_next:
       friendly_name: volgende
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.next }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.next }}’
     trein_amsterdam_zuid_utrecht_status:
       friendly_name: status
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.status }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.status }}’
     trein_amsterdam_zuid_utrecht_transfers:
       friendly_name: overstaps
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.transfers }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.transfers }}’
     trein_amsterdam_zuid_utrecht_remarks:
       friendly_name: opmerkingen
-      value_template: ‘{{ states.sensor.amsterdam_zuid__utrecht_cs.attributes.remarks }}’
+      value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.remarks }}’
