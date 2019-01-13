@@ -21,6 +21,11 @@ views:
       - type: entities
         title: Woonkamer
         entities:
+          -  switch.basic1
+          -  switch.basic2
+          -  switch.basic3
+          -  switch.plug1
+          -  switch.plug2
           - light.woonkamer_achter
           - light.woonkamer_voor
           - light.dimmer_3
@@ -33,7 +38,7 @@ views:
       - type: entities
         title: Slaapkamer Annelies & Ted
         entities:
-          - light.slaapkamer_annelies__ted
+          - light.slaapkamer_annelies_ted
           - light.gateway_light_7c49ebb18b86
           - sensor.temperature_158d000273d342
           - sensor.humidity_158d000273d342
@@ -254,12 +259,12 @@ views:
       - type: entities
         title: Gepubliseerde account inbraken
         entities:
-          - entity: sensor.breaches_anneliesbuddinghgmailcom
-          - entity: sensor.breaches_infobureaubuddinghnl
-          - entity: sensor.breaches_naudsluisgmailcom
-          - entity: sensor.breaches_stijnsluisgmailcom
-          - entity: sensor.breaches_tedsluisgmailcom
-          - entity: sensor.breaches_tedsluisrabobanknl
+          - entity: sensor.breaches_annelies_buddingh_gmail_com
+          - entity: sensor.breaches_info_bureaubuddingh_nl
+          - entity: sensor.breaches_naud_sluis_gmail_com
+          - entity: sensor.breaches_stijn_sluis_gmail_com
+          - entity: sensor.breaches_ted_sluis_gmail_com
+          - entity: sensor.breaches_ted_sluis_rabobank_nl
   - title: trein
     icon: mdi:train
     id: trein_overview
@@ -271,9 +276,9 @@ views:
         title: treintijden
         hours_to_show: 1
         entities:
-          - entity: sensor.utrecht__amsterdam_zuid
+          - entity: sensor.utrecht_amsterdam_zuid
             name: utrecht
-          - entity: sensor.amsterdam_zuid__utrecht_cs
+          - entity: sensor.amsterdam_zuid_utrecht_cs
             name: amsterdam
       - type: entities
         title: trein utrecht - amsterdam zuid
@@ -415,7 +420,7 @@ views:
         entities:
           - automation.count_motion
           - automation.overloop_licht_in_de_avond
-          - automation.overloop_licht_na_0000
+          - automation.overloop_licht_na_00_00
           - automation.overloop_licht_in_de_nacht
           - automation.overloop_licht_in_de_ochtend
       - type: entities
@@ -435,7 +440,7 @@ views:
       - type: entities
         title: Automation hue bridge
         entities:
-          - automation.poweroff_and_poweron_hue_bridge
+          - automation.power_off_and_power_on_hue_bridge
       - type: entities
         title: Automation zones
         entities:
