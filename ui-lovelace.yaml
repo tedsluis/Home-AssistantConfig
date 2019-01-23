@@ -21,11 +21,17 @@ views:
       - type: entities
         title: Woonkamer
         entities:
-          -  switch.basic1
-          -  switch.basic2
-          -  switch.basic3
-          -  switch.plug1
-          -  switch.plug2
+          - switch.basic1
+          - switch.basic2
+          - switch.basic3
+          - switch.plug1
+          - switch.plug2
+          - switch.pow1
+          - sensor.pow1_energy_apparentpower
+          - sensor.pow1_energy_reactivepower
+          - switch.pow2
+          - sensor.pow2_energy_apparentpower
+          - sensor.pow2_energy_reactivepower
           - light.woonkamer_achter
           - light.woonkamer_voor
           - light.dimmer_3
@@ -147,6 +153,22 @@ views:
     cards:
       - type: weather-forecast
         entity: weather.dark_sky
+      - type: iframe
+        url: https://embed.windy.com/embed2.html
+        aspect_ratio: 100%
+      - type: iframe
+        url: https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.09083&lng=5.12222&overname=2&zoom=11&naam=utrecht&size=3&voor=1
+        aspect_ratio: 104%
+      - type: iframe
+        url: https://api.buienradar.nl/image/1.0/RadarMapNL?w=490&h=490
+        aspect_ratio: 100%
+  - title: Weer metingen 
+    icon: mdi:chart-line
+    id: Weather_measurements
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
       - id: outsidetemperature
         type: history-graph
         title: Buiten temperatuur
@@ -155,9 +177,6 @@ views:
         - entity: sensor.yr_temperature
         - entity: sensor.yr_dewpoint_temperature
         - entity: sensor.temperature_158d00027725d7
-      - type: iframe
-        url: https://embed.windy.com/embed2.html
-        aspect_ratio: 100%
       - id: outsidehumidityoverview
         type: history-graph
         title: Buiten luchtvochtingheid
@@ -172,9 +191,6 @@ views:
         entities:
         - entity: sensor.yr_pressure
         - entity: sensor.pressure_158d0002789adf
-      - type: iframe
-        url: https://gadgets.buienradar.nl/gadget/zoommap/?lat=52.09083&lng=5.12222&overname=2&zoom=11&naam=utrecht&size=3&voor=1
-        aspect_ratio: 104%
       - id: windspeedoverview
         type: history-graph
         title: Windsnelheid
@@ -187,9 +203,6 @@ views:
         hours_to_show: 48
         entities:
         - entity: sensor.yr_precipitation
-      - type: iframe
-        url: https://api.buienradar.nl/image/1.0/RadarMapNL?w=490&h=490
-        aspect_ratio: 100%
       - id: winddirectionoverview
         type: history-graph
         title: Windrichting
@@ -239,6 +252,41 @@ views:
         - entity: sensor.illumination_158d0002e8d2f1
         - entity: sensor.illumination_7c49ebb18b86
         - entity: sensor.illumination_158d00029a5cd2
+  - title: Lucht kwaliteit metingen 
+    icon: mdi:soundcloud
+    id: airquality_measurements
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+      - id: airquality_sensors
+        type: history-graph
+        title: NO2, O2, PM10 en PM25
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.airquality_no2
+        - entity: sensor.airquality_o3
+        - entity: sensor.airquality_pm10
+        - entity: sensor.airquality_pm25
+      - id: airquality_indexes
+        type: history-graph
+        title: Lucht kwaliteit indexen
+        hours_to_show: 48
+        entities:
+          - entity: sensor.airquality_no2_index
+            name: N02 index
+          - entity: sensor.airquality_o3_index
+            name: O3 index
+          - entity: sensor.airquality_pm10_index
+            name: PM10 index
+          - entity: sensor.airquality_pm25_index
+            name: PM25 index
+      - id: airquality_combined_index
+        type: history-graph
+        title: Overall lucht kwaliteit
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.airquality_combined_index
   - title: Internet
     icon: mdi:web
     id: internet_overview
