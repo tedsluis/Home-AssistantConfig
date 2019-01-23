@@ -1,4 +1,4 @@
-sensor_id: luft_daten
+sensor_id: 155
 show_on_map: true
 sensors:
   monitored_conditions:

@@ -14,7 +14,18 @@
 * Xiaomi Aqara temperture, pressure and humidity sensors
 * Xiaomi Aqara double switch 
 * Xiaomi Aqara power plug
+* Xiaomi Aqara door & window sensor
+* Xiaomi Aqara viberation sensor
+* Sonoff Basic
+* Sonoff pow r2
+* Sonoff 1CH
+* Sonoff RF bridge
+* MQTT
 * yr Weather api
+* darksky Weather api
+* Buienrader api
+* Luftdaten airquality api
+* luchtmeetnet api
 * Nederlandse Spoorwegen api (dutch railroad)
 * internet speed test api
 * Postnl api (package delivery)
@@ -25,6 +36,26 @@
 * certificate expiry time
 * Mikrotik router 
 * Android ip webcam
+* Google maps device tracker
+
+## installation notes
+
+### preperations
+
+* install docker
+* execute: `sudo systemctl enable docker.service && sudo systemctl start docker.service`
+* create directory: `/root/config`
+* store home-assistant configuration files in `/root/config/`
+
+### Homeassistant
+
+* create: [/etc/systemd/system/homeassistant.service](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/systemd/homeassistant.service)
+* execute: `sudo systemctl enable homeassistant.service && sudo systemctl start homeassistant.service`
+
+### MQTT
+* create: [/etc/systemd/system/mqtt.service](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/systemd/mqtt.service)
+* execute: `sudo systemctl enable mqtt.service && sudo systemctl start mqtt.service`
+  
   
 ## Lovelace Home
 [![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-home.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-home.png)  

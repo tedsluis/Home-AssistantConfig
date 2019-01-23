@@ -21,17 +21,6 @@ views:
       - type: entities
         title: Woonkamer
         entities:
-          - switch.basic1
-          - switch.basic2
-          - switch.basic3
-          - switch.plug1
-          - switch.plug2
-          - switch.pow1
-          - sensor.pow1_energy_apparentpower
-          - sensor.pow1_energy_reactivepower
-          - switch.pow2
-          - sensor.pow2_energy_apparentpower
-          - sensor.pow2_energy_reactivepower
           - light.woonkamer_achter
           - light.woonkamer_voor
           - light.dimmer_3
@@ -262,7 +251,7 @@ views:
       - id: airquality_sensors
         type: history-graph
         title: NO2, O2, PM10 en PM25
-        hours_to_show: 48
+        hours_to_show: 168
         entities: 
         - entity: sensor.airquality_no2
         - entity: sensor.airquality_o3
@@ -271,7 +260,7 @@ views:
       - id: airquality_indexes
         type: history-graph
         title: Lucht kwaliteit indexen
-        hours_to_show: 48
+        hours_to_show: 168
         entities:
           - entity: sensor.airquality_no2_index
             name: N02 index
@@ -284,7 +273,7 @@ views:
       - id: airquality_combined_index
         type: history-graph
         title: Overall lucht kwaliteit
-        hours_to_show: 48
+        hours_to_show: 168
         entities: 
         - entity: sensor.airquality_combined_index
   - title: Internet
@@ -455,6 +444,20 @@ views:
         entities:
           - binary_sensor.check_hue_bridge
       - type: entities
+        title: Sonoff plugs 
+        entities:
+          - switch.basic1
+          - switch.basic2
+          - switch.basic3
+          - switch.plug1
+          - switch.plug2
+          - switch.pow1
+          - sensor.pow1_energy_apparentpower
+          - sensor.pow1_energy_reactivepower
+          - switch.pow2
+          - sensor.pow2_energy_apparentpower
+          - sensor.pow2_energy_reactivepower
+      - type: entities
         title: Automation slaapkamer Annelies & Ted
         entities:
           - automation.aanzetten_gateway_licht
@@ -524,14 +527,14 @@ views:
         title: disk space
         hours_to_show: 48
         entities:
-          - entity: sensor.disk_free_
-          - entity: sensor.disk_use_
+          - entity: sensor.disk_free
+          - entity: sensor.disk_use
       - id: diskspace_percent
         type: history-graph
         title: disk space %
         hours_to_show: 48
         entities:
-          - entity: sensor.disk_use_percent_
+          - entity: sensor.disk_use_percent
       - id: memoryusage
         type: history-graph
         title: memory usage
