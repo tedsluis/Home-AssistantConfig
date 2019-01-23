@@ -114,6 +114,9 @@ tts:
 # Cloud
 cloud:
 
+luftdaten: !include luftdaten.yaml
+
+
 # Counters
 counter: !include counters.yaml
 
