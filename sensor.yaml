@@ -74,14 +74,14 @@
   command: echo $(($(cat /proc/uptime | sed 's/^\([0-9]*\)[ \.].*$/\1/g') / 86400))
 
 # check for compromised login accounts  
-- platform: haveibeenpwned
-  email: 
-    - !secret email1
-    - !secret email2
-    - !secret email3
-    - !secret email4
-    - !secret email5
-    - !secret email6
+#- platform: haveibeenpwned
+#  email: 
+#    - !secret email1
+#    - !secret email2
+#    - !secret email3
+#    - !secret email4
+#    - !secret email5
+#    - !secret email6
 
 # Battery capacity icon 
 - platform: template
@@ -375,3 +375,167 @@
     trein_amsterdam_zuid_utrecht_remarks:
       friendly_name: opmerkingen
       value_template: ‘{{ states.sensor.amsterdam_zuid_utrecht_cs.attributes.remarks }}’
+
+# Dutch Air Quality Sensor, https://www.luchtmeetnet.nl
+- platform: rest
+  name: airquality_NO2
+  resource: https://api.luchtmeetnet.nl/open_api/stations/NL10643/measurements?page=&order=&order_direction=&formula=NO2
+  unit_of_measurement: µg/m3
+  value_template: '{{ value_json.data[0].value }}'
+- platform: rest
+  name: airquality_PM10
+  resource: https://api.luchtmeetnet.nl/open_api/stations/NL10643/measurements?page=&order=&order_direction=&formula=PM10
+  unit_of_measurement: µg/m3
+  value_template: '{{ value_json.data[0].value }}'
+- platform: rest
+  name: airquality_PM25
+  resource: https://api.luchtmeetnet.nl/open_api/stations/NL10643/measurements?page=&order=&order_direction=&formula=PM25
+  unit_of_measurement: µg/m3
+  value_template: '{{ value_json.data[0].value }}'
+- platform: rest
+  name: airquality_O3
+  resource: https://api.luchtmeetnet.nl/open_api/stations/NL49014/measurements?page=&order=&order_direction=&formula=O3
+  unit_of_measurement: µg/m3
+  value_template: '{{ value_json.data[0].value }}'
+- platform: template
+  sensors:
+    airquality_no2_index:
+      friendly_name: 'Luchtkwaliteit NO2 Index'
+      entity_id: sensor.airquality_no2
+      value_template: >
+        {% set NO2 = states.sensor.airquality_no2.state %}
+        {%- if NO2 | int < 10 -%}
+        1 
+        {%- elif NO2 | int < 20 -%}
+        2
+        {%- elif NO2 | int < 30 -%}
+        3
+        {%- elif NO2 | int < 45 -%}
+        4
+        {%- elif NO2 | int < 60 -%}
+        5
+        {%- elif NO2 | int < 75 -%}
+        6
+        {%- elif NO2 | int < 100 -%}
+        7
+        {%- elif NO2 | int < 125 -%}
+        8
+        {%- elif NO2 | int < 150 -%}
+        9
+        {%- elif NO2 | int < 200 -%}
+        10
+        {%- else %}
+        11
+        {%- endif %}
+- platform: template
+  sensors:
+    airquality_pm10_index:
+      friendly_name: 'Luchtkwaliteit PM10 Index'
+      entity_id: sensor.airquality_pm10
+      value_template: >
+        {% set PM10 = states.sensor.airquality_pm10.state %}
+        {%- if PM10 | int < 10 -%}
+        1 
+        {%- elif PM10 | int < 20 -%}
+        2
+        {%- elif PM10 | int < 30 -%}
+        3
+        {%- elif PM10 | int < 45 -%}
+        4
+        {%- elif PM10 | int < 60 -%}
+        5
+        {%- elif PM10 | int < 75 -%}
+        6
+        {%- elif PM10 | int < 100 -%}
+        7
+        {%- elif PM10 | int < 125 -%}
+        8
+        {%- elif PM10 | int < 150 -%}
+        9
+        {%- elif PM10 | int < 200 -%}
+        10
+        {%- else %}
+        11
+        {%- endif %}
+- platform: template
+  sensors:
+    airquality_pm25_index:
+      friendly_name: 'Luchtkwaliteit PM25 Index'
+      entity_id: sensor.airquality_pm25
+      value_template: >
+        {% set PM25 = states.sensor.airquality_pm25.state %}
+        {%- if PM25 | int < 10 -%}
+        1 
+        {%- elif PM25 | int < 15 -%}
+        2
+        {%- elif PM25 | int < 20 -%}
+        3
+        {%- elif PM25 | int < 30 -%}
+        4
+        {%- elif PM25 | int < 40 -%}
+        5
+        {%- elif PM25 | int < 50 -%}
+        6
+        {%- elif PM25 | int < 70 -%}
+        7
+        {%- elif PM25 | int < 90 -%}
+        8
+        {%- elif PM25 | int < 100 -%}
+        9
+        {%- elif PM25 | int < 140 -%}
+        10
+        {%- else %}
+        11
+        {%- endif %}
+- platform: template
+  sensors:
+    airquality_o3_index:
+      friendly_name: 'Luchtkwaliteit O3 Index'
+      entity_id: sensor.airquality_o3
+      value_template: >
+        {% set O3 = states.sensor.airquality_o3.state %}
+        {%- if O3 | int < 15 -%}
+        1 
+        {%- elif O3 | int < 30 -%}
+        2
+        {%- elif O3 | int < 40 -%}
+        3
+        {%- elif O3 | int < 60 -%}
+        4
+        {%- elif O3 | int < 80 -%}
+        5
+        {%- elif O3 | int < 100 -%}
+        6
+        {%- elif O3 | int < 140 -%}
+        7
+        {%- elif O3 | int < 180 -%}
+        8
+        {%- elif O3 | int < 200 -%}
+        9
+        {%- elif O3 | int < 240 -%}
+        10
+        {%- else %}
+        11
+        {%- endif %}
+- platform: template
+  sensors:
+    airquality_combined_index:
+      friendly_name: 'Luchtkwaliteit Index'
+      unit_of_measurement: index
+      value_template: >
+        {% set NO2 = states.sensor.airquality_no2_index.state %}
+        {% set O3 = states.sensor.airquality_o3_index.state %}
+        {% set PM10 = states.sensor.airquality_pm10_index.state %}
+        {% set PM25 = states.sensor.airquality_pm25_index.state %}
+        
+        {%set mylist = states("sensor.airquality_no2_index")|int,
+                states("sensor.airquality_o3_index")|int,
+                states("sensor.airquality_pm10_index")|int,
+                states("sensor.airquality_pm25_index")|int %}
+                
+          {% if NO2 | int == O3 | int == PM10 | int == PM25 | int -%}
+          {% set Index = NO2 | int + 1 %}
+          {{Index | int}}
+          {%- else -%}
+          {{ mylist|max | int }}
+          {%- endif %}
