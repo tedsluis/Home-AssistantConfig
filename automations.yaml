@@ -323,34 +323,22 @@
     service: light.turn_off
     entity_id: light.hue_white_light_1_3
 ###############################################################################
-- alias: "Power state on HA start-up"
+- alias: "Init on HA start-up"
   trigger:
     platform: homeassistant
     event: start
   action:
     - service: mqtt.publish
       data:
-        topic: "homeassistant/cmnd/+/state"
+        topic: "cmnd/sonoffs/state"
         payload: "" 
-###############################################################################
-- alias: "Enable MQTT discovery for all devices"
-  trigger:
-    platform: homeassistant
-    event: start
-  action:
     - service: mqtt.publish
       data:
-        topic: "homeassistant/cmnd/+/SetOption19"
+        topic: "cmnd/sonoffs/SetOption19"
         payload: "1"
-###############################################################################
-- alias: "Sonoff state on HA start-up"
-  trigger:
-    platform: homeassistant
-    event: start
-  action:
     - service: mqtt.publish
       data:
-        topic: "homeassistant/cmnd/+/STATUS"
+        topic: "cmnd/sonoffs/STATUS"
         payload: "2"
 ############################################################################
 - alias: notification after vibrate
