@@ -5,6 +5,7 @@
 !*.gif
 !*.png
 !*.jpg
+!*.service
 !mosquitto.conf
 secrets.yaml
 ip_bans.yaml
