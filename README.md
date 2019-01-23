@@ -38,14 +38,15 @@
 * Android ip webcam
 * Google maps device tracker
 
-## installation notes
+## Installation notes
 
 ### preperations
 
 * install docker
 * execute: `sudo systemctl enable docker.service && sudo systemctl start docker.service`
-* create directory: `/root/config`
+* execute: `sudo mkdir /root/config`
 * store home-assistant configuration files in `/root/config/`
+* execute: `sudo chmod 766 /root/config/*`
 
 ### Homeassistant
 
@@ -53,6 +54,11 @@
 * execute: `sudo systemctl enable homeassistant.service && sudo systemctl start homeassistant.service`
 
 ### MQTT
+
+(optional)
+* execute: `sudo mkdir /root/config/mosquitto` 
+* execute: `sudo chmod 777 /root/config/mosquitto` 
+* create: [/root/config/mosquitto.conf](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/mosquitto.conf)
 * create: [/etc/systemd/system/mqtt.service](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/systemd/mqtt.service)
 * execute: `sudo systemctl enable mqtt.service && sudo systemctl start mqtt.service`
   
