@@ -1,9 +1,9 @@
-sensor_id: 155
+sensor_id: 17566
 show_on_map: true
 sensors:
   monitored_conditions:
     - P1
     - P2
-    - temperature
-    - humidity
-    - pressure
+    #- temperature
+    #- humidity
+    #- pressure

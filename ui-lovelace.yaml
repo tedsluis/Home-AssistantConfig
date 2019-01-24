@@ -276,6 +276,13 @@ views:
         hours_to_show: 168
         entities: 
         - entity: sensor.airquality_combined_index
+      - id: luftdaten_17566
+        type: history-graph
+        title: Luftdaten
+        hours_to_show: 168
+        entities: 
+        - entity: sensor.luftdaten_17566_p1
+        - entity: sensor.luftdaten_17566_p2
   - title: Internet
     icon: mdi:web
     id: internet_overview

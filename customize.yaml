@@ -97,7 +97,7 @@ sensor.yr_fog:
 
 sensor.utrecht_amsterdam_zuid:
   friendly_name: utrecht cs - amsterdam zuid
-sensor.amsterdam_zuid__utrecht_cs:
+sensor.amsterdam_zuid_utrecht_cs:
   friendly_name: amsterdam zuid - utrecht cs
 
 sensor.postnl:
@@ -118,11 +118,11 @@ sensor.ssl_cert_expiry:
   friendly_name: ssl certificate expiry
 sensor.check_hue_bridge:
   friendly_name: hue bridge check
-sensor.disk_free_:
+sensor.disk_free:
   friendly_name: disk vrij
-sensor.disk_use_:
+sensor.disk_use:
   friendly_name: disk gebruikt
-sensor.disk_use_percent_:
+sensor.disk_use_percent:
   friendly_name: percentage disk gebruikt
 sensor.memory_use:
   friendly_name: geheugen gebruikt

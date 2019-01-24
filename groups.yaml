@@ -14,7 +14,7 @@ woonkamer:
 slaapkamer_annelies_ted:
     name: Slaapkamer Annelies & Ted
     entities:
-        - light.slaapkamer_annelies__ted
+        - light.slaapkamer_annelies_ted
         - light.gateway_light_7c49ebb18b86
         - binary_sensor.wall_switch_both_158d00027c19e9
         - binary_sensor.wall_switch_left_158d00027c19e9
@@ -108,8 +108,8 @@ weather:
 trein_utrecht_vu:
     name: Trein Utrecht - Amsterdam Zuid
     entities:
-        - sensor.utrecht__amsterdam_zuid
-        - sensor.amsterdam_zuid__utrecht_cs
+        - sensor.utrecht_amsterdam_zuid
+        - sensor.amsterdam_zuid_utrecht_cs
 
 post_nl:
     name: postnl pakket bezorging
@@ -178,9 +178,9 @@ system_statistics:
         - sensor.host_uptime
         - sensor.ssl_cert_expiry
         - binary_sensor.check_hue_bridge 
-        - sensor.disk_free_
-        - sensor.disk_use_
-        - sensor.disk_use_percent_
+        - sensor.disk_free
+        - sensor.disk_use
+        - sensor.disk_use_percent
         - sensor.memory_use
         - sensor.memory_free
         - sensor.memory_use_percent
@@ -244,7 +244,7 @@ alle_lichten:
         - light.woonkamer_achter
         - light.woonkamer_voor
         - light.dimmer_3
-        - light.slaapkamer_annelies__ted
+        - light.slaapkamer_annelies_ted
         - light.gateway_light_7c49ebb18b86
         - light.slaapkamer_naud
         - light.slaapkamer_stijn
