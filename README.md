@@ -1,86 +1,73 @@
 # Home-Assistant configuration  
 
 <html>
+<head>
+<style>
 
-.column {
+#gallery {
+  width: 600px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  margin: 100px auto;
+  border: 2px solid #003C72;
+}
+
+#navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   float: left;
-  width: 25%;
-  padding: 10px;
 }
 
-.column img {
-  opacity: 0.8; 
-  cursor: pointer; 
-}
-
-.column img:hover {
-  opacity: 1;
-}
-
-.row:after {
-  content: "";
-  display: table;
+#navigation li {
+  padding: 0;
+  margin: 0;
+  float: left;
   clear: both;
 }
 
-.container {
-  position: relative;
-  display: none;
+#navigation li a img {
+  display: block;
+  border: none;
 }
 
-#imgtext {
-  position: absolute;
-  bottom: 15px;
-  left: 15px;
-  color: white;
-  font-size: 20px;
+#navigation li a {
+  display: block;
 }
 
-.closebtn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  color: white;
-  font-size: 35px;
-  cursor: pointer;
+#full-picture {
+  width: 500px;
+  height: 375px;
+  overflow: hidden;
+  float: left;
 }
 
-<div class="row">
-  <div class="column">
-    <img src="./images/lovelace-home.png" alt="Home" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="./images/lovelace-weer.png" alt="Weer" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="./images/lovelace-home.png" alt="Home" onclick="myFunction(this);">
-  </div>
-  <div class="column">
-    <img src="./images/lovelace-weer.png" alt="Weer" onclick="myFunction(this);">
+
+
+</style>
+</head>
+
+<body>
+
+<div id="gallery">
+  <ul id="navigation">
+    <li><a href="#pic1"><img alt="" src=".images/lovelace-home.png" /></a></li>
+    <li><a href="#pic2"><img alt="" src=".images/lovelace-weer.png" /></a></li>
+    <li><a href="#pic3"><img alt="" src=".images/lovelace-home.png" /></a></li>
+    <li><a href="#pic4"><img alt="" src=".images/lovelace-weer.png" /></a></li>
+    <li><a href="#pic5"><img alt="" src=".images/lovelace-home.png" /></a></li>
+  </ul>
+  <div id="full-picture">
+    <div><a name="pic1"></a><img alt="" src=".images/lovelace-home.png" /></div>
+    <div><a name="pic2"></a><img alt="" src=".images/lovelace-weer.png" /></div>
+    <div><a name="pic3"></a><img alt="" src=".images/lovelace-home.png" /></div>
+    <div><a name="pic4"></a><img alt="" src=".images/lovelace-weer.png" /></div>
+    <div><a name="pic5"></a><img alt="" src=".images/lovelace-home.png" /></div>
   </div>
 </div>
 
-<div class="container">
-  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
-
-  <img id="expandedImg" style="width:100%">
-
-  <div id="imgtext"></div>
-</div>
-
-function myFunction(imgs) {
-  // Get the expanded image
-  var expandImg = document.getElementById("expandedImg");
-  // Get the image text
-  var imgText = document.getElementById("imgtext");
-  // Use the same src in the expanded image as the image being clicked on from the grid
-  expandImg.src = imgs.src;
-  // Use the value of the alt attribute of the clickable image as text inside the expanded image
-  imgText.innerHTML = imgs.alt;
-  // Show the container element (hidden with CSS)
-  expandImg.parentElement.style.display = "block";
-}
-
+</body>
 </html>
 
   
