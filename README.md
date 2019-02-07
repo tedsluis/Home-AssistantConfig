@@ -1,4 +1,88 @@
 # Home-Assistant configuration  
+
+<html>
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+.column img {
+  opacity: 0.8; 
+  cursor: pointer; 
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.container {
+  position: relative;
+  display: none;
+}
+
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+<div class="row">
+  <div class="column">
+    <img src="./images/lovelace-home.png" alt="Home" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="./images/lovelace-weer.png" alt="Weer" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="./images/lovelace-home.png" alt="Home" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="./images/lovelace-weer.png" alt="Weer" onclick="myFunction(this);">
+  </div>
+</div>
+
+<div class="container">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+
+  <img id="expandedImg" style="width:100%">
+
+  <div id="imgtext"></div>
+</div>
+
+function myFunction(imgs) {
+  // Get the expanded image
+  var expandImg = document.getElementById("expandedImg");
+  // Get the image text
+  var imgText = document.getElementById("imgtext");
+  // Use the same src in the expanded image as the image being clicked on from the grid
+  expandImg.src = imgs.src;
+  // Use the value of the alt attribute of the clickable image as text inside the expanded image
+  imgText.innerHTML = imgs.alt;
+  // Show the container element (hidden with CSS)
+  expandImg.parentElement.style.display = "block";
+}
+
+</html>
+
   
 ## Features  
   
@@ -40,13 +124,17 @@
 
 ## Installation notes
 
-### preperations
+### Preperations
 
 * install docker
 * execute: `sudo systemctl enable docker.service && sudo systemctl start docker.service`
 * execute: `sudo mkdir /root/config`
 * store home-assistant configuration files in `/root/config/`
 * execute: `sudo chmod 766 /root/config/*`
+* execute: `sudo mkdir /root/dehydrated`
+* execute: `sudo chmod 766 /root/dehydrated/*`
+* clone `https://github.com/lukas2511/dehydrated.git` into `/root/dehydrated/`
+* configure https://github.com/lukas2511/dehydrated
 
 ### Homeassistant
 
