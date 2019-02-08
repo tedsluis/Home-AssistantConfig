@@ -503,20 +503,42 @@ views:
         title: Automation zones
         entities:
           - automation.name_entered_zone
-
+  - title: home-assistant battery
+    icon: mdi:battery-50
+    id: battery capacity
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    cards:
       - type: entities
-        title: Batterij capaciteit
+        title: Beneden - batterij capaciteit
         entities:
           - sensor.batterij_158d0002789adf
-          - sensor.batterij_158d000273d342
-          - sensor.batterij_158d000238fcc1
-          - sensor.batterij_158d00027c19e9
           - sensor.batterij_158d000231046d
-          - sensor.batterij_158d00027898b3
-          - sensor.batterij_158d00027725d7
+          - sensor.batterij_158d00025ed544
+          - sensor.batterij_158d0002e24f96
+      - type: entities
+        title: 1ste verdieping - batterij capaciteit
+        entities:
+          - sensor.batterij_158d000273d342
+          - sensor.batterij_158d00027c19e9
+          - sensor.batterij_158d000238fcc1
           - sensor.batterij_158d000273424b
-          - sensor.batterij_158d00027c19e9
-          - sensor.batterij_158d00027c19e9
+          - sensor.batterij_158d00026ba474
+          - sensor.batterij_158d00029a5cd2
+          - sensor.batterij_158d0002b83c5b
+      - type: entities
+        title: 2de verdieping - batterij capaciteit
+        entities:
+          - sensor.batterij_158d00027898b3
+          - sensor.batterij_158d0002b78209
+          - sensor.batterij_158d00025427e0
+          - sensor.batterij_158d0002584585
+          - sensor.batterij_158d00027257cd
+      - type: entities
+        title: Buiten - batterij capaciteit
+        entities:
+          - sensor.batterij_158d00027725d7
+          - sensor.batterij_158d0002e8d2f1
   - title: home-assistant host
     icon: mdi:server-network
     id: ha_host_overview
