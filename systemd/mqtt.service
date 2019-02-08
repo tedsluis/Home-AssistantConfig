@@ -10,9 +10,9 @@ ExecStartPre=-/usr/bin/docker stop -t 2 eclipse-mosquitto
 ExecStartPre=-/usr/bin/docker rm -f eclipse-mosquitto
 ExecStartPre=/usr/bin/docker pull eclipse-mosquitto
 ExecStart=/usr/bin/docker run --name="eclipse-mosquitto" -p 1883:1883 -p 9001:9001 \
-                                                         -v /root/config/mosquitto.conf:/mosquitto/config/mosquitto.conf \
-                                                         -v /root/config/mosquitto/data:/mosquitto/data \
-                                                         -v /root/config/mosquitto/log:/mosquitto/log \
+                                                         -v /homeassistant/config/mosquitto.conf:/mosquitto/config/mosquitto.conf \
+                                                         -v /homeassistant/config/mosquitto/data:/mosquitto/data \
+                                                         -v /homeassistant/config/mosquitto/log:/mosquitto/log \
                                                          eclipse-mosquitto
 ExecStop=-/usr/bin/docker stop -t 2 eclipse-mosquitto
 ExecStopPost=-/usr/bin/docker rm -f eclipse-mosquitto
