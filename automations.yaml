@@ -330,16 +330,161 @@
   action:
     - service: mqtt.publish
       data:
-        topic: "cmnd/sonoffs/state"
-        payload: "" 
-    - service: mqtt.publish
-      data:
-        topic: "cmnd/sonoffs/SetOption19"
+        topic: "basic1/cmnd/SetOption19"
         payload: "1"
     - service: mqtt.publish
       data:
-        topic: "cmnd/sonoffs/STATUS"
+        topic: "basic2/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "basic3/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "plug1/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "plug2/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "rfbridge1/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "rfbridge2/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "rfbridge3/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "pow1/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "pow2/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "sonoffs/cmnd/STATE"
+        payload: "" 
+    - service: mqtt.publish
+      data:
+        topic: "sonoffs/cmnd/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "sonoffs/cmnd/STATUS"
         payload: "2"
+    - service: mqtt.publish
+      data:
+        topic: "homeassistant/sonoffs/STATE"
+        payload: "" 
+    - service: mqtt.publish
+      data:
+        topic: "homeasistant/sonoffs/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "homeasistant/sonoffs/STATUS"
+        payload: "2"
+    - service: mqtt.publish
+      data:
+        topic: "rfbridge1/cmnd/STATE"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: "rfbridge1/cmnd/STATUS"
+        payload: "2"
+    - service: mqtt.publish
+      data:
+        topic: "homeassistant/rfbridge1/STATE"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: "homeasistant/rfbridge1/SetOption19"
+        payload: "1"
+    - service: mqtt.publish
+      data:
+        topic: "homeasistant/rfbridge1/STATUS"
+        payload: "2"
+############################################################################
+# Dimm hue light with rfswitch1C
+- alias: Dimm slaapkamer licht rfswitch1C
+  trigger:
+  - platform: mqtt
+    topic: "rfbridge1/tele/RESULT"
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json['RfReceived']['Data'] == 'F9FFA1' }}"
+  action:
+    service: light.turn_on
+    entity_id: light.hue_ambiance_slaapkamer
+    data_template:
+      brightness: >-
+        {% if states.light.hue_ambiance_slaapkamer.attributes.brightness %}
+          {% if states.light.hue_ambiance_slaapkamer.attributes.brightness - 60 >= 10 %}
+            {{states.light.hue_ambiance_slaapkamer.attributes.brightness - 60}}
+          {% else %}
+            {{states.light.hue_ambiance_slaapkamer.attributes.brightness}}
+          {% endif %}
+        {% else %}
+          10
+        {% endif %}
+
+# Turn off hue light with rfswitch1B
+- alias: Uitzetten slaapkamer licht rfswitch1B
+  trigger:
+  - platform: mqtt
+    topic: "rfbridge1/tele/RESULT"
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json['RfReceived']['Data'] == 'F9FFA8' }}"
+  action:
+    service: light.turn_off
+    entity_id: light.hue_ambiance_slaapkamer
+
+# Increase hue light with rfswitch1D 
+- alias: Verlicht slaapkamer licht rfswitch1D
+  trigger:
+  - platform: mqtt
+    topic: "rfbridge1/tele/RESULT"
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json['RfReceived']['Data'] == 'F9FFA4' }}"
+  action:
+    service: light.turn_on
+    entity_id: light.hue_ambiance_slaapkamer
+    data_template:
+      brightness: >-
+        {% if states.light.hue_ambiance_slaapkamer.attributes.brightness %}
+          {% if states.light.hue_ambiance_slaapkamer.attributes.brightness + 60 <= 255 %}
+            {{states.light.hue_ambiance_slaapkamer.attributes.brightness + 60}}
+          {% else %}
+            {{states.light.hue_ambiance_slaapkamer.attributes.brightness}}
+          {% endif %}
+        {% else %}
+          10
+        {% endif %}
+
+# Turn on hue light with rfswitch1A 
+- alias: Aanzetten slaapkamer licht rfswitch1A
+  trigger:
+  - platform: mqtt
+    topic: "rfbridge1/tele/RESULT"
+  condition:
+    condition: template
+    value_template: "{{ trigger.payload_json['RfReceived']['Data'] == 'F9FFA2' }}"
+  action:
+    service: light.turn_on
+    entity_id: light.hue_ambiance_slaapkamer
+    data:
+      brightness_pct: 100
+
 ############################################################################
 - alias: notification after vibrate
   trigger:
