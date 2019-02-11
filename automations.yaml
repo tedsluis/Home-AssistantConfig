@@ -77,17 +77,25 @@
       data:
         transition: 5
         brightness_pct: 10
-    - delay: 
-        seconds: 300
-    - service: light.turn_on
-      entity_id: light.overloop
-      data:
-        transition: 300
-        brightness_pct: 0
-    - delay: 
-        seconds: 300
+
+# Turn off 10 minutes after motion         
+- alias: Turn off overloop licht 10 minutes after last movement
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_sensor_158d00029a5cd2
+    to: 'off'
+    for:
+      minutes: 3
+  condition:
+    - condition: time
+      after: '00:00:00'
+    - condition: time
+      before: '07:30:00'
+  action:
     - service: light.turn_off
       entity_id: light.overloop
+      data:
+        transition: 30
 
 # Restore light brightness in the morning overloop
 - alias: overloop licht in de ochtend
@@ -306,7 +314,6 @@
   trigger:
     platform: state
     entity_id: binary_sensor.motion_sensor_158d0002e8d2f1
-    from: 'on'
     to: 'off'
     for:
       minutes: 5
@@ -546,3 +553,121 @@
     service: persistent_notification.create
     data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}' 
+            
+#############################################################################
+# Dimm hue light naud with xiaomi switch (single click)
+- alias: Dimm slaapkamer naud licht
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d00026ba474
+      click_type: single
+  action:
+    service: light.turn_on
+    entity_id: light.hue_white_light_1_4
+    data_template:
+      brightness: >-
+        {% if states.light.hue_white_light_1_4.attributes.brightness %}
+          {% if states.light.hue_white_light_1_4.attributes.brightness - 60 >= 10 %}
+            {{states.light.hue_white_light_1_4.attributes.brightness - 60}}
+          {% else %}
+            {{states.light.hue_white_light_1_4.attributes.brightness}}
+          {% endif %}
+        {% else %}
+          10
+        {% endif %}
+
+# Turn off hue light naud with xiaomi switch (single)
+- alias: Uitzetten slaapkamer naud licht
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d00026ba474
+      click_type: single
+  condition: 
+    - condition: numeric_state
+      entity_id: light.hue_white_light_1_4
+      value_template: '{% if states.light.hue_white_light_1_4.state == "on"  %}{{ states.light.hue_white_light_1_4.attributes.brightness }}{% else %}0{% endif %}'
+      below: 61
+  action:
+    service: light.turn_off
+    entity_id: light.hue_white_light_1_4
+
+# Increase hue light naud with xiaomi switch (single click)
+- alias: Verlicht slaapkamer naud licht
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d00026ba474
+      click_type: single
+  action:
+    service: light.turn_on
+    entity_id: light.hue_white_light_1_4
+    data_template:
+      brightness: >-
+        {% if states.light.hue_white_light_1_4.attributes.brightness %}
+          {% if states.light.hue_white_light_1_4.attributes.brightness + 60 <= 255 %}
+            {{states.light.hue_white_light_1_4.attributes.brightness + 60}}
+          {% else %}
+            {{states.light.hue_white_light_1_4.attributes.brightness}}
+          {% endif %}
+        {% else %}
+          10
+        {% endif %}
+
+# Turn on hue light naud with xiaomi switch (long press)
+- alias: Aanzetten slaapkamer naud licht
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d00026ba474
+      click_type: single
+  condition: 
+    - condition: numeric_state
+      entity_id: light.hue_white_light_1_4
+      value_template: '{% if states.light.hue_white_light_1_4.state == "on"  %}{{ states.light.hue_white_light_1_4.attributes.brightness }}{% else %}189{% endif %}'
+      above: 190
+  action:
+    service: light.turn_on
+    entity_id: light.hue_white_light_1_4
+    data:
+      brightness_pct: 100
+
+#############################################################################
+# Turn off hue ledstrip naud with xiaomi switch (both press)
+- alias: Uitzetten ledstrip naud
+  trigger: 
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_both_158d00026ba474
+      click_type: both
+  condition:
+    - condition: state
+      entity_id: light.led_strip_naud
+      state: 'on'
+  action:
+    service: light.turn_off
+    entity_id: light.led_strip_naud
+ 
+ # Turn on hue ledstrip with xiaomi switch (both press)
+- alias: Aanzetten ledstrip naud
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_both_158d00026ba474
+      click_type: both
+  condition:
+    - condition: state
+      entity_id: light.led_strip_naud
+      state: 'off'
+  action:
+    service: light.turn_on
+    entity_id: light.led_strip_naud
+
+

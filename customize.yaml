@@ -48,9 +48,9 @@ light.woonkamer_achter:
 light.slaapkamer_annelies_ted:
   friendly_name: slaapkamer annelies en ted
 light.slaapkamer_naud:
-  friendly_name: slaapkamer naud
+  friendly_name: ledstrip naud
 light.slaapkamer_stijn:
-  friendly_name: slaapkamer stijn
+  friendly_name: ledstrip stijn
 media_player.bachstraat20:
   friendly_name: Chromecast woonkamer
 light.hue_white_light_1:
@@ -59,6 +59,8 @@ light.hue_white_light_1_2:
   friendly_name: studeerkamer (klein)
 light.hue_white_light_1_3:
   friendly_name: voordeur buiten
+light.hue_white_light_1_4:
+  friendly_name: lamp naud
 
 sensor.yr_temperature:
   friendly_name: temperatuur

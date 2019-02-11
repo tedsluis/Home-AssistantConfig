@@ -41,6 +41,7 @@ views:
       - type: entities
         title: Slaapkamer Naud
         entities:
+          - light.hue_white_light_1_4
           - light.slaapkamer_naud
           - sensor.temperature_158d000238fcc1
           - sensor.humidity_158d000238fcc1
@@ -495,6 +496,15 @@ views:
           - automation.count_motion_voordeur_buiten
           - automation.turn_off_voordeur_buiten_light_30_minutes_after_sunrise
           - automation.turn_off_voordeur_buiten_light_5_minutes_after_last_movement
+      - type: entities
+        title: Automation kamer naud
+        entities:
+          - automation.aanzetten_ledstrip_naud
+          - automation.aanzetten_slaapkamer_naudlicht
+          - automation.dimm_slaapkamer_naud_licht
+          - automation.uitzetten_ledstrip_naud
+          - automation.uitzetten_slaapkamer_naud_licht
+          - automation.verlicht_slaapkamer_naud_licht
       - type: entities
         title: Automation hue bridge
         entities:

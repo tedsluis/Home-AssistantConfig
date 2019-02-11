@@ -26,6 +26,7 @@ slaapkamer_annelies_ted:
 slaapkamer_naud:
     name: Slaapkamer Naud
     entities:
+        - light.hue_white_light_1_4
         - light.slaapkamer_naud
         - sensor.temperature_158d000238fcc1
         - sensor.humidity_158d000238fcc1
