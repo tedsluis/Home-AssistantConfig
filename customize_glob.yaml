@@ -1,0 +1,4 @@
+"sensor.batterij*":
+   icon_template: 
+     if (state < 10 ) return '#f44336'; else if (state < 25 ) return '#ff9800'; else return '#4caf50';
+
