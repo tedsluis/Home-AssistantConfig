@@ -1,0 +1,20 @@
+Description=Zigbee2mqtt
+After=docker.service mqtt.service 
+Requires=docker.service mqtt.service network.target 
+ 
+[Service]
+RestartSec=3
+TimeoutStartSec=300
+Restart=always
+ExecStartPre=-/usr/bin/docker stop -t 2 zigbee2mqtt
+ExecStartPre=-/usr/bin/docker rm -f zigbee2mqtt
+ExecStartPre=/usr/bin/docker pull homeassistant/home-assistant
+ExecStart=/usr/bin/docker run --name="zigbee2mqtt" \
+                              -v /homeassistant/config/data:/app/data \
+                              --net=host \
+                              koenkk/zigbee2mqtt
+ExecStop=-/usr/bin/docker stop -t 2 zigbee2mqtt
+ExecStopPost=-/usr/bin/docker rm -f zigbee2mqtt
+ 
+[Install]
+WantedBy=multi-user.target
