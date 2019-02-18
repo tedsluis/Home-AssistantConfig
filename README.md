@@ -77,13 +77,7 @@
 
 
 
-<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif"     target="_blank"><img src="images/home.gif"     style="width:25%" /></a>
-<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/apis.gif"     target="_blank"><img src="images/apis.gif"     style="width:25%" /></a>
-<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lichten.gif"  target="_blank"><img src="images/lichten.gif"  style="width:25%" /></a>
-<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/klimaat.gif"  target="_blank"><img src="images/klimaat.gif"  style="width:25%" /></a>
-<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/verbruik.gif" target="_blank"><img src="images/verbruik.gif" style="width:25%" /></a>
-<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/ha.gif"       target="_blank"><img src="images/ha.gif"       style="width:25%" /></a>
-<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/history.gif"  target="_blank"><img src="images/history.gif"  style="width:25%" /></a>
-<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif"     target="_blank"><img src="images/home.gif"     style="width:25%" /></a>
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif"     target="_blank"><img src="images/home.gif"     style="width:25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/apis.gif"     target="_blank"><img src="images/apis.gif"     style="width:25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lichten.gif"  target="_blank"><img src="images/lichten.gif"  style="width:25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/klimaat.gif"  target="_blank"><img src="images/klimaat.gif"  style="width:25%" /></a>
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/verbruik.gif" target="_blank"><img src="images/verbruik.gif" style="width:25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/ha.gif"       target="_blank"><img src="images/ha.gif"       style="width:25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/history.gif"  target="_blank"><img src="images/history.gif"  style="width:25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif"     target="_blank"><img src="images/home.gif"     style="width:25%" /></a>
 
  
