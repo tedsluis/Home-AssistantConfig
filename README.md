@@ -74,24 +74,16 @@
 ## Lovelace Weer - Weather
 [![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-weer.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-weer.png)  
 
-## Home  
-[![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif)  
-  
-## Api's  
-[![apis](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/apis.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/apis.gif)  
-  
-## Lichten - Lights    
-[![lichten](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lichten.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lichten.gif)  
-  
-## Klimaat - Environment  
-[![klimaat](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/klimaat.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/klimaat.gif)  
-  
-## Verbruik - Energy consumption   
-[![verbruik](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/verbruik.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/verbruik.gif)  
-  
-## HA
-[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/ha.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/ha.gif)  
-  
-## Geschiedenis - History
-[![ha](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/history.gif)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/history.gif)  
+
+
+
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif"     target="_blank"><img src="images/home.gif"     style="width:25%" /></a>
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/apis.gif"     target="_blank"><img src="images/apis.gif"     style="width:25%" /></a>
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lichten.gif"  target="_blank"><img src="images/lichten.gif"  style="width:25%" /></a>
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/klimaat.gif"  target="_blank"><img src="images/klimaat.gif"  style="width:25%" /></a>
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/verbruik.gif" target="_blank"><img src="images/verbruik.gif" style="width:25%" /></a>
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/ha.gif"       target="_blank"><img src="images/ha.gif"       style="width:25%" /></a>
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/history.gif"  target="_blank"><img src="images/history.gif"  style="width:25%" /></a>
+<a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif"     target="_blank"><img src="images/home.gif"     style="width:25%" /></a>
+
  
