@@ -221,6 +221,15 @@ views:
         - entity: sensor.temperature_158d000231046d
         - entity: sensor.temperature_158d00027898b3
         - entity: sensor.temperature_158d000273424b
+      - id: lightoverview
+        type: history-graph
+        title: Lichtinval
+        hours_to_show: 48
+        entities:
+        - entity: sensor.illumination_158d0002584585
+        - entity: sensor.illumination_158d0002e8d2f1
+        - entity: sensor.illumination_7c49ebb18b86
+        - entity: sensor.illumination_158d00029a5cd2
       - id: humidityoverview
         type: history-graph
         title: Luchtvochtigheid
@@ -233,15 +242,6 @@ views:
         - entity: sensor.humidity_158d000231046d
         - entity: sensor.humidity_158d00027898b3
         - entity: sensor.humidity_158d000273424b
-      - id: lightoverview
-        type: history-graph
-        title: Lichtinval
-        hours_to_show: 48
-        entities:
-        - entity: sensor.illumination_158d0002584585
-        - entity: sensor.illumination_158d0002e8d2f1
-        - entity: sensor.illumination_7c49ebb18b86
-        - entity: sensor.illumination_158d00029a5cd2
   - title: Lucht kwaliteit metingen 
     icon: mdi:soundcloud
     id: airquality_measurements
@@ -500,7 +500,7 @@ views:
         title: Automation kamer naud
         entities:
           - automation.aanzetten_ledstrip_naud
-          - automation.aanzetten_slaapkamer_naudlicht
+          - automation.aanzetten_slaapkamer_naud_licht
           - automation.dimm_slaapkamer_naud_licht
           - automation.uitzetten_ledstrip_naud
           - automation.uitzetten_slaapkamer_naud_licht
