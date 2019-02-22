@@ -1,51 +1,94 @@
-homeassistant:
-  # Name of the location where Home Assistant is running
-  name: Home
-  
-  # Location required to calculate the time the sun rises and sets
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  latitude: !secret latitude_home
-  longitude: !secret longitude_home
-  
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: !secret elevation
-  
-  # metric for Metric, imperial for Imperial
-  unit_system: metric
-  
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: Europe/Amsterdam
-  
-  # Customization file
-  customize: !include customize.yaml
+#android_ip_webcam: !include android_ip_webcam.yaml
 
-  # customize glob file
-  customize_glob: !include customize_glob.yaml
-  
-  # C for Celcius, F for Fahrenheit
-  temperature_unit: C
+automation: !include automations.yaml
 
-# Show links to resources in log and frontend
-#introduction:
-
-# Enables the frontend
-frontend:
+binary_sensor: !include binary_sensor.yaml
 
 # Enables configuration UI
 config:
 
-system_health:
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Counters
+counter: !include counters.yaml
+
+# Cloud
+cloud:
+
+device_tracker: !include device_tracker.yaml
+
+# Discover some devices automatically
+discovery:
+
+# to update duckdns dns record dynamicly
+duckdns: !include duckdns.yaml
+
+# Enables the frontend
+frontend:
+
+group: !include groups.yaml
+
+homeassistant: !include homeassistant.yaml
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http: !include http.yaml
 
-# Edit lovelace interface in yaml   
-lovelace: !include lovelace.yaml
+# Show links to resources in log and frontend
+#introduction:
 
 logger: !include logger.yaml
 
-# to update duckdns dns record dynamicly
-duckdns: !include duckdns.yaml
+# Edit lovelace interface in yaml   
+lovelace: !include lovelace.yaml
+
+# Media players
+media_player: !include media_player.yaml
+
+# mqtt mosquitto broker
+mqtt: !include mqtt.yaml
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+history_graph: !include history_graph.yaml
+
+luftdaten: !include luftdaten.yaml
+
+notify: !include notify.yaml
+
+person: !include person.yaml
+
+recorder:
+  #db_url: !secret ha_db_url
+  purge_interval: 1
+  purge_keep_days: 3
+
+sensor: !include sensor.yaml
+
+# Weather prediction
+sensor yr: !include sensor_yr.yaml
+
+script: !include scripts.yaml
+
+speedtestdotnet: !include speedtest.yaml
+
+# Track the sun
+sun:
+
+system_health:
+
+switch: !include switch.yaml
+
+# Text to speech                      
+tts:                                                   
+  - platform: google  
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -55,76 +98,12 @@ duckdns: !include duckdns.yaml
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   include_used_components: true
-  
-# Discover some devices automatically
-discovery:
-
-# mqtt mosquitto broker
-mqtt: !include mqtt.yaml
-
-# Media players
-media_player: !include media_player.yaml
-
-# Xiaomi zigbee gateway
-xiaomi_aqara: !include xiaomi_aqara.yaml
-
-# Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
-
-# Enables support for tracking state changes over time
-history:
-
-recorder:
-  #db_url: !secret ha_db_url
-  purge_interval: 1
-  purge_keep_days: 3
-
-# View all events in a logbook
-logbook:
-
-# Enables a map showing the location of tracked devices
-map:
-
-# Track the sun
-sun:
-
-# Weather prediction
-sensor yr: !include sensor_yr.yaml
-
+ 
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
 
-sensor: !include sensor.yaml
- 
-binary_sensor: !include binary_sensor.yaml
-
-switch: !include switch.yaml
-
-device_tracker: !include device_tracker.yaml
+# Xiaomi zigbee gateway
+xiaomi_aqara: !include xiaomi_aqara.yaml
 
 zone: !include zone.yaml
-
-history_graph: !include history_graph.yaml
-
-#android_ip_webcam: !include android_ip_webcam.yaml
-
-# Text to speech                      
-tts:                                                   
-  - platform: google  
-
-# Cloud
-cloud:
-
-luftdaten: !include luftdaten.yaml
-
-
-# Counters
-counter: !include counters.yaml
-
-group: !include groups.yaml
-
-automation: !include automations.yaml
-
-script: !include scripts.yaml
-
