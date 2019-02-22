@@ -501,9 +501,11 @@
       entity_id: binary_sensor.vibration_158d0002b83c5b
       movement_type: vibrate 
   action:
-    service: persistent_notification.create
+    service: notify.slack
     data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.vibration_158d0002b83c5b.attributes["last_action"] }}'
+            target: '#general'
+            title: 'vibration sensor'
 
 - alias: notification after tilt
   trigger:
@@ -513,9 +515,11 @@
       entity_id: binary_sensor.vibration_158d0002b83c5b
       movement_type: tilt
   action:
-    service: persistent_notification.create
+    service: notify.slack
     data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.vibration_158d0002b83c5b.attributes["last_action"] }}'
+            target: '#general'
+            title: 'vibration sensor'
 
 - alias: notification after free_fall
   trigger:
@@ -525,9 +529,11 @@
       entity_id: binary_sensor.vibration_158d0002b83c5b
       movement_type: free_fall
   action:
-    service: persistent_notification.create
+    service: notify.slack
     data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.vibration_158d0002b83c5b.attributes["last_action"] }}'
+            target: '#general'
+            title: 'vibration sensor'
 
 #############################################################################
 - alias: switch Sonoff1 on
@@ -540,7 +546,12 @@
   action:
     service: persistent_notification.create
     data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}'
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_right_158d00025427e0.attributes["last_action"] }}'
+    service: notify.slack
+    data_template:
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_right_158d00025427e0.attributes["last_action"] }}'
+            target: '#general'
+            title: 'right sensor'
 
 - alias: switch Sonoff1 off
   trigger:
@@ -553,7 +564,12 @@
     service: persistent_notification.create
     data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}' 
-            
+    service: notify.slack
+    data_template:
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}' 
+            target: '#general'
+            title: 'left sensor'
+
 #############################################################################
 # Dimm hue light naud with xiaomi switch (single click)
 - alias: Dimm slaapkamer naud licht
