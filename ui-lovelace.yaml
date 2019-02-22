@@ -116,6 +116,27 @@ views:
         card:
           type: glance
           title: Waar is iedereen?
+      - id: peoplewhere2 # Every card needs an ID, if you don't specify one, it is added automatically.
+        type: entity-filter
+        entities:
+          - person.ted
+          - person.annelies
+          - person.stijn
+          - person.naud
+        state_filter:
+          - 'home'
+          - 'not_home'
+          - 'de_munt'
+          - 'maaike'
+          - 'mieke_en_theo'
+          - 'stad'
+          - 'station'
+          - 'werk_utrecht'
+          - 'werk_zeist'
+          - 'winkels'
+        card:
+          type: glance
+          title: Waar is iedereen?
       - type: map
         entities:
           - device_tracker.94652dc2aa01
