@@ -1,0 +1,7 @@
+# Internet latency, up and download speed
+scan_interval:
+  minutes: 15
+monitored_conditions:
+  - ping
+  - download
+  - upload

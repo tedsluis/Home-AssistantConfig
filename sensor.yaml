@@ -13,16 +13,6 @@
       from: asdz
       to: ut
 
-# Internet latency, up and download speed     
-- platform: speedtest
-  minute:
-    - 0
-    - 15
-  monitored_conditions:
-    - ping
-    - download
-    - upload
-
 # Dutch post packages delivery API    
 - platform: postnl
   username: !secret post_nl_loginname
@@ -74,14 +64,14 @@
   command: echo $(($(cat /proc/uptime | sed 's/^\([0-9]*\)[ \.].*$/\1/g') / 86400))
 
 # check for compromised login accounts  
-- platform: haveibeenpwned
-  email: 
-    - !secret email1
-    - !secret email2
-    - !secret email3
-    - !secret email4
-    - !secret email5
-    - !secret email6
+#- platform: haveibeenpwned
+#  email: 
+#    - !secret email1
+#    - !secret email2
+#    - !secret email3
+#    - !secret email4
+#    - !secret email5
+#    - !secret email6
 
 # Battery capacity icon 
 - platform: template
