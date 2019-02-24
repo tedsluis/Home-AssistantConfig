@@ -9,6 +9,10 @@
   action:
     - service: counter.increment
       entity_id: counter.motion_counteri_voordeur_buiten
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging buiten bij de voordeur' 
+            target: '#motion'
 
 #############################################################################
 # Motion counter studeerkamer
@@ -21,6 +25,10 @@
   action:
     - service: counter.increment
       entity_id: counter.motion_counter_studeerkamer
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging in de studeerkamer' 
+            target: '#motion'
 
 #############################################################################
 # Motion counter overloop
@@ -33,6 +41,10 @@
   action:
     - service: counter.increment
       entity_id: counter.motion_counter
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging op de overloop' 
+            target: '#motion'
 
 #############################################################################
 # Set brightness to 30% after 22:00 overloop
@@ -232,15 +244,25 @@
 
 #############################################################################
 # tracking notifications
+# https://community.home-assistant.io/t/slack-notifications-leverage-native-slack-messaging-format/25391
 - alias: name entered zone
   trigger:
     platform: state
-    entity_id: device_tracker.94652dc2aa01, device_tracker.c0eefbe296aa, device_tracker.44c3462e5fdd, device_tracker.8058f897ad84, device_tracker.google_maps_103666873320035558501
+    entity_id: person.ted, person.annelies, person.stijn, person.naud
   action:     
-    service: persistent_notification.create
+    service: notify.slack
     data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ trigger.to_state.name }} is in {{ trigger.to_state.state }}'
-
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ trigger.to_state.name }} is in zone {{ trigger.to_state.state }}'
+            target: '#zones'
+            data: {
+    "attachments": [
+        {
+            "color": "#36a64f",
+            "title": "latitude: {{ trigger.to_state.attributes.latitude or !secret latitude}}, longitude: {{ trigger.to_state.attributes.longitude }}.",
+            "title_link": "http://maps.google.com/maps?q={{ trigger.to_state.attributes.latitude }},{{ trigger.to_state.attributes.longitude }}",
+        }
+    ]
+ }
 #############################################################################
 - alias: Turn on studyroom light when there is movement 
   trigger:
@@ -513,11 +535,10 @@
   action:
       service: notify.slack
       data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: sensor1 {{ states.binary_sensor.vibration_158d0002b78209.attributes["last_action"] }}'
-            target: '#general'
-            title: 'vibration sensor'
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: woonkamerlade beweging: {{ states.binary_sensor.vibration_158d0002b78209.attributes["last_action"] }}'
+            target: '#drawer'
 
-- alias: sensor2 otification after motion
+- alias: sensor2 notification after motion
   trigger:
     - platform: event
       event_type: xiaomi_aqara.movement
@@ -537,12 +558,11 @@
   action:
       service: notify.slack
       data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: sensor2 {{ states.binary_sensor.vibration_158d0002b83c5b.attributes["last_action"] }}'
-            target: '#general'
-            title: 'vibration sensor'
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: keukenlade beweging: {{ states.binary_sensor.vibration_158d0002b83c5b.attributes["last_action"] }}'
+            target: '#drawers'
 
 #############################################################################
-- alias: switch Sonoff1 on
+- alias: switch Stijn left
   trigger:
     platform: event
     event_type: xiaomi_aqara.click
@@ -552,14 +572,13 @@
   action:
     service: persistent_notification.create
     data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_right_158d00025427e0.attributes["last_action"] }}'
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: right switch: {{ states.binary_sensor.wall_switch_right_158d00025427e0.attributes["last_action"] }}'
     service: notify.slack
     data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_right_158d00025427e0.attributes["last_action"] }}'
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: right switch: {{ states.binary_sensor.wall_switch_right_158d00025427e0.attributes["last_action"] }}'
             target: '#general'
-            title: 'right sensor'
 
-- alias: switch Sonoff1 off
+- alias: switch Stijn right
   trigger:
     platform: event
     event_type: xiaomi_aqara.click
@@ -569,12 +588,12 @@
   action:
     service: persistent_notification.create
     data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}' 
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: left switch: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}' 
     service: notify.slack
-    data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}' 
+    data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: left switch: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}' 
             target: '#general'
-            title: 'left sensor'
+
 
 #############################################################################
 # Dimm hue light naud with xiaomi switch (single click)
