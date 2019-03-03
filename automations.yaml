@@ -249,16 +249,25 @@
   trigger:
     platform: state
     entity_id: person.ted, person.annelies, person.stijn, person.naud
+  condition:
+    condition: or
+    conditions:
+    - condition: template
+      value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"
+    - condition: template
+      value_template: "{{ (((trigger.to_state.attributes.longitude - trigger.from_state.attributes.longitude) | abs) * 1000) > 1 }}"
+    - condition: template
+      value_template: "{{ (((trigger.to_state.attributes.latitude  - trigger.from_state.attributes.latitude)  | abs) * 1000) > 1 }}"
   action:     
     service: notify.slack
     data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ trigger.to_state.name }} is in zone {{ trigger.to_state.state }}'
             target: '#zones'
-            data: {
+            data: { 
     "attachments": [
         {
-            "color": "#36a64f",
-            "title": "latitude: {{ trigger.to_state.attributes.latitude or !secret latitude}}, longitude: {{ trigger.to_state.attributes.longitude }}.",
+            "color": "#36a64f", 
+            "title": "latitude: {{ trigger.to_state.attributes.latitude }}, longitude: {{ trigger.to_state.attributes.longitude }}.",
             "title_link": "http://maps.google.com/maps?q={{ trigger.to_state.attributes.latitude }},{{ trigger.to_state.attributes.longitude }}",
         }
     ]
