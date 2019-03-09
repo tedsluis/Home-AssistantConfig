@@ -51,6 +51,8 @@ mqtt: !include mqtt.yaml
 # Enables support for tracking state changes over time
 history:
 
+influxdb: !include influxdb.yaml
+
 # View all events in a logbook
 logbook:
 
