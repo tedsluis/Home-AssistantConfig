@@ -17,6 +17,7 @@ include:
       - sensor.temperature_158d00027725d7
       - sensor.yr_temperature
       - sensor.yr_dewpoint_temperature
+# pressure
       - sensor.yr_pressure
       - sensor.pressure_158d0002789adf
 # Wheater
