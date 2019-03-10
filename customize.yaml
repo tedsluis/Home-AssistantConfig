@@ -133,11 +133,14 @@ sensor.memory_free:
 sensor.memory_use_percent:
   friendly_name: percentage geheugen gebruikt
 sensor.load_1m:
-  friendly_name: cpu load 1m 
+  friendly_name: cpu load 1m
+  unit_of_measurement: s
 sensor.load_5m:
   friendly_name: cpu load 5m 
+  unit_of_measurement: s
 sensor.load_15m:
   friendly_name: cpu load 15m 
+  unit_of_measurement: s
 sensor.network_in_eno1:
   friendly_name: netwerk in
 sensor.network_out_eno1:
@@ -316,4 +319,17 @@ binary_sensor.vibration_158d0002b83c5b:
 binary_sensor.vibration_158d0002b78209:
   friendly_name: Viberate sensor 2
 
+sensor.pow1_energy_apparentpower:
+  unit_of_measurement: W 
+sensor.pow1_energy_factor:
+  unit_of_measurement: PF
+sensor.pow1_energy_reactivepower:
+  unit_of_measurement: W
+sensor.pow2_energy_apparentpower:
+  unit_of_measurement: W 
+sensor.pow2_energy_factor:
+  unit_of_measurement: PF
+sensor.pow2_energy_reactivepower:
+  unit_of_measurement: W
+  
 
