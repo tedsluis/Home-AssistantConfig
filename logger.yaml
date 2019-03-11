@@ -1,15 +1,16 @@
 default: info
 #default: debug
-logs:
+#logs:
 #  xiaomi_gateway: debug
 #  homeassistant.components.xiaomi_aqara: debug
 #  homeassistant.components.switch.xiaomi_aqara: debug
 #  homeassistant.components.sensor.xiaomi_aqara: debug
 #  homeassistant.components.binary_sensor.xiaomi_aqara: debug
-#
-#    homeassistant.components.automation: debug
-#    homeassistant.bootstrap: info
-#    homeassistant.components.device_tracker: info
-#    homeassistant.loader: info
- homeassistant.components.mqtt: debug
-# homeassistant.core: debug
+#  homeassistant.components.automation: debug
+#  homeassistant.bootstrap: info
+#  homeassistant.components.device_tracker: info
+#  homeassistant.loader: info
+#  homeassistant.components.notify: debug
+#  homeassistant.components.mqtt: debug
+#  homeassistant.components.sensor.haveibeenpwned: debug
+#  homeassistant.core: debug
