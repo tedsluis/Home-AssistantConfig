@@ -65,6 +65,8 @@ luftdaten: !include luftdaten.yaml
 
 notify: !include notify.yaml
 
+panel_iframe: !include panel_iframe.yaml
+
 person: !include person.yaml
 
 recorder:
