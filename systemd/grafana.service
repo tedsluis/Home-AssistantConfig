@@ -1,0 +1,22 @@
+Description=Grafana
+After=docker.service influxdb.service
+Requires=docker.service network.target influxdb.service
+ 
+[Service]
+RestartSec=3
+TimeoutStartSec=300
+Restart=always
+ExecStartPre=-/usr/bin/docker stop -t 2 grafana
+ExecStartPre=-/usr/bin/docker rm -f grafana
+ExecStartPre=/usr/bin/docker pull grafana/grafana
+ExecStart=/usr/bin/docker run -p 3000:3000 \
+                              --name="grafana" \
+                              -v /home/homeassistant/grafana/var:/var/lib/grafana \
+                              -v /home/homeassistant/grafana/etc/grafana.ini:/etc/grafana/grafana.ini:ro \
+                              -v /home/homeassistant/dehydrated/certs/tedsluis.duckdns.org:/ssl \
+                              grafana/grafana
+ExecStop=-/usr/bin/docker stop -t 2 home-assistant
+ExecStopPost=-/usr/bin/docker rm -f home-assistant
+ 
+[Install]
+WantedBy=multi-user.target

@@ -10,9 +10,9 @@ ExecStartPre=-/usr/bin/docker stop -t 2 home-assistant
 ExecStartPre=-/usr/bin/docker rm -f home-assistant
 ExecStartPre=/usr/bin/docker pull homeassistant/home-assistant
 ExecStart=/usr/bin/docker run --name="home-assistant" \
-                              -v /homeassistant/config:/config \
+                              -v /home/homeassistant/config:/config \
                               -v /etc/localtime:/etc/localtime:ro \
-                              -v /homeassistant/dehydrated/certs/tedsluis.duckdns.org:/ssl \
+                              -v /home/homeassistant/dehydrated/certs/tedsluis.duckdns.org:/ssl \
                               --net=host homeassistant/home-assistant
 ExecStop=-/usr/bin/docker stop -t 2 home-assistant
 ExecStopPost=-/usr/bin/docker rm -f home-assistant
