@@ -1,0 +1,28 @@
+Description=InfluxDB
+After=docker.service 
+Requires=docker.service network.target
+ 
+[Service]
+RestartSec=3
+TimeoutStartSec=300
+Restart=always
+ExecStartPre=-/usr/bin/docker stop -t 2 influxdb
+ExecStartPre=-/usr/bin/docker rm -f influxdb
+ExecStartPre=/usr/bin/docker pull influxdb
+ExecStart=/usr/bin/docker run --name="influxdb" \
+                              --restart always \
+                              -p 8086:8086 \
+                              -p 8083:8083 \
+                              -e INFLUXDB_DB="home_assistant" \
+                              -e INFLUXDB_ADMIN_USER="admin" \
+                              -e INFLUXDB_ADMIN_PASSWORD="*******************" \
+                              -e INFLUXDB_WRITE_USER="homeassistant" \
+                              -e INFLUXDB_WRITE_USER_PASSWORD="*******************" \
+                              -v /home/homeassistant/influxdb/var:/var/lib/influxdb \
+                              -v /home/homeassistant/influxdb/etc/influxdb.conf:/etc/influxdb/influxdb.conf:ro \
+                              influxdb -config /etc/influxdb/influxdb.conf
+ExecStop=-/usr/bin/docker stop -t 2 influxdb
+ExecStopPost=-/usr/bin/docker rm -f influxdb
+
+[Install]
+WantedBy=multi-user.target
