@@ -1,0 +1,25 @@
+Description=Mariadb docker Service
+After=docker.service 
+Requires=docker.service
+
+[Service]
+RestartSec=3
+TimeoutStartSec=300
+Restart=always
+ExecStartPre=-/usr/bin/docker stop -t 2 mariadb
+ExecStartPre=-/usr/bin/docker rm -f mariadb
+ExecStartPre=/usr/bin/docker pull mariadb:latest
+ExecStart=/usr/bin/docker run --name="mariadb" \
+                              -p 3306:3306 \
+                              -e MYSQL_ROOT_PASSWORD="*****************" \
+                              -e MYSQL_DATABASE="homeassistant" \
+                              -e MYSQL_USER="homeassistantuser" \
+                              -e MYSQL_PASSWORD="*****************" \
+                              -v /home/homeassistant/mariadb/etc:/etc/mysql/conf.d \
+                              -v /home/homeassistant/mariadb/var:/var/lib/mysql \
+                              mariadb
+ExecStop=-/usr/bin/docker stop -t 2 mariadb
+ExecStopPost=-/usr/bin/docker rm -f mariadb
+
+[Install]
+WantedBy=multi-user.target
