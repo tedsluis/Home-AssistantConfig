@@ -29,18 +29,35 @@ frontend:
 
 group: !include groups.yaml
 
+# Enables support for tracking state changes over time
+history:
+
+history_graph: !include history_graph.yaml
+
 homeassistant: !include homeassistant.yaml
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http: !include http.yaml
 
+# Store metrics
+influxdb: !include influxdb.yaml
+
 # Show links to resources in log and frontend
 #introduction:
+
+# View all events in a logbook
+logbook:
 
 logger: !include logger.yaml
 
 # Edit lovelace interface in yaml   
 lovelace: !include lovelace.yaml
+
+# Air quality
+luftdaten: !include luftdaten.yaml
+
+# Enables a map showing the location of tracked devices
+map:
 
 # Media players
 media_player: !include media_player.yaml
@@ -48,31 +65,13 @@ media_player: !include media_player.yaml
 # mqtt mosquitto broker
 mqtt: !include mqtt.yaml
 
-# Enables support for tracking state changes over time
-history:
-
-influxdb: !include influxdb.yaml
-
-# View all events in a logbook
-logbook:
-
-# Enables a map showing the location of tracked devices
-map:
-
-history_graph: !include history_graph.yaml
-
-luftdaten: !include luftdaten.yaml
-
 notify: !include notify.yaml
 
 panel_iframe: !include panel_iframe.yaml
 
 person: !include person.yaml
 
-recorder:
-  #db_url: !secret ha_db_url
-  purge_interval: 1
-  purge_keep_days: 3
+recorder: !include recorder.yaml
 
 sensor: !include sensor.yaml
 
