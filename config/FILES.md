@@ -1,6 +1,10 @@
-# Files & directories
+# Files and directories
 
+Not all files and directories are included in this repository for obvious reasons: in case they are not relevant for the installation and/or containing user data.
+
+Below an overview of what to expect here:
 ```
+config
 config/android_ip_webcam.yaml
 config/automations.yaml
 config/binary_sensor.yaml
@@ -13,7 +17,9 @@ config/customize.yaml
 config/deps
 config/device_tracker.yaml
 config/duckdns.yaml
+config/FILES.md
 config/.google_maps_location_sharing.cookies
+config/google_maps_location_sharing.cookies
 config/.google_maps_location_sharing.cookies.gpstedsluis_gmail_com
 config/groups.yaml
 config/.HA_VERSION

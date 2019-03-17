@@ -4,13 +4,8 @@ Not all files and directories are included in this repository for obvious reason
 
 Below an overview of what to expect here:
 ```
-mosquitto
-mosquitto/data
-mosquitto/data/mosquitto.db
-mosquitto/data/mosquitto_passwd
-mosquitto/etc
-mosquitto/etc/mosquitto.conf
-mosquitto/FILES.md
-mosquitto/log
-mosquitto/log/mosquitto.log
+prometheus
+prometheus/etc
+prometheus/etc/prometheus.yml
+prometheus/FILES.md
 ```
