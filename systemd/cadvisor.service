@@ -1,23 +1,24 @@
-Description=Cadvisor
+Description=cadvisor
 After=docker.service 
-Requires=docker.service network.target 
+Requires=docker.service
  
 [Service]
-RestartSec=3
 TimeoutStartSec=300
+RestartSec=0
 Restart=always
 ExecStartPre=-/usr/bin/docker stop -t 2 cadvisor
 ExecStartPre=-/usr/bin/docker rm -f cadvisor
 ExecStartPre=/usr/bin/docker pull google/cadvisor
-ExecStart=/usr/bin/docker run --name="cadvisor" \
-                              -v /:/rootfs:ro \
-                              -v /var/run:/var/run:ro \
-                              -v /sys:/sys:ro \
-                              -v /var/lib/docker/:/var/lib/docker:ro \
-                              -v /dev/disk/:/dev/disk:ro \
-                              -p 8880:8080 \
-                              --detach=true \
-                              google/cadvisor:latest
+ExecStart=/usr/bin/docker run --rm --volume=/:/rootfs:ro \
+                                   --volume=/var/run:/var/run:rw \
+                                   --volume=/sys:/sys:ro \
+                                   --volume=/var/lib/docker/:/var/lib/docker:ro \
+                                   --volume=/dev/disk/:/dev/disk:ro \
+                                   --publish=8080:8080 \
+                                   --name=cadvisor \
+                                   --privileged=true \
+                                   google/cadvisor:latest
+
 ExecStop=-/usr/bin/docker stop -t 2 cadvisor
 ExecStopPost=-/usr/bin/docker rm -f cadvisor
  
