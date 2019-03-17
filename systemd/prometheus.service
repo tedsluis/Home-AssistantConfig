@@ -1,0 +1,20 @@
+Description=Prometheus
+After=docker.service 
+Requires=docker.service network.target 
+ 
+[Service]
+RestartSec=3
+TimeoutStartSec=300
+Restart=always
+ExecStartPre=-/usr/bin/docker stop -t 2 prometheus
+ExecStartPre=-/usr/bin/docker rm -f prometheus
+ExecStartPre=/usr/bin/docker pull prom/prometheus
+ExecStart=/usr/bin/docker run --name="prometheus" \
+                              -p 9990:9090 \
+                              -v /home/homeassistant/prometheus/etc/prometheus.yml:/etc/prometheus/prometheus.yml \
+                              prom/prometheus
+ExecStop=-/usr/bin/docker stop -t 2 prometheus
+ExecStopPost=-/usr/bin/docker rm -f prometheus
+ 
+[Install]
+WantedBy=multi-user.target
