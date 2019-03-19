@@ -11,12 +11,8 @@ zigbee2mqtt/configuration.yaml.org
 zigbee2mqtt/database.db
 zigbee2mqtt/FILES.md
 zigbee2mqtt/log
-zigbee2mqtt/log/2019-02-18.18-41-46
-zigbee2mqtt/log/2019-02-18.18-41-46/log.txt
 zigbee2mqtt/log/2019-02-18.18-54-30
 zigbee2mqtt/log/2019-02-18.18-54-30/log.txt
-zigbee2mqtt/log/2019-02-18.19-07-13
-zigbee2mqtt/log/2019-02-18.19-07-13/log.txt
 zigbee2mqtt/log/2019-03-15.14-37-51
 zigbee2mqtt/log/2019-03-15.14-37-51/log.txt
 zigbee2mqtt/log/2019-03-16.20-26-20
@@ -27,5 +23,13 @@ zigbee2mqtt/log/2019-03-16.21-00-28
 zigbee2mqtt/log/2019-03-16.21-00-28/log.txt
 zigbee2mqtt/log/2019-03-16.21-47-46
 zigbee2mqtt/log/2019-03-16.21-47-46/log.txt
+zigbee2mqtt/log/2019-03-18.20-51-30
+zigbee2mqtt/log/2019-03-18.20-51-30/log.txt
+zigbee2mqtt/log/2019-03-18.20-54-01
+zigbee2mqtt/log/2019-03-18.20-54-01/log.txt
+zigbee2mqtt/log/2019-03-18.20-54-10
+zigbee2mqtt/log/2019-03-18.20-54-10/log.txt
+zigbee2mqtt/log/2019-03-18.21-04-36
+zigbee2mqtt/log/2019-03-18.21-04-36/log.txt
 zigbee2mqtt/state.json
 ```
