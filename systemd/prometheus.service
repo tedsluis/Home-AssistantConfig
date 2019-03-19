@@ -12,7 +12,11 @@ ExecStartPre=/usr/bin/docker pull prom/prometheus
 ExecStart=/usr/bin/docker run --name="prometheus" \
                               -p 9990:9090 \
                               -v /home/homeassistant/prometheus/etc/prometheus.yml:/etc/prometheus/prometheus.yml \
-                              prom/prometheus
+                              -v /home/homeassistant/prometheus/data:/prometheus \
+                              prom/prometheus \
+                              --storage.tsdb.retention="30d" \
+                              --storage.tsdb.path="/prometheus" \
+                              --config.file="/etc/prometheus/prometheus.yml"
 ExecStop=-/usr/bin/docker stop -t 2 prometheus
 ExecStopPost=-/usr/bin/docker rm -f prometheus
  
