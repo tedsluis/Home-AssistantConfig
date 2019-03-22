@@ -1,6 +1,14 @@
 # Name of the location where Home Assistant is running
 name: Home
 
+auth_providers:
+  - type: homeassistant
+  - type: legacy_api_password
+    api_password: !secret api_password
+  - type: trusted_networks
+    trusted_networks:
+      - 192.168.11.0/24
+
 # Location required to calculate the time the sun rises and sets
 # Impacts weather/sunrise data (altitude above sea level in meters)
 latitude: !secret latitude_home
