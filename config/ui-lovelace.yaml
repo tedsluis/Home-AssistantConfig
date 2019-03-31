@@ -187,6 +187,7 @@ views:
         entities:
         - entity: sensor.yr_temperature
         - entity: sensor.yr_dewpoint_temperature
+        - entity: sensor.luftdaten_22940_temperature
         - entity: sensor.temperature_158d00027725d7
       - id: outsidehumidityoverview
         type: history-graph
@@ -194,6 +195,7 @@ views:
         hours_to_show: 48
         entities:
         - entity: sensor.yr_humidity
+        - entity: sensor.luftdaten_22940_humidity
         - entity: sensor.humidity_158d00027725d7
       - id: pressureoverview
         type: history-graph
@@ -298,13 +300,13 @@ views:
         hours_to_show: 168
         entities: 
         - entity: sensor.airquality_combined_index
-      - id: luftdaten_17566
+      - id: luftdaten_22939
         type: history-graph
         title: Luftdaten
         hours_to_show: 168
         entities: 
-        - entity: sensor.luftdaten_17566_p1
-        - entity: sensor.luftdaten_17566_p2
+        - entity: sensor.luftdaten_22939_p1
+        - entity: sensor.luftdaten_22939_p2
   - title: Internet
     icon: mdi:web
     id: internet_overview
