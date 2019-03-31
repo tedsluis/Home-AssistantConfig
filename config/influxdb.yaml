@@ -142,8 +142,6 @@ include:
       - binary_sensor.wall_switch_both_158d00026ba474
       - binary_sensor.vibration_158d0002b83c5b
       - binary_sensor.vibration_158d0002b78209
-      - binary_sensor.door_window_sensor_158d0002e24f96
-      - binary_sensor.door_window_sensor_158d00025ed544
 # person
       - person.annelies
       - person.naud
@@ -162,5 +160,19 @@ include:
       - sensor.airquality_o3
       - sensor.airquality_pm10
       - sensor.airquality_pm25
-      - sensor.luftdaten_17566_p1
-      - sensor.luftdaten_17566_p2
+      - sensor.luftdaten_22939_p1
+      - sensor.luftdaten_22939_p2
+      - sensor.luftdaten_22940_humidity
+      - sensor.luftdaten_22940_temperature
+# sensors
+      - binary_sensor.0x00124b001bb859ff_router
+      - binary_sensor.0x00158d00025ed544_contact
+      - binary_sensor.0x00158d0002e24f96_contact
+      - sensor.0x00124b001bb859ff_linkquality
+      - sensor.0x00158d00025427e0_battery
+      - sensor.0x00158d00025427e0_click
+      - sensor.0x00158d00025ed544_battery
+      - sensor.0x00158d0002e24f96_battery
+      - sensor.coordination_158d0002b78209
+      - sensor.coordination_158d0002b83c5b
+      - 
