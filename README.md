@@ -39,45 +39,89 @@
 * Android ip webcam
 * Google maps device tracker
 
-## Installation notes
+### Home
+[![Home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-home.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-home.png)  
 
-### Preperations
+### Where is everone
+[![Where](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-where.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-where.png)  
 
-* install docker
-* execute: `sudo systemctl enable docker.service && sudo systemctl start docker.service`
-* execute: `sudo mkdir /homeassistant/config`
-* store home-assistant configuration files in `/homeassistant/config/`
-* execute: `sudo chmod 766 /homeassistant/config/*`
-* execute: `sudo mkdir /homeassistant/dehydrated`
-* execute: `sudo chmod 766 /homeassistant/dehydrated/*`
-* clone `https://github.com/lukas2511/dehydrated.git` into `/homeassistant/dehydrated/`
-* configure https://github.com/lukas2511/dehydrated
+### Weather
+[![Weather](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-weather.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-weather.png)  
 
-### Homeassistant
+### Environment
+[![Environment](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-environment.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-environment.png)  
 
-* create: [/etc/systemd/system/homeassistant.service](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/systemd/homeassistant.service)
-* execute: `sudo systemctl enable homeassistant.service && sudo systemctl start homeassistant.service`
+### Air quality
+[![AirQuality](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-airquality.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-airquality.png)  
+
+### Internet speed
+[![Internet](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-internet.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-internet.png)  
+
+### Train 
+[![Train](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-train.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-train.png)  
+
+### Packages delivery
+[![Packages](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-packages.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-packages.png)  
+
+### Power usage
+[![Power](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-power.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-power.png)  
+
+### Automations
+[![Automations](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-automations.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-automations.png)  
+
+### Battery levels
+[![Batteries](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-battery.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-battery.png)  
+
+### Home Assistant host
+[![HA-Host](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-ha-host.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-ha-host.png)  
+
+### Grafana 
+[![Grafana](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-grafana.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-grafana.png)  
+
+### CAdvisor
+[![CAdvisor](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-cadvisor1.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-cadvisor1.png)  
+
+[![CAdvisor](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-cadvisor2.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-cadvisor2.png)  
+
+[![CAdvisor](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-cadvisor3.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-cadvisor3.png)  
+
+### Prometheus
+[![Prometheus](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-prometheus1.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-prometheus1.png)  
+
+[![](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-prometheus2.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-prometheus2.png)  
+
+### Jenkins
+[![Jenkins](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-jenkins.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-jenkins.png)  
+
+### Luftdaten Sensor
+[![Luftdaten-sensor](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-luftdaten-sensor.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-luftdaten-sensor.png)  
+
+[![Luftdaten-sds011](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-luftdaten-sds011.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-luftdaten-sds011.png)  
+
+[![Luftdaten-dht](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-luftdaten-dht.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-luftdaten-dht.png)  
+[![Luftdaten-wifi](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-luftdaten-wifi.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-luftdaten-wifi.png)  
+
+### Slack
+[![Slack](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-slack.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-slack.png)  
+### Sonoff Pow
+[![SonoffPow](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-.sonoof-powpng)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-sonoof-pow.png)  
+
+### Hue
+[![Hue](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-hue.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-hue.png)  
 
 ### MQTT
+[![MQTT](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-mqtt.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-mqtt.png)  
 
-(optional)
-* execute: `sudo mkdir /homeassistant/config/mosquitto` 
-* execute: `sudo chmod 777 /homeassistant/config/mosquitto` 
+
+## Installation notes
+
+
+* install docker
+* clone `https://github.com/lukas2511/dehydrated.git` into `/home/homeassistant/dehydrated/`
+* configure https://github.com/lukas2511/dehydrated
+* create: [/etc/systemd/system/homeassistant.service](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/systemd/homeassistant.service)
 * create: [/homeassistant/config/mosquitto.conf](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/mosquitto.conf)
 * create: [/etc/systemd/system/mqtt.service](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/systemd/mqtt.service)
-* execute: `sudo systemctl enable mqtt.service && sudo systemctl start mqtt.service`
   
   
-## Lovelace Home
-[![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-home.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-home.png)  
 
-## Lovelace Weer - Weather
-[![home](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-weer.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lovelace-weer.png)  
-
-
-
-
-<div style="display: inline;"><a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif"     target="_blank"><img src="images/home.gif"     style="max-width: 25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/apis.gif"     target="_blank"><img src="images/apis.gif"     style="max-width: 25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/lichten.gif"  target="_blank"><img src="images/lichten.gif"  style="max-width: 25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/klimaat.gif"  target="_blank"><img src="images/klimaat.gif"  style="max-width: 25%" /></a></div> 
-<div><a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/verbruik.gif" target="_blank"><img src="images/verbruik.gif" style="width:25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/ha.gif"       target="_blank"><img src="images/ha.gif"       style="width:25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/history.gif"  target="_blank"><img src="images/history.gif"  style="width:25%" /></a> <a href="https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/home.gif"     target="_blank"><img src="images/home.gif"     style="width:25%" /></a></div>
-
- 
