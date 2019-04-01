@@ -175,4 +175,3 @@ include:
       - sensor.0x00158d0002e24f96_battery
       - sensor.coordination_158d0002b78209
       - sensor.coordination_158d0002b83c5b
-      - 
