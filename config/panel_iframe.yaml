@@ -1,4 +1,77 @@
+slack:
+  title: Slack
+  icon: mdi:slack
+  url: !secret slack_url
 stats:
   title: Grafana
   icon: mdi:chart-areaspline
   url: !secret grafana_url 
+prometheus:
+  title: Prometheus
+  icon: mdi:chart-areaspline
+  url: !secret prometheus_url
+cadvisor:
+  title: CAdvisor
+  icon: mdi:chart-areaspline
+  url: !secret cadvisor_url
+jenkins:
+  title: Jenkins
+  icon: mdi:pipe
+  url: !secret jenkins_url
+luftdatensensor:
+  title: Luftdaten
+  icon: mdi:chart-areaspline
+  url: !secret luftdaten_sensor_url
+luftdatendht:
+  title: Luftdaten DHT
+  icon: mdi:chart-areaspline
+  url: !secret madavi_dht_url
+luftdatensds011:
+  title: Luftdaten SDS011
+  icon: mdi:chart-areaspline
+  url: !secret madavi_sds011_url
+luftdatenwifi:
+  title: Luftdaten wifi
+  icon: mdi:chart-areaspline
+  url: !secret madavi_wifi_url
+sonoff_basic1:
+  title: Sonoff Basic1
+  icon: mdi:power-socket-eu
+  url: !secret basic1_url
+sonoff_basic2:
+  title: Sonoff Basic2
+  icon: mdi:power-socket-eu
+  url: !secret basic2_url
+sonoff_basic3:
+  title: Sonoff Basic3
+  icon: mdi:power-socket-eu
+  url: !secret basic3_url
+sonoff_plug1:
+  title: Sonoff Plug1
+  icon: mdi:power-socket-eu
+  url: !secret plug1_url
+sonoff_plug2:
+  title: Sonoff Plug2
+  icon: mdi:power-socket-eu
+  url: !secret plug2_url
+sonoff_rfbridge1:
+  title: Sonoff RF Bridge1
+  icon: mdi:power-socket-eu
+  url: !secret rfbridge1_url
+sonoff_pow1:
+  title: Sonoff Pow1
+  icon: mdi:power-socket-eu
+  url: !secret pow1_url
+sonoff_pow2:
+  title: Sonoff Pow2
+  icon: mdi:power-socket-eu
+  url: !secret pow2_url
+sonoff_rfbridge2:
+  title: Sonoff RF Bridge2
+  icon: mdi:power-socket-eu
+  url: !secret rfbridge2_url
+sonoff_rfbridge3:
+  title: Sonoff RF Bridge3
+  icon: mdi:power-socket-eu
+  url: !secret rfbridge3_url
+
