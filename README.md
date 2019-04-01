@@ -104,7 +104,7 @@
 ### Slack
 [![Slack](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-slack.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-slack.png)  
 ### Sonoff Pow
-[![SonoffPow](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-.sonoof-powpng)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-sonoof-pow.png)  
+[![SonoffPow](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-sonoff-pow.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-sonoff-pow.png)  
 
 ### Hue
 [![Hue](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-hue.png)](https://raw.githubusercontent.com/tedsluis/Home-AssistantConfig/master/images/screenshot-hue.png)  
