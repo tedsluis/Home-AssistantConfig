@@ -475,6 +475,14 @@ views:
         entities:
           - binary_sensor.check_hue_bridge
       - type: entities
+        title: mqtt sensors 
+        entities:
+          - group.zigbee_group
+          - sensor.0x00158d00025427e0_click
+          - binary_sensor.0x00158d00025ed544_contact
+          - binary_sensor.0x00158d0002e24f96_contact
+          - sensor.0x00124b001bb859ff_linkquality
+      - type: entities
         title: Sonoff plugs 
         entities:
           - switch.basic1
@@ -572,6 +580,12 @@ views:
         entities:
           - sensor.batterij_158d00027725d7
           - sensor.batterij_158d0002e8d2f1
+      - type: entities
+        title: zigbee2mqtt
+        entities:
+          - sensor.0x00158d00025ed544_battery
+          - sensor.0x00158d0002e24f96_battery
+          - sensor.0x00158d00025427e0_battery
   - title: home-assistant host
     icon: mdi:server-network
     id: ha_host_overview
