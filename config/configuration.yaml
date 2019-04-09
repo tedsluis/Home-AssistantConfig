@@ -42,6 +42,10 @@ http: !include http.yaml
 # Store metrics
 influxdb: !include influxdb.yaml
 
+input_boolean: !include input_boolean.yaml
+
+input_select: !include input_select.yaml
+
 # Show links to resources in log and frontend
 #introduction:
 
@@ -88,6 +92,8 @@ sun:
 system_health:
 
 switch: !include switch.yaml
+
+timer: !include timer.yaml
 
 # Text to speech                      
 tts:                                                   
