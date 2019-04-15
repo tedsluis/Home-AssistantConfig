@@ -31,3 +31,4 @@ customize_glob: !include customize_glob.yaml
 
 # C for Celcius, F for Fahrenheit
 temperature_unit: C
+packages: !include_dir_named packages
