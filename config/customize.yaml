@@ -1,5 +1,3 @@
-group.all_automations:
-  hidden: false
 group.all_switches:
   hidden: false
 
@@ -196,65 +194,85 @@ sensor.long_power_failure_count:
   friendly_name: langdurige stroomonderbrekingen
 
 sensor.humidity_158d000231046d:
+  battery_sensor_creation_disabled: true
   friendly_name: keuken
 sensor.pressure_158d000231046d:
+  battery_sensor_creation_disabled: true
   friendly_name: keuken
   hidden: true
 sensor.temperature_158d000231046d:
   friendly_name: keuken
 
 sensor.humidity_158d000238fcc1:
+  battery_sensor_creation_disabled: true
   friendly_name: slaapkamer naud
 sensor.pressure_158d000238fcc1:
+  battery_sensor_creation_disabled: true
   friendly_name: slaapkamer naud
   hidden: true
 sensor.temperature_158d000238fcc1:
   friendly_name: slaapkamer naud
+
 binary_sensor.wall_switch_left_158d00026ba474:
   friendly_name: schakelaar links slaapkamer naud
 binary_sensor.wall_switch_right_158d00026ba474:
   friendly_name: schakelaar rechts slaapkamer naud
+  battery_sensor_creation_disabled: true
 binary_sensor.wall_switch_both_158d00026ba474:
   friendly_name: schakelaar beide slaapkamer naud
+  battery_sensor_creation_disabled: true
 
 sensor.humidity_158d00027257cd:
   friendly_name: slaapkamer stijn
+  battery_sensor_creation_disabled: true
 sensor.pressure_158d00027257cd:
   friendly_name: slaapkamer stijn
   hidden: true
+  battery_sensor_creation_disabled: true
 sensor.temperature_158d00027257cd:
   friendly_name: slaapkamer stijn
+
 binary_sensor.wall_switch_left_158d00025427e0:
   friendly_name: schakelaar links slaapkamer stijn
+  battery_sensor_creation_disabled: true
 binary_sensor.wall_switch_right_158d00025427e0:
   friendly_name: schakelaar rechts slaapkamer stijn
+  battery_sensor_creation_disabled: true
 binary_sensor.wall_switch_both_158d00025427e0:
   friendly_name: schakelaar beide slaapkamer stijn
 
 sensor.humidity_158d000273424b:
   friendly_name: badkamer
+  battery_sensor_creation_disabled: true
 sensor.pressure_158d000273424b: 
   friendly_name: badkamer
   hidden: true
+  battery_sensor_creation_disabled: true
 sensor.temperature_158d000273424b:
   friendly_name: badkamer
 
 sensor.humidity_158d000273d342:
   friendly_name: slaapkamer annelies & ted
+  battery_sensor_creation_disabled: true
 sensor.pressure_158d000273d342:
   friendly_name: slaapkamer annelies & ted
   hidden: true
+  battery_sensor_creation_disabled: true
 sensor.temperature_158d000273d342:
   friendly_name: slaapkamer annelies & ted
+
 binary_sensor.wall_switch_both_158d00027c19e9:
   hidden: true
   friendly_name: schakelaar beide slaapkamer annelies & ted
+  battery_sensor_creation_disabled: true
 binary_sensor.wall_switch_left_158d00027c19e9:
   hidden: true
   friendly_name: schakelaar links slaapkamer annelies & ted
+  battery_sensor_creation_disabled: true
 binary_sensor.wall_switch_right_158d00027c19e9:
   hidden: true
   friendly_name: schakelaar rechts slaapkamer annelies & ted
+
 light.gateway_light_7c49ebb18b86:
   friendly_name: nachtlampje slaapkamer annelies & ted
 sensor.illumination_7c49ebb18b86:
@@ -262,40 +280,51 @@ sensor.illumination_7c49ebb18b86:
 
 binary_sensor.motion_sensor_158d00029a5cd2:
   friendly_name: bewegingsensor overloop
+  battery_sensor_creation_disabled: true
 sensor.illumination_158d00029a5cd2:
   friendly_name: lichtsensor overloop
 
 sensor.humidity_158d00027725d7:
   friendly_name: schuur
+  battery_sensor_creation_disabled: true
 sensor.pressure_158d00027725d7:
   friendly_name: schuur
   hidden: true
+  battery_sensor_creation_disabled: true
 sensor.temperature_158d00027725d7:
   friendly_name: schuur
 
 sensor.humidity_158d00027898b3:
   friendly_name: studeerkamer
+  battery_sensor_creation_disabled: true
 sensor.pressure_158d00027898b3:
   friendly_name: studeerkamer
   hidden: true
+  battery_sensor_creation_disabled: true
 sensor.temperature_158d00027898b3:
   friendly_name: studeerkamer
+
 binary_sensor.motion_sensor_158d0002584585:
   friendly_name: bewegingsensor studeerkamer
+  battery_sensor_creation_disabled: true
 sensor.illumination_158d0002584585:
   friendly_name: lichtsensor studeerkamer
 
 binary_sensor.motion_sensor_158d0002e8d2f1:
   friendly_name: bewegingsensor voordeur buiten
+  battery_sensor_creation_disabled: true
 sensor.illumination_158d0002e8d2f1:
   friendly_name: lichtsensor voordeur buiten
 
 sensor.humidity_158d0002789adf:
   friendly_name: woonkamer 
+  battery_sensor_creation_disabled: true
 sensor.pressure_158d0002789adf:
   friendly_name: woonkamer
+  battery_sensor_creation_disabled: true
 sensor.temperature_158d0002789adf:
   friendly_name: woonkamer
+
 switch.plug_158d00024ae109:
   friendly_name: stopcontact woonkamer
 
@@ -311,13 +340,38 @@ device_tracker.google_maps_103666873320035558501:
   friendly_name: Ted
 
 binary_sensor.door_window_sensor_158d00025ed544:
+  battery_sensor_creation_disabled: true
   friendly_name: Door sensor 1
 binary_sensor.door_window_sensor_158d0002e24f96:
   friendly_name: Door sensor 2
+  battery_sensor_creation_disabled: true
+
 binary_sensor.vibration_158d0002b83c5b:
   friendly_name: Viberate sensor 1
+sensor.bed_activity_158d0002b83c5b:
+  battery_sensor_creation_disabled: true
+sensor.bed_activity_158d0002b83c5b_battery:
+  battery_sensor_creation_disabled: true
+sensor.coordination_158d0002b83c5b:
+  battery_sensor_creation_disabled: true
+sensor.coordination_158d0002b83c5b_battery:
+  battery_sensor_creation_disabled: true
+sensor.tilt_angle_158d0002b83c5b:
+  battery_sensor_creation_disabled: true
+
 binary_sensor.vibration_158d0002b78209:
   friendly_name: Viberate sensor 2
+sensor.bed_activity_158d0002b78209:
+  battery_sensor_creation_disabled: true
+sensor.bed_activity_158d0002b78209_battery:
+  battery_sensor_creation_disabled: true
+sensor.coordination_158d0002b78209:
+  battery_sensor_creation_disabled: true
+sensor.coordination_158d0002b78209_battery:
+  battery_sensor_creation_disabled: true
+sensor.tilt_angle_158d0002b78209:
+  battery_sensor_creation_disabled: true
+
 
 sensor.pow1_energy_apparentpower:
   unit_of_measurement: W 
@@ -331,5 +385,53 @@ sensor.pow2_energy_factor:
   unit_of_measurement: PF
 sensor.pow2_energy_reactivepower:
   unit_of_measurement: W
-  
+
+binary_sensor.0x00158d00025ed544_contact:
+  battery_sensor_creation_disabled: true
+sensor.0x00158d00025ed544_battery:
+  battery_sensor_creation_disabled: true
+sensor.0x00158d00025ed544_contact:
+  friendly_name: Doorswitch1
+
+binary_sensor.0x00158d0002e24f96_battery:
+  battery_sensor_creation_disabled: true
+binary_sensor.0x00158d0002e24f96_contact:
+  friendly_name: Doorswitch2
+sensor.0x00158d00025427e0_battery:
+  battery_sensor_creation_disabled: true
+sensor.0x00158d00025427e0_click:
+  battery_sensor_creation_disabled: true
+
+sensor.viberate_sensor_1_battery:
+  friendly_name: Viberate 1 battery
+sensor.viberate_sensor_2_battery:
+  friendly_name: Viberate 2 battery
+sensor.doorswitch1_contact_battery:
+  friendly_name: Door switch 1 battery
+sensor.doorswitch2_contact_battery:
+  friendly_name: Door switch 2 battery
+sensor.keuken_battery:
+  friendly_name: Sensor kitchen battery
+sensor.lichtsensor_studeerkamer_battery:
+  friendly_name: Motion study room battery 
+sensor.lichtsensor_voordeur_buiten_battery:
+  friendly_name: Motion front door battery
+sensor.schuur_battery:
+  friendly_name: Sensor barn battery
+sensor.slaapkamer_annelies_ted_battery:
+  friendly_name: Sensor master bedroom battery
+sensor.slaapkamer_naud_battery:
+  friendly_name: Sensor bedroom Naud battery
+sensor.stopcontact_woonkamer_battery:
+  friendly_name: Power plug livingroom battery
+sensor.switchstijn_click_battery:
+  friendly_name: Switch Stijn battery
+sensor.ted_battery:
+  friendly_name: Mobile phone battery
+sensor.woonkamer_battery:
+  friendly_name: Sensor living room
+sensor.schakelaar_links_slaapkamer_naud_battery:
+  friendly_name: Schakelaar Naud battery
+sensor.lichtsensor_overloop_battery:
+  friendly_name: Motion corridor 1st floor battery
 
