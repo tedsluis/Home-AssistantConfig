@@ -360,6 +360,7 @@
   action: 
     service: light.turn_off
     entity_id: light.hue_white_light_1_3
+
 ###############################################################################
 - alias: "Init on HA start-up"
   trigger:
@@ -450,6 +451,8 @@
       data:
         topic: "homeasistant/rfbridge1/STATUS"
         payload: "2"
+############################################################################
+
 ############################################################################
 # Dimm hue light with rfswitch1C
 - alias: Dimm slaapkamer licht rfswitch1C
@@ -579,11 +582,11 @@
       entity_id: binary_sensor.wall_switch_right_158d00025427e0
       click_type: single
   action:
-    service: persistent_notification.create
-    data_template:
+    - service: persistent_notification.create
+      data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: right switch: {{ states.binary_sensor.wall_switch_right_158d00025427e0.attributes["last_action"] }}'
-    service: notify.slack
-    data_template:
+    - service: notify.slack
+      data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: right switch: {{ states.binary_sensor.wall_switch_right_158d00025427e0.attributes["last_action"] }}'
             target: '#general'
 
@@ -595,11 +598,11 @@
       entity_id: binary_sensor.wall_switch_left_158d00025427e0
       click_type: single
   action:
-    service: persistent_notification.create
-    data_template:
+    - service: persistent_notification.create
+      data_template:
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: left switch: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}' 
-    service: notify.slack
-    data_template:            
+    - service: notify.slack
+      data_template:            
             message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: left switch: {{ states.binary_sensor.wall_switch_left_158d00025427e0.attributes["last_action"] }}' 
             target: '#general'
 
