@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-homeassistant
+  labels:
+    type: local
+spec:
+  storageClassName: homeassistant
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/root/pv-homeassistant"

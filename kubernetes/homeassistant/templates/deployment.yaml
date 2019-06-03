@@ -20,6 +20,10 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+      volumes:
+        - name: pvc-homeassistant-storage
+          persistentVolumeClaim:
+            claimName: pvc-homeassistant
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -28,6 +32,9 @@ spec:
             - name: http
               containerPort: 8123
               protocol: TCP
+          volumeMounts:
+            - mountPath: "/config"
+              name: pvc-homeassistant-storage
           livenessProbe:
             httpGet:
               path: /
