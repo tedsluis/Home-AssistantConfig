@@ -1,14 +1,14 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: pv-homeassistant
+  name: pv-ssl
   labels:
     type: local
 spec:
-  storageClassName: homeassistant
+  storageClassName: ssl
   capacity:
     storage: 2Gi
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   hostPath:
-    path: "/root/pv-homeassistant"
+    path: "/home/homeassistant/dehydrated/certs/tedsluis.duckdns.org"

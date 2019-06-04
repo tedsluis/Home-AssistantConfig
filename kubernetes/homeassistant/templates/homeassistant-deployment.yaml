@@ -21,9 +21,15 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
-        - name: pvc-homeassistant-storage
+        - name: pvc-haconfig-storage
           persistentVolumeClaim:
-            claimName: pvc-homeassistant
+            claimName: pvc-haconfig
+          name: pvc-ssl-storage
+          persistentVolumeClaim:
+            claimName: pvc-ssl
+          name: pvc-localtime-storage
+          persistentVolumeClaim:
+            claimName: pvc-localtime
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -34,7 +40,11 @@ spec:
               protocol: TCP
           volumeMounts:
             - mountPath: "/config"
-              name: pvc-homeassistant-storage
+              name: pvc-haconfig-storage
+              mountPath: "/ssl"
+              name: pvc-ssl-storage
+              mountPath: "/etc/localtime:/etc/localtime"
+              name: pvc-localtime-storage
           livenessProbe:
             httpGet:
               path: /

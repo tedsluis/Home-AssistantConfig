@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-localtime
+spec:
+  storageClassName: localtime
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 1Gi

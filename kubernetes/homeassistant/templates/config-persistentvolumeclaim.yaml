@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-haconfig
+spec:
+  storageClassName: haconfig
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi

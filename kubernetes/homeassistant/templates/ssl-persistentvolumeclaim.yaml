@@ -1,11 +1,11 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: pvc-homeassistant
+  name: pvc-ssl
 spec:
-  storageClassName: homeassistant
+  storageClassName: ssl
   accessModes:
-    - ReadWriteMany
+    - ReadOnlyMany
   resources:
     requests:
       storage: 1Gi

@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-localtime
+  labels:
+    type: local
+spec:
+  storageClassName: localtime
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadOnlyMany
+  hostPath:
+    path: "/etc/localtime"
