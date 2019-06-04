@@ -6,8 +6,8 @@ for UNIT in influxdb.service \
             prometheus.service \
             grafana.service \
             jenkins.service \
-            nginx.service ; do
-            homeassistant.service \
+            nginx.service \
+            homeassistant.service ; do
 	systemctl start ${UNIT}
 	systemctl enable ${UNIT}
 	systemctl status ${UNIT}
