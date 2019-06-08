@@ -1,39 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "homeassistant.fullname" . }}
+  name: {{ include "ha.fullname" . }}-homeassistant
   labels:
-{{ include "homeassistant.labels" . | indent 4 }}
+{{ include "ha.labels" . | indent 4 }}
+    app: {{ include "ha.fullname" . }}-homeassistant
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.homeassistant.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "homeassistant.name" . }}
+      app.kubernetes.io/name: {{ include "ha.name" . }}-homeassistant
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "homeassistant.name" . }}
+        app.kubernetes.io/name: {{ include "ha.name" . }}-homeassistant
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
-    {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-    {{- end }}
       volumes:
         - name: pvc-haconfig-storage
           persistentVolumeClaim:
             claimName: pvc-haconfig
-          name: pvc-ssl-storage
+        - name: pvc-ssl-storage
           persistentVolumeClaim:
             claimName: pvc-ssl
-          name: pvc-localtime-storage
+        - name: pvc-localtime-storage
           persistentVolumeClaim:
             claimName: pvc-localtime
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.homeassistant.image.repository }}:{{ .Values.homeassistant.image.tag }}"
+          imagePullPolicy: {{ .Values.homeassistant.image.pullPolicy }}
           ports:
             - name: http
               containerPort: 8123
@@ -41,9 +38,9 @@ spec:
           volumeMounts:
             - mountPath: "/config"
               name: pvc-haconfig-storage
-              mountPath: "/ssl"
+            - mountPath: "/ssl"
               name: pvc-ssl-storage
-              mountPath: "/etc/localtime:/etc/localtime"
+            - mountPath: "/etc/localtime"
               name: pvc-localtime-storage
           livenessProbe:
             httpGet:
@@ -54,7 +51,7 @@ spec:
               path: /
               port: http
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.homeassistant.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

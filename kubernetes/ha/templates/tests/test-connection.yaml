@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ include "ha.fullname" . }}-test-connection
+  labels:
+{{ include "ha.labels" . | indent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['{{ include "ha.fullname" . }}:{{ .Values.homeassistant.service.port }}']
+  restartPolicy: Never
