@@ -1,11 +1,11 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: pv-haconfig
+  name: pv-homeassistant
   labels:
     type: local
 spec:
-  storageClassName: haconfig
+  storageClassName: homeassistant
   capacity:
     storage: 8Gi
   accessModes:

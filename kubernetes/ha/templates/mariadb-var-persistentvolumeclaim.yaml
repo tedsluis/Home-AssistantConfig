@@ -1,9 +1,9 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: pvc-haconfig
+  name: pvc-mariadb-var
 spec:
-  storageClassName: haconfig
+  storageClassName: mariadb-var
   accessModes:
     - ReadWriteMany
   resources:

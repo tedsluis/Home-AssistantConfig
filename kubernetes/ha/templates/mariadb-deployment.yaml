@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ha.fullname" . }}-mariadb
+  labels:
+{{ include "ha.labels" . | indent 4 }}
+    app: {{ include "ha.fullname" . }}-mariadb
+spec:
+  replicas: {{ .Values.mariadb.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "ha.name" . }}-mariadb
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "ha.name" . }}-mariadb
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: pvc-mariadb-etc-storage
+          persistentVolumeClaim:
+            claimName: pvc-mariadb-etc
+        - name: pvc-mariadb-var-storage
+          persistentVolumeClaim:
+            claimName: pvc-mariadb-var
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.mariadb.image.repository }}:{{ .Values.mariadb.image.tag }}"
+          imagePullPolicy: {{ .Values.mariadb.image.pullPolicy }}
+          env:
+          - name: MYSQL_DATABASE
+            value: "homeassistant"
+          - name: MYSQL_ROOT_PASSWORD
+            value: {{ .Values.mariadb.mysqlrootpassword }}
+          - name: MYSQL_USER
+            value: "homeassistantuser"
+          - name: MYSQL_PASSWORD
+            value: {{ .Values.mariadb.mysqlpassword }}
+          ports:
+            - name: mysql
+              containerPort: 3306
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/etc/mysql/conf.d"
+              name: pvc-mariadb-etc-storage
+            - mountPath: "/var/lib/mysq"
+              name: pvc-mariadb-var-storage
+          livenessProbe:
+            exec:
+              command: ["sh", "-c", "exec mysqladmin status -uroot -p{{ .Values.mariadb.mysqlrootpassword }}"]
+            initialDelaySeconds: 120
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "exec mysqladmin status -uroot -p{{ .Values.mariadb.mysqlrootpassword }}"]
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 1
+            successThreshold: 1
+            failureThreshold: 3
+          resources:
+            {{- toYaml .Values.mariadb.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

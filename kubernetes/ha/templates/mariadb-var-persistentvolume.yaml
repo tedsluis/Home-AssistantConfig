@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-mariadb-var
+  labels:
+    type: local
+spec:
+  storageClassName: mariadb-var
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/home/homeassistant/mariadb/var"

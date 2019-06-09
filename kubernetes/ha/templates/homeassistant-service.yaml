@@ -11,7 +11,7 @@ spec:
     - port: {{ .Values.homeassistant.service.port }}
       targetPort: 8123
       protocol: TCP
-      name: https
+      name: api
   selector:
     app.kubernetes.io/name: {{ include "ha.name" . }}-homeassistant
     app.kubernetes.io/instance: {{ .Release.Name }}

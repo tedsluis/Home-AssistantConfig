@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-mariadb-etc
+  labels:
+    type: local
+spec:
+  storageClassName: mariadb-etc
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/home/homeassistant/mariadb/etc"

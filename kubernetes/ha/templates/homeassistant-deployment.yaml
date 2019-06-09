@@ -18,9 +18,9 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       volumes:
-        - name: pvc-haconfig-storage
+        - name: pvc-homeassistant-storage
           persistentVolumeClaim:
-            claimName: pvc-haconfig
+            claimName: pvc-homeassistant
         - name: pvc-ssl-storage
           persistentVolumeClaim:
             claimName: pvc-ssl
@@ -32,12 +32,12 @@ spec:
           image: "{{ .Values.homeassistant.image.repository }}:{{ .Values.homeassistant.image.tag }}"
           imagePullPolicy: {{ .Values.homeassistant.image.pullPolicy }}
           ports:
-            - name: http
+            - name: api
               containerPort: 8123
               protocol: TCP
           volumeMounts:
             - mountPath: "/config"
-              name: pvc-haconfig-storage
+              name: pvc-homeassistant-storage
             - mountPath: "/ssl"
               name: pvc-ssl-storage
             - mountPath: "/etc/localtime"
@@ -45,11 +45,17 @@ spec:
           livenessProbe:
             httpGet:
               path: /
-              port: http
+              port: api
+            initialDelaySeconds: 120
+            failureThreshold: 5
+            timeoutSeconds: 5
           readinessProbe:
             httpGet:
               path: /
-              port: http
+              port: api
+            initialDelaySeconds: 120
+            failureThreshold: 5
+            timeoutSeconds: 5
           resources:
             {{- toYaml .Values.homeassistant.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-homeassistant
+spec:
+  storageClassName: homeassistant
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 8Gi
