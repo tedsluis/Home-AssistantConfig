@@ -46,6 +46,7 @@ spec:
             httpGet:
               path: /
               port: api
+              scheme: HTTPS
             initialDelaySeconds: 120
             failureThreshold: 5
             timeoutSeconds: 5
@@ -53,6 +54,7 @@ spec:
             httpGet:
               path: /
               port: api
+              scheme: HTTPS
             initialDelaySeconds: 120
             failureThreshold: 5
             timeoutSeconds: 5

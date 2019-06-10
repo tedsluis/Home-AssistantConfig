@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ha.fullname" . }}-influxdb
+  labels:
+{{ include "ha.labels" . | indent 4 }}
+    app: {{ include "ha.fullname" . }}-influxdb
+spec:
+  replicas: {{ .Values.influxdb.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "ha.name" . }}-influxdb
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "ha.name" . }}-influxdb
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: pvc-influxdb-etc-storage
+          persistentVolumeClaim:
+            claimName: pvc-influxdb-etc
+        - name: pvc-influxdb-lib-storage
+          persistentVolumeClaim:
+            claimName: pvc-influxdb-lib
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.influxdb.image.repository }}:{{ .Values.influxdb.image.tag }}"
+          imagePullPolicy: {{ .Values.influxdb.image.pullPolicy }}
+          args: ["-config", "/etc/influxdb/influxdb.conf"]
+          env:
+          - name: INFLUXDB_DB
+            value: "home-assistant"
+          - name: INFLUXDB_ADMIN_USER
+            value: "admin"
+          - name: INFLUXDB_ADMIN_PASSWORD
+            value:  {{ .Values.influxdb.adminpassword }}
+          - name: INFLUXDB_WRITE_USER
+            value: "homeassistant"
+          - name: INFLUXDB_WRITE_USER_PASSWORD
+            value: {{ .Values.influxdb.writeuserpassword }}
+          ports:
+            - name: admin
+              containerPort: 8083
+              protocol: TCP
+            - name: http
+              containerPort: 8086
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/etc/influxdb"
+              name: pvc-influxdb-etc-storage
+            - mountPath: "/var/lib/influxdb"
+              name: pvc-influxdb-lib-storage
+          readinessProbe:
+            httpGet:
+              path: /ping
+              port: http
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          livenessProbe:
+            httpGet:
+              path: /ping
+              port: http
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+          resources:
+            {{- toYaml .Values.influxdb.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

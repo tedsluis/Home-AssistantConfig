@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-mqtt-log
+spec:
+  storageClassName: mqtt-log
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi

@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-mqtt-etc
+  labels:
+    type: local
+spec:
+  storageClassName: mqtt-etc
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/home/homeassistant/mosquitto/etc"

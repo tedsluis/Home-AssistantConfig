@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-influxdb-lib
+  labels:
+    type: local
+spec:
+  storageClassName: influxdb-lib
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/home/homeassistant/influxdb/var"
