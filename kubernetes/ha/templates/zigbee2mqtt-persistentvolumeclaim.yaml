@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-zibee2mqtt-data
+spec:
+  storageClassName: zigbee2mqtt-data
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi

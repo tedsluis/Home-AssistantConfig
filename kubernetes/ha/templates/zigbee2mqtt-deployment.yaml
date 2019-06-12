@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ha.fullname" . }}-zigbee2mqtt
+  labels:
+{{ include "ha.labels" . | indent 4 }}
+    app: {{ include "ha.fullname" . }}-zigbee2mqtt
+spec:
+  replicas: {{ .Values.zigbee2mqtt.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "ha.name" . }}-zigbee2mqtt
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "ha.name" . }}-zigbee2mqtt
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      volumes:
+        - name: pvc-zigbee2mqtt-data-storage
+          persistentVolumeClaim:
+            claimName: pvc-zigbee2mqtt-data
+        - name: pvc-localtime-storage
+          persistentVolumeClaim:
+            claimName: pvc-localtime
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.zigbee2mqtt.image.repository }}:{{ .Values.zigbee2mqtt.image.tag }}"
+          imagePullPolicy: {{ .Values.zigbee2mqtt.image.pullPolicy }}
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: "/app/data"
+              name: pvc-zigbee2mqtt-data-storage
+            - mountPath: "/etc/localtime"
+              name: pvc-localtime-storage
+              readOnly: true
+          resources:
+            {{- toYaml .Values.zigbee2mqtt.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-zigbee2mqtt-data
+  labels:
+    type: local
+spec:
+  storageClassName: zigbee2mqtt-data
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/home/homeassistant/zigbee2mqtt"
