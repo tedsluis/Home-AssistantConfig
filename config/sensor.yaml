@@ -34,13 +34,25 @@
     - type: load_5m
     - type: load_15m
     - type: network_in
-      arg: eno1
+      arg: eth0
     - type: network_out
-      arg: eno1
+      arg: eth0
     - type: packets_in
-      arg: eno1
+      arg: eth0
     - type: packets_out
-      arg: eno1
+      arg: eth0
+    - type: throughput_network_in
+      arg: eth0
+    - type: throughput_network_out
+      arg: eth0
+    - type: processor_use
+
+# Cpu temp
+- platform: command_line
+  name: cpu temperature
+  unit_of_measurement: c
+  scan_interval: 60
+  command: 'cat /sys/class/thermal/thermal_zone*/temp | sed "s/\(.\)..$/.\1/" | sed -n 3p'
 
 # Electricity & gas consumption API 
 - platform: dsmr
@@ -63,25 +75,15 @@
   scan_interval: 3600
   command: echo $(($(cat /proc/uptime | sed 's/^\([0-9]*\)[ \.].*$/\1/g') / 86400))
 
-# check for compromised login accounts  
-- platform: haveibeenpwned
-  email: 
-    - !secret email1
-    - !secret email2
-    - !secret email3
-    - !secret email4
-    - !secret email5
-    - !secret email6
-
 - platform: template
   sensors:
     #
-    viberate_158d0002b83c5b:
-      friendly_name: viberate_sensor_action1
-      value_template: '{{ states.binary_sensor.vibration_158d0002b83c5b.attributes["last_action"] }}'
-    viberate_158d0002b78209:
-      friendly_name: viberate_sensor_action2
-      value_template: '{{ states.binary_sensor.vibration_158d0002b78209.attributes["last_action"] }}'
+    #viberate_158d0002b83c5b:
+    #  friendly_name: viberate_sensor_action1
+    #  value_template: '{{ states.binary_sensor.vibration_158d0002b83c5b.attributes["last_action"] }}'
+    #viberate_158d0002b78209:
+    #  friendly_name: viberate_sensor_action2
+    #  value_template: '{{ states.binary_sensor.vibration_158d0002b78209.attributes["last_action"] }}'
 
 
 
