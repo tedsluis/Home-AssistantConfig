@@ -33,6 +33,9 @@ frontend:
 
 group: !include groups.yaml
 
+#hacs:
+#  token: !secret hacs_token
+
 # Enables support for tracking state changes over time
 history:
 
@@ -118,5 +121,7 @@ weather:
 
 # Xiaomi zigbee gateway
 #xiaomi_aqara: !include xiaomi_aqara.yaml
+
+zigbee2mqtt_networkmap:
 
 zone: !include zone.yaml
