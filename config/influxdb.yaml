@@ -7,19 +7,19 @@ default_measurement: state
 include:
   entities:
 # temperature
-      - sensor.temperature_158d0002789adf
-      - sensor.temperature_158d000273d342
-      - sensor.temperature_158d000238fcc1
-      - sensor.temperature_158d00027257cd
-      - sensor.temperature_158d000231046d
-      - sensor.temperature_158d00027898b3
-      - sensor.temperature_158d000273424b
-      - sensor.temperature_158d00027725d7
+      #- sensor.temperature_158d0002789adf
+      #- sensor.temperature_158d000273d342
+      #- sensor.temperature_158d000238fcc1
+      #- sensor.temperature_158d00027257cd
+      #- sensor.temperature_158d000231046d
+      #- sensor.temperature_158d00027898b3
+      #- sensor.temperature_158d000273424b
+      #- sensor.temperature_158d00027725d7
       - sensor.yr_temperature
       - sensor.yr_dewpoint_temperature
 # pressure
       - sensor.yr_pressure
-      - sensor.pressure_158d0002789adf
+      #- sensor.pressure_158d0002789adf
 # Wheater
       - sensor.yr_wind_speed
       - sensor.yr_precipitation
@@ -30,19 +30,19 @@ include:
       - sensor.yr_low_clouds
       - sensor.yr_fog
 # illumination
-      - sensor.illumination_158d0002584585
-      - sensor.illumination_158d0002e8d2f1
-      - sensor.illumination_7c49ebb18b86
-      - sensor.illumination_158d00029a5cd2
+      #- sensor.illumination_158d0002584585
+      #- sensor.illumination_158d0002e8d2f1
+      #- sensor.illumination_7c49ebb18b86
+      #- sensor.illumination_158d00029a5cd2
 # humidity
-      - sensor.humidity_158d0002789adf
-      - sensor.humidity_158d000273d342
-      - sensor.humidity_158d000238fcc1
-      - sensor.humidity_158d00027257cd
-      - sensor.humidity_158d000231046d
-      - sensor.humidity_158d00027898b3
-      - sensor.humidity_158d000273424b
-      - sensor.humidity_158d00027725d7
+      #- sensor.humidity_158d0002789adf
+      #- sensor.humidity_158d000273d342
+      #- sensor.humidity_158d000238fcc1
+      #- sensor.humidity_158d00027257cd
+      #- sensor.humidity_158d000231046d
+      #- sensor.humidity_158d00027898b3
+      #- sensor.humidity_158d000273424b
+      #- sensor.humidity_158d00027725d7
       - sensor.yr_humidity
 # internet speed
       - sensor.speedtest_download
@@ -61,24 +61,24 @@ include:
       - sensor.hourly_gas_consumption
       - sensor.gas_consumption
 # Batteries
-      - sensor.batterij_158d0002789adf
-      - sensor.batterij_158d000231046d
-      - sensor.batterij_158d00025ed544
-      - sensor.batterij_158d0002e24f96
-      - sensor.batterij_158d000273d342
-      - sensor.batterij_158d00027c19e9
-      - sensor.batterij_158d000238fcc1
-      - sensor.batterij_158d000273424b
-      - sensor.batterij_158d00026ba474
-      - sensor.batterij_158d00029a5cd2
-      - sensor.batterij_158d0002b83c5b
-      - sensor.batterij_158d00027898b3
-      - sensor.batterij_158d0002b78209
-      - sensor.batterij_158d00025427e0
-      - sensor.batterij_158d0002584585
-      - sensor.batterij_158d00027257cd
-      - sensor.batterij_158d00027725d7
-      - sensor.batterij_158d0002e8d2f1
+      #- sensor.batterij_158d0002789adf
+      #- sensor.batterij_158d000231046d
+      #- sensor.batterij_158d00025ed544
+      #- sensor.batterij_158d0002e24f96
+      #- sensor.batterij_158d000273d342
+      #- sensor.batterij_158d00027c19e9
+      #- sensor.batterij_158d000238fcc1
+      #- sensor.batterij_158d000273424b
+      #- sensor.batterij_158d00026ba474
+      #- sensor.batterij_158d00029a5cd2
+      #- sensor.batterij_158d0002b83c5b
+      #- sensor.batterij_158d00027898b3
+      #- sensor.batterij_158d0002b78209
+      #- sensor.batterij_158d00025427e0
+      #- sensor.batterij_158d0002584585
+      #- sensor.batterij_158d00027257cd
+      #- sensor.batterij_158d00027725d7
+      #- sensor.batterij_158d0002e8d2f1
 # host
       - sensor.ssl_cert_expiry
       - sensor.home_assistant_uptime
@@ -122,26 +122,26 @@ include:
       - light.hue_white_light_1_3
       - light.overloop
 # Xiaomi
-      - switch.plug_158d00024ae109
-      - light.gateway_light_7c49ebb18b86
-      - binary_sensor.motion_sensor_158d0002584585
-      - binary_sensor.motion_sensor_158d0002e8d2f1
-      - binary_sensor.motion_sensor_158d00029a5cd2
-      - sensor.tilt_angle_158d0002b78209
-      - sensor.tilt_angle_158d0002b83c5b
-      - sensor.viberate_158d0002b78209
-      - sensor.viberate_158d0002b83c5b
-      - binary_sensor.wall_switch_right_158d00027c19e9
-      - binary_sensor.wall_switch_right_158d00026ba474
-      - binary_sensor.wall_switch_right_158d00025427e0
-      - binary_sensor.wall_switch_left_158d00027c19e9
-      - binary_sensor.wall_switch_left_158d00026ba474
-      - binary_sensor.wall_switch_left_158d00025427e0
-      - binary_sensor.wall_switch_both_158d00027c19e9
-      - binary_sensor.wall_switch_both_158d00025427e0
-      - binary_sensor.wall_switch_both_158d00026ba474
-      - binary_sensor.vibration_158d0002b83c5b
-      - binary_sensor.vibration_158d0002b78209
+      #- switch.plug_158d00024ae109
+      #- light.gateway_light_7c49ebb18b86
+      #- binary_sensor.motion_sensor_158d0002584585
+      #- binary_sensor.motion_sensor_158d0002e8d2f1
+      #- binary_sensor.motion_sensor_158d00029a5cd2
+      #- sensor.tilt_angle_158d0002b78209
+      #- sensor.tilt_angle_158d0002b83c5b
+      #- sensor.viberate_158d0002b78209
+      #- sensor.viberate_158d0002b83c5b
+      #- binary_sensor.wall_switch_right_158d00027c19e9
+      #- binary_sensor.wall_switch_right_158d00026ba474
+      #- binary_sensor.wall_switch_right_158d00025427e0
+      #- binary_sensor.wall_switch_left_158d00027c19e9
+      #- binary_sensor.wall_switch_left_158d00026ba474
+      #- binary_sensor.wall_switch_left_158d00025427e0
+      #- binary_sensor.wall_switch_both_158d00027c19e9
+      #- binary_sensor.wall_switch_both_158d00025427e0
+      #- binary_sensor.wall_switch_both_158d00026ba474
+      #- binary_sensor.vibration_158d0002b83c5b
+      #- binary_sensor.vibration_158d0002b78209
 # person
       - person.annelies
       - person.naud
@@ -152,9 +152,9 @@ include:
 # Chromecast
       - media_player.bachstraat20
 # counters
-      - counter.motion_counter_studeerkamer
-      - counter.motion_counter_buiten
-      - counter.motion_counter
+      #- counter.motion_counter_studeerkamer
+      #- counter.motion_counter_buiten
+      #- counter.motion_counter
 # Air quality 
       - sensor.airquality_no2
       - sensor.airquality_o3
@@ -165,13 +165,13 @@ include:
       - sensor.luftdaten_22940_humidity
       - sensor.luftdaten_22940_temperature
 # sensors
-      - binary_sensor.0x00124b001bb859ff_router
-      - binary_sensor.0x00158d00025ed544_contact
-      - binary_sensor.0x00158d0002e24f96_contact
-      - sensor.0x00124b001bb859ff_linkquality
-      - sensor.0x00158d00025427e0_battery
-      - sensor.0x00158d00025427e0_click
-      - sensor.0x00158d00025ed544_battery
-      - sensor.0x00158d0002e24f96_battery
-      - sensor.coordination_158d0002b78209
-      - sensor.coordination_158d0002b83c5b
+     #- binary_sensor.0x00124b001bb859ff_router
+     #- binary_sensor.0x00158d00025ed544_contact
+     #- binary_sensor.0x00158d0002e24f96_contact
+     #- sensor.0x00124b001bb859ff_linkquality
+     #- sensor.0x00158d00025427e0_battery
+     #- sensor.0x00158d00025427e0_click
+     #- sensor.0x00158d00025ed544_battery
+     #- sensor.0x00158d0002e24f96_battery
+     #- sensor.coordination_158d0002b78209
+     #- sensor.coordination_158d0002b83c5b
