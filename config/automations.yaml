@@ -1,50 +1,82 @@
 #############################################################################
 # Motion counter voordeur buiten
-#- alias: Count motion voordeur buiten
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.motion_sensor_158d0002e8d2f1
-#    from: 'off'
-#    to: 'on'
-#  action:
-#    - service: counter.increment
-#      entity_id: counter.motion_counteri_voordeur_buiten
-#    - service: notify.slack
-#      data_template:            
-#            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging buiten bij de voordeur' 
-#            target: '#motion'
+- alias: Count motion voordeur buiten
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegingssensorvoordeur_occupancy
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_voordeur_buiten
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging buiten bij de voordeur' 
+            target: '#motion'
 
 #############################################################################
 # Motion counter studeerkamer
-#- alias: Count motion studeerkamer
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.motion_sensor_158d0002584585
-#    from: 'off'
-#    to: 'on'
-#  action:
-#    - service: counter.increment
-#      entity_id: counter.motion_counter_studeerkamer
-#    - service: notify.slack
-#      data_template:            
-#            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging in de studeerkamer' 
-#            target: '#motion'
+- alias: Count motion studeerkamer
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegingssensorstudeerkamer_occupancy
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_studeerkamer
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging in de studeerkamer' 
+            target: '#motion'
 
 #############################################################################
 # Motion counter overloop
-#- alias: Count motion
-#  trigger:
-#    platform: state
-#    entity_id: binary_sensor.motion_sensor_158d00029a5cd2
-#    from: 'off'
-#    to: 'on'
-#  action:
-#    - service: counter.increment
-#      entity_id: counter.motion_counter
-#    - service: notify.slack
-#      data_template:            
-#            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging op de overloop' 
-#            target: '#motion'
+- alias: Count motion overloop
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegingssensoroverloop_occupancy
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_overloop
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging op de overloop' 
+            target: '#motion'
+            
+#############################################################################
+# Motion counter gang
+- alias: Count motion gang
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegingssensorgang_occupancy
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_gang
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging op de gang' 
+            target: '#motion'
+
+#############################################################################
+# Motion counter keuken
+- alias: Count motion keuken
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegingssensorkeuken_occupancy
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_keuken
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging in de keuken' 
+            target: '#motion'
 
 #############################################################################
 # Set brightness to 30% after 22:00 overloop
@@ -451,6 +483,7 @@
       data:
         topic: "homeasistant/rfbridge1/STATUS"
         payload: "2"
+
 ############################################################################
 
 ############################################################################
@@ -793,3 +826,135 @@
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.zigbee_permit_join
+
+#################################################
+- id: update_networkmap
+  alias: 'Zigbee Map update'
+  hide_entity: true
+  trigger:
+    platform: time_pattern
+    minutes: '/10'
+    seconds: 00
+  action:
+    service: zigbee2mqtt_networkmap.update
+
+- id: update_zigbee2mqtt-devices
+  alias: 'Zigbee2mqtt update devices'
+  trigger:
+    platform: time_pattern
+    minutes: '/30'
+    seconds: 00
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/thermostaatkraan1/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/schakelaarkamernaud/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorkamernaud/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/trillingssensorkeuken/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorvoordeur/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/schakelaarvoordeur/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/schakelaarachterdeur/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/schakelaarkamerstijn/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorzolder/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorvoordeur/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorkruipruimte/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/bewegingssensorkeuken/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/bewegingssensorgang/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorwoonkamer/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorkeuken/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorstudeerkamer/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorkamerstijn/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorschuur/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/bewegingssensorvoordeur/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/bewegingssensoroverloop/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorbadkamer/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/omgevingssensorslaapkamer/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/bewegingssensorstudeerkamer/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/powerplug/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/schakelaarslaapkamer/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/trillingssensorwoonkamer/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/cc2530router1/get"
+        payload: '{ "state": "" }'
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/cc2530router2/get"
+        payload: '{ "state": "" }'
+
