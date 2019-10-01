@@ -119,5 +119,4 @@ mariadb/var/mysql/user.MYD
 mariadb/var/mysql/user.MYI
 mariadb/var/performance_schema
 mariadb/var/performance_schema/db.opt
-mariadb/var/tc.log
 ```

@@ -7,6 +7,7 @@ Below an overview of what to expect here:
 mosquitto
 mosquitto/data
 mosquitto/data/mosquitto.db
+mosquitto/data/mosquitto-old.db
 mosquitto/data/mosquitto_passwd
 mosquitto/etc
 mosquitto/etc/mosquitto.conf

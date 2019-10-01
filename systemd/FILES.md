@@ -14,6 +14,7 @@ systemd/influxdb.service.mask
 systemd/influxdb.service.org
 systemd/mariadb-docker.service
 systemd/mqtt.service
+systemd/nginx.service
 systemd/prometheus.service
 systemd/zigbee2mqtt.service
 ```
