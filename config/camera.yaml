@@ -1,0 +1,5 @@
+#- platform: generic
+#  name: esp32cam
+#  still_image_url: http://192.168.11.116
+#  stream_source: http://192.168.11.116
+#  verify_ssl: false
