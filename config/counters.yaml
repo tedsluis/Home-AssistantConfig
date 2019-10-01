@@ -1,9 +1,15 @@
-motion_counter:
-  name: bewegingsteller
+motion_counter_gang:
+  name: bewegingsteller gang
   icon: mdi:account
 motion_counter_studeerkamer:
   name: bewegingsteller studeerkamer
   icon: mdi:account
-motion_counter_buiten:
+motion_counter_voordeur_buiten:
   name: bewegingsteller voordeur buiten
+  icon: mdi:account
+motion_counter_keuken:
+  name: bewegingsteller keuken
+  icon: mdi:account
+motion_counter_overloop:
+  name: bewegingsteller overloop
   icon: mdi:account
