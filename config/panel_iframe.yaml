@@ -1,3 +1,7 @@
+networkmap:
+  title: 'Zigbee Map'
+  url: '/local/community/zigbee2mqtt_networkmap/map.html'
+  icon: 'mdi:graphql'
 slack:
   title: Slack
   icon: mdi:slack
