@@ -1,17 +1,26 @@
-#  - platform: mikrotik
-#    host: !secret mikrotik_hostname
-#    port: !secret mikrotik_port
-#    username: !secret mikrotik_username
-#    password: !secret mikrotik_password
-#    track_new_devices: false
-# track smartphone using their WIFI ip address
+# router
+#- platform: mikrotik
+#  host: !secret mikrotik_hostname
+#  port: !secret mikrotik_port
+#  username: !secret mikrotik_username
+#  password: !secret mikrotik_password
+#  login_method: plain
+#  track_new_devices: false
+#  arp_ping: true
+#  ssl: false
+#  method: dhcp
+#  track_devices: true
+
+  # track smartphone using their WIFI ip address
 - platform: nmap_tracker
-  home_interval: 1
+  home_interval: 2
+  scan_options: " -PR -n --privileged -F --host-timeout 5s"
   hosts:
     - !secret device_ip_ted
     - !secret device_ip_annelies
     - !secret device_ip_naud
     - !secret device_ip_stijn
+
 # track google maps shared peaple
 - platform: google_maps
   username: !secret google_gps_username
