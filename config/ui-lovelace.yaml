@@ -5,10 +5,16 @@ resources:
     type: js
   - url: /local/my-webfont.css
     type: css
+
+    # https://github.com/thomasloven/lovelace-card-tools (prerequisite for secondaryinfo-entity-row)
   - url: /local/card-tools.js
     type: js
+
+    # https://github.com/custom-cards/secondaryinfo-entity-row
   - url: /local/secondaryinfo-entity-row.js
     type: module
+
+    # https://github.com/peternijssen/lovelace-postnl-card
   - url: /local/postnl-card.js
     type: module
 
@@ -239,10 +245,18 @@ views:
       - id: peoplewhere # Every card needs an ID, if you don't specify one, it is added automatically.
         type: entity-filter
         entities:
-          - device_tracker.94652dc2aa01
-          - device_tracker.c0eefbe296aa
-          - device_tracker.44c3462e5fdd
-          - device_tracker.8058f897ad84
+          - entity: device_tracker.90_73_5a_8b_41_09
+            name: Naud
+          - entity: device_tracker.f8_ad_cb_03_a9_6d
+            name: Ted
+          - entity: device_tracker.honor_8
+            name: Stijn
+          - entity: device_tracker.oneplus5t
+            name: Annelies
+          #- device_tracker.94652dc2aa01
+          #- device_tracker.c0eefbe296aa
+          #- device_tracker.44c3462e5fdd
+          #- device_tracker.8058f897ad84
           - device_tracker.google_maps_103666873320035558501
         state_filter:
           - 'home'
@@ -730,6 +744,7 @@ views:
       - id: postnl-delivery
         type: "custom:postnl-card"
         delivery: sensor.postnl_delivery
+        title: aflevering postnl
         hide:
           delivered: false
           first_letter: false
@@ -740,6 +755,7 @@ views:
 
       - id: postnl-delivery
         type: "custom:postnl-card"
+        title: distributie postnl
         distribution: sensor.postnl_distribution
         hide:
           delivered: false
@@ -751,6 +767,7 @@ views:
 
       - id: postnl-delivery
         type: "custom:postnl-card"
+        title: brieven postnl
         letters: sensor.postnl_letters
         hide:
           delivered: false
