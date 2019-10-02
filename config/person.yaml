@@ -2,17 +2,21 @@
   id: tedsluis
   user_id: 82d4a60d2fd442168dec646c2b37a773
   device_trackers:
-    - device_tracker.c0eefbe296aa
+    - device_tracker.f8_ad_cb_03_a9_6d
+    #- device_tracker.c0eefbe296aa
     - device_tracker.google_maps_103666873320035558501
 - name: Annelies
   id: anneliesbuddingh
   device_trackers:
-    - device_tracker.94652dc2aa01
+    - device_tracker.oneplus5t
+    #- device_tracker.94652dc2aa01
 - name: Stijn
   id: stijnsluis
   device_trackers:
-    - device_tracker.44c3462e5fdd
+    - device_tracker.honor_8
+    #- device_tracker.44c3462e5fdd
 - name: Naud
   id: naudsluis
   device_trackers:
-    - device_tracker.8058f897ad84
+    - device_tracker.90_73_5a_8b_41_09
+    #- device_tracker.8058f897ad84
