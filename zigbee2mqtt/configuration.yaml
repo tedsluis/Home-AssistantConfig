@@ -1,82 +1,57 @@
-# https://www.zigbee2mqtt.io/configuration/configuration.html
-
-# Required: Home Assistant integration (MQTT discovery) (default: false)
 homeassistant: true
-
-# Required: allow new devices to join.
-# WARNING: Disable this after all devices have been paired! (default: false)
 permit_join: true
-
-# Required: MQTT settings
 mqtt:
-  # Required: MQTT base topic for zigbee2mqtt MQTT messages
   base_topic: zigbee2mqtt
-  # Required: MQTT server URL (use mqtts:// for SSL/TLS connection)
-  server: 'mqtt://xxx.xxx.xxx.xxx'
-  # Optional: MQTT server authentication user (default: nothing)
-  user: *********
-  password: *********
-  # Optional: disable self-signed SSL certificates (default: false)
+  server: 'mqtt:/***.***.***.***
+  user: ********
+  password: ******************
   reject_unauthorized: false
-  # Optional: Include device information to mqtt messages (default: false)
   include_device_information: true
-
 serial:
-  # Required: location of CC2531 USB
   port: /dev/ttyACM0
-  # Optional: disable LED of CC2531 USB sniffer (default: false)
-  disable_led: true
-
-# Optional: ban devices from the network (by ieeeAddr) (default: empty)
-ban:
-  - '0x0ffb57fffec6a5b2'
-
-# Optional: whitelist devices from the network (by ieeeAddr)
-# Note that when devices are whitelisted, all device which are not whitelisted will be removed from the network.
-# (default: empty)
-whitelist:
-  - '0x0ffb57fffec6a5b3'
-
-# Optional: advanced settings
+  #disable_led: true
 advanced:
-  # Optional: ZigBee pan ID (default: shown below)
-  pan_id: 0x1a62
-  # Optional: Zigbee extended pan ID (default: shown below)
-  ext_pan_id: [0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD, 0xDD]
-  # Optional: ZigBee channel, changing requires re-pairing of all devices. (Note: use a ZLL channel: 11, 15, 20, or 25 to avoid Problems)
-  # (default: 11)
-  channel: 11
-  # Optional: state caching
-  # https://github.com/Koenkk/zigbee2mqtt/commit/9396bde1f3b022e0f634487d1a37d2a5127c8cb3#diff-f68567477d803b49930337bf7fe1556bR16
-  # (default: true)
+  network_key:
+    - 33
+    - 20
+    - 198
+    - 168
+    - 91
+    - 37
+    - 241
+    - 250
+    - 238
+    - 131
+    - 255
+    - 77
+    - 30
+    - 189
+    - 97
+    - 119
+  #pan_id: 6754
+  pan_id: 0x165a
+  ext_pan_id:
+    - 221
+    - 121
+    - 221
+    - 121
+    - 221
+    - 221
+    - 121
+    - 221
+  channel: 26
   cache_state: true
-  # Optional: Logging level, options: debug, info, warn, error (default: info)
-  log_level: info
-
-# Optional: Add a last_seen attribute to MQTT messages, contains date/time of last Zigbee message
-  # possible values are: disable (default), ISO_8601, ISO_8601_local, epoch (default: disable)
-  #last_seen: 'disable'
-  last_seen: 'ISO_8601'
-  # Optional: Add an elapsed attribute to MQTT messages, contains milliseconds since the previous msg (default: false)
+  log_level: debug
+  last_seen: ISO_8601
   elapsed: false
-  # Optional: Availability timeout in seconds, disabled by default (0).
-  # When enabled, devices will be checked if they are still online.
-  # Only AC powered routers are checked for availability. (default: 0)
   availability_timeout: 0
-  # Optional: Blacklist devices from being checked for availability (default: empty)
   availability_blacklist:
     - DEVICE_FRIENDLY_NAME
-  # Optional: Enables report feature (see information -> report for more details) (default: false)
   report: true
-  # Optional: Home Assistant discovery topic (default: shown below)
-  homeassistant_discovery_topic: 'homeassistant'
-  # Optional: Home Assistant status topic (default: shown below)
-  homeassistant_status_topic: 'hass/status'
-
-# Optional: networkmap options
+  homeassistant_discovery_topic: homeassistant
+  homeassistant_status_topic: hass/status
 map_options:
   graphviz:
-    # Optional: Colors to be used in the graphviz network map (default: shown below)
     colors:
       fill:
         enddevice: '#fff8ce'
@@ -89,98 +64,9 @@ map_options:
       line:
         active: '#009900'
         inactive: '#994444'
-
-# Optional: Queue settings, useful when your zigbee stick get's
-# unstable when executing many commands
 queue:
-  # Optional: Delay in ms between each command (default: shown below)
   delay: 250
-  # Optional: Max no. of simultaneously running commands (default: shown below)
   simultaneously: 5
-
-# Optional: Device specific options
-device_options:
-  # See https://www.zigbee2mqtt.io/configuration/device_specific_configuration.html
-
-devices:
-  '0x00158d000******':
-    friendly_name: schakelaarvoordeur
-    retain: false
-  '0x00124b001b******':
-    friendly_name: cc2530router1
-    retain: false
-  '0x00158d0002******':
-    friendly_name: schakelaarachterdeur
-    retain: false
-  '0x00158d0002******':
-    friendly_name: schakelaarkamerstijn
-    retain: false
-  '0x00158d0003******':
-    friendly_name: omgevingssensorzolder
-    retain: false
-  '0x00158d000*******':
-    friendly_name: omgevingssensorvoordeur
-    retain: false
-  '0x00158d0003*******':
-    friendly_name: omgevingssensorkruipruimte
-    retain: false
-  '0x00158d0003******':
-    friendly_name: bewegingssensorkeuken
-    retain: false
-  '0x00158d000*******':
-    friendly_name: bewegingssensorgang
-    retain: false
-  '0x00158d000*********':
-    friendly_name: omgevingssensorwoonkamer
-    retain: false
-  '0x00158d0002********':
-    friendly_name: omgevingssensorkeuken
-    retain: false
-  '0x00158d000********':
-    friendly_name: omgevingssensorstudeerkamer
-    retain: false
-  '0x00158d000********':
-    friendly_name: omgevingssensorkamerstijn
-    retain: false
-  '0x00158d00*******':
-    friendly_name: omgevingssensorschuur
-    retain: false
-  '0x00158d000********':
-    friendly_name: bewegingssensorvoordeur
-    retain: false
-  '0x00158d000*******':
-    friendly_name: bewegingssensoroverloop
-    retain: false
-  '0x00158d00********':
-    friendly_name: omgevingssensorbadkamer
-    retain: false
-  '0x00158d000*******':
-    friendly_name: omgevingssensorslaapkamer
-    retain: false
-  '0x00158d000*********':
-    friendly_name: bewegingssensorstudeerkamer
-    retain: false
-  '0x00124b00*********':
-    friendly_name: cc2530router2
-    retain: false
-  '0x00158d000*********':
-    friendly_name: powerplug
-    retain: false
-  '0x00158d000*******':
-    friendly_name: schakelaarslaapkamer
-    retain: false
-  '0x00158d0*********':
-    friendly_name: trillingssensorwoonkamer
-    retain: false
-  '0x00158d00********':
-    friendly_name: omgevingssensorkamernaud
-    retain: false
-  '0x00158d000*********':
-    friendly_name: thermostaatKraan1
-    retain: false
-  '0x00158d000*********':
-    friendly_name: trillingssensorkeuken
-    retain: false
-  '0x00158d000**********':
-    friendly_name: schakelaarkamernaud
-    retain: false
+device_options: null
+devices: devices.yaml
+groups: groups.yaml
