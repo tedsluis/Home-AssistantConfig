@@ -8,7 +8,7 @@ resources:
 
     # https://github.com/thomasloven/lovelace-card-tools (prerequisite for secondaryinfo-entity-row)
   - url: /local/card-tools.js
-    type: js
+    type: module
 
     # https://github.com/custom-cards/secondaryinfo-entity-row
   - url: /local/secondaryinfo-entity-row.js
@@ -32,69 +32,82 @@ views:
     cards:
       - type: entities
         title: Woonkamer
+        show_header_toggle: false
         entities:
-          - entity: light.woonkamer_achter
+          - entity: light.woonkamerachtergroep
             name: verlichting achter
             secondary_info: last-changed
-          - entity: light.woonkamer_voor
+          - entity: light.woonkamervoorgroep
             name: verlichting voor
             secondary_info: last-changed
-          - entity: light.dimmer_3
-            name: dimmer
+          - entity: light.woonkamerdimmergroep
+            name: verlichting dimmer
             secondary_info: last-changed
-          #- switch.plug_158d00024ae109
-          #- media_player.bachstraat20
-          - media_player.samsung_tv_ue32k5600
+          - entity: switch.schermlampwoonkamer_switch
+            state_color: true
+            icon: mdi:lightbulb
+            name: schermerlamp
+            secondary_info: last-changed
+          - media_player.bachstraat20
+   #      - media_player.samsung_tv_ue32k5600
           - entity: sensor.omgevingssensorwoonkamer_humidity
             name: luchtvochtigheid
           - entity: sensor.omgevingssensorwoonkamer_pressure
             name: luchtdruk
           - entity: sensor.omgevingssensorwoonkamer_temperature
             name: temperatuur
-          #- sensor.temperature_158d0002789adf
-          #- sensor.humidity_158d0002789adf
-          #- sensor.pressure_158d0002789adf
+          - entity: switch.pow1
+            name: TV apparatuur
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.pow1_energy_apparentpower ]] watt"
+          - entity: switch.pow2
+            name: laptop en telefoonladers
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.pow2_energy_apparentpower ]] watt"
       - type: picture
         image: https://192.168.11.121/cgi-bin/currentpic.cgi
       - type: picture
         image: http://192.168.11.119
       - type: entities
         title: Slaapkamer Annelies & Ted
+        show_header_toggle: false
         entities:
-          - entity: light.slaapkamer_annelies_ted
+          - entity: light.lampslaapkamer_light
             name: plafond verlichting
             secondary_info: last-changed
+          - media_player.grote_slaapkamer
           - entity: sensor.omgevingssensorslaapkamer_humidity
             name: luchtvochtigheid
           - entity: sensor.omgevingssensorslaapkamer_pressure
             name: luchtdruk
           - entity: sensor.omgevingssensorslaapkamer_temperature
             name: temperatuur
-          #- light.gateway_light_7c49ebb18b86
-          #- sensor.temperature_158d000273d342
-          #- sensor.humidity_158d000273d342
-          #- sensor.illumination_7c49ebb18b86
       - type: entities
         title: Slaapkamer Naud
+        show_header_toggle: false
         entities:
-          - entity: light.hue_white_light_1_4
+          - entity: light.lampkamernaud_light
             name: plafond verlichting
             secondary_info: last-changed
-          - entity: light.slaapkamer_naud
-            name: ledstrip
-            secondary_info: last-changed
+#          - entity: light.slaapkamer_naud
+#            name: ledstrip
+#            secondary_info: last-changed
+          - entity: switch.powerplug_switch
+            name: plug
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.powerplug_power ]] watt"
           - entity: sensor.omgevingssensorkamernaud_humidity
             name: luchtvochtigheid
           - entity: sensor.omgevingssensorkamernaud_pressure
+            name: luchtdruk
           - entity: sensor.omgevingssensorkamernaud_temperature
             name: temperatuur
-          #- sensor.temperature_158d000238fcc1
-          #- sensor.humidity_158d000238fcc1
       - type: entities
         title: Slaapkamer Stijn
+        show_header_toggle: false
         entities:
-          - entity: light.slaapkamer_stijn
-            name: ledstrip
+          - entity: light.lampkamerstijn_light
+            name: plafond verlichting
             secondary_info: last-changed
           - entity: sensor.omgevingssensorkamerstijn_humidity
             name: luchtvochtigheid
@@ -102,12 +115,11 @@ views:
             name: luchtdruk
           - entity: sensor.omgevingssensorkamerstijn_temperature
             name: temperatuur
-          #- sensor.temperature_158d00027257cd
-          #- sensor.humidity_158d00027257cd
       - type: entities
         title: Keuken
+        show_header_toggle: false
         entities:
-          - entity: light.keuken
+          - entity: light.lampkeuken_light
             name: plafond verlichting
             secondary_info: last-changed
           - entity: sensor.omgevingssensorkeuken_humidity
@@ -119,17 +131,23 @@ views:
           - entity: binary_sensor.bewegingssensorkeuken_occupancy
             name: bewegingssensor
             secondary_info: last-changed
+            state_color: true
           - counter.motion_counter_keuken
           - entity: sensor.bewegingssensorkeuken_illuminance
             name: bewegingssensor
-          #- sensor.temperature_158d000231046d
-          #- sensor.humidity_158d000231046d
       - type: entities
         title: Studeerkamer
+        show_header_toggle: false
         entities:
-          - entity: light.studeerkamer
+          - entity: light.lampwasmachine_light
+            name: verlichting wasmachine
+            secondary_info: last-changed
+          - entity: light.lampstudeerkamer_light
             name: plafond verlichting
             secondary_info: last-changed
+          - entity: binary_sensor.co2sensor_carbon_monoxide
+            name: co2 sensor
+            state_color: true
           - entity: sensor.omgevingssensorstudeerkamer_humidity
             name: luchtvochtigheid
           - entity: sensor.omgevingssensorstudeerkamer_pressure
@@ -139,18 +157,13 @@ views:
           - entity: binary_sensor.bewegingssensorstudeerkamer_occupancy
             secondary_info: last-changed
             name: studeerkamer
+            state_color: true
           - counter.motion_counter_studeerkamer
           - entity: sensor.bewegingssensorstudeerkamer_illuminance
             name: licht inval
-          #- binary_sensor.bewegingssensorstudeerkamer_occupancy
-          #- sensor.bewegingssensorstudeerkamer_illuminance
-          #- binary_sensor.motion_sensor_158d0002584585
-          #- counter.motion_counter_studeerkamer
-          #- sensor.temperature_158d00027898b3
-          #- sensor.humidity_158d00027898b3
-          #- sensor.illumination_158d0002584585
       - type: entities
         title: Schuur
+        show_header_toggle: false
         entities:
           - entity: sensor.omgevingssensorschuur_humidity
             name: luchtvochtigheid
@@ -158,12 +171,11 @@ views:
             name: luchtdruk
           - entity: sensor.omgevingssensorschuur_temperature
             name: temperatuur
-          #- sensor.temperature_158d00027725d7
-          #- sensor.humidity_158d00027725d7
       - type: entities
         title: Voordeur buiten
+        show_header_toggle: false
         entities:
-          - entity: light.hue_white_light_1_3
+          - entity: light.lampvoordeur_light
             name: buitenlamp
           - entity: sensor.omgevingssensorvoordeur_humidity
             name: luchtvochtigheid
@@ -174,50 +186,62 @@ views:
           - entity: binary_sensor.bewegingssensorvoordeur_occupancy
             name: bewegingssensor
             secondary_info: last-changed
+            state_color: true
           - counter.motion_counter_voordeur_buiten
           - entity: sensor.bewegingssensorvoordeur_illuminance
             name: lichtinval
-          #- binary_sensor.motion_sensor_158d0002e8d2f1
-          #- counter.motion_counter_buiten
-          #- sensor.illumination_158d0002e8d2f1
-          #- sensor.0x00158d00036b2087_temperature
-          #- sensor.0x00158d00036b2087_humidity
       - type: entities
         title: Badkamer
+        show_header_toggle: false
         entities:
+          - entity: light.lampbadkamer_light
+            name: plafond verlichting
+            secondary_info: last-changed
+          - entity: climate.thermostaatkraan1_climate
+            name: thermostaatkraan
           - entity: sensor.omgevingssensorbadkamer_humidity
             name: luchtvochtigheid
           - entity: sensor.omgevingssensorbadkamer_pressure
             name: luchtdruk
           - entity: sensor.omgevingssensorbadkamer_temperature
             name: temperatuur
-          #- sensor.temperature_158d000273424b
-          #- sensor.humidity_158d000273424b
       - type: entities
         title: Overloop
+        show_header_toggle: false
         entities:
-          - entity: light.overloop
-            name: plafond verlichting
+          - entity: light.lampoverloop_light
+            name: verlichting overloop
+            secondary_info: last-changed
+          - entity: light.lampboventrap_light
+            name: verlichting boven aan de trap
+            secondary_info: last-changed
           - entity: binary_sensor.bewegingssensoroverloop_occupancy
             name: bewegingssensor
             secondary_info: last-changed
+            state_color: true
           - counter.motion_counter_overloop
           - entity: sensor.bewegingssensoroverloop_illuminance
             name: licht inval
-          #- binary_sensor.motion_sensor_158d00029a5cd2
-          #- counter.motion_counter
-          #- sensor.illumination_158d00029a5cd2
       - type: entities
         title: Gang
+        show_header_toggle: false
         entities:
+          - entity: light.lampgang_light
+            name: verlichting gang
+            secondary_info: last-changed
+          - entity: light.lamphal_light
+            name: verlichting halletje
+            secondary_info: last-changed
           - entity: binary_sensor.bewegingssensorgang_occupancy
             name: bewegingssensor
             secondary_info: last-changed
+            state_color: true
           - counter.motion_counter_gang
           - entity: sensor.bewegingssensorgang_illuminance
             name: licht inval
       - type: entities
         title: Zolder
+        show_header_toggle: false
         entities:
           - entity: sensor.omgevingssensorzolder_humidity
             name: luchtvochtigheid
@@ -225,10 +249,9 @@ views:
             name: luchtdruk
           - entity: sensor.omgevingssensorzolder_temperature
             name: temperatuur
-          #- sensor.sensorzolder_temperature
-          #- sensor.sensorzolder_humidity
       - type: entities
         title: Kruipruimte
+        show_header_toggle: false
         entities:
           - entity: sensor.omgevingssensorkruipruimte_humidity
             name: luchtvochtigheid
@@ -236,8 +259,6 @@ views:
             name: luchtdruk
           - entity: sensor.omgevingssensorkruipruimte_temperature
             name: temperatuur
-          #- sensor.0x00158d000322f660_temperature
-          #- sensor.0x00158d000322f660_humidity
   - title: Map
     icon: mdi:map
     background: radial-gradient(crimson, skyblue)
@@ -245,18 +266,14 @@ views:
       - id: peoplewhere # Every card needs an ID, if you don't specify one, it is added automatically.
         type: entity-filter
         entities:
-          - entity: device_tracker.90_73_5a_8b_41_09
-            name: Naud
+#          - entity: device_tracker.90_73_5a_8b_41_09
+#            name: Naud
           - entity: device_tracker.f8_ad_cb_03_a9_6d
             name: Ted
-          - entity: device_tracker.honor_8
-            name: Stijn
-          - entity: device_tracker.oneplus5t
-            name: Annelies
-          #- device_tracker.94652dc2aa01
-          #- device_tracker.c0eefbe296aa
-          #- device_tracker.44c3462e5fdd
-          #- device_tracker.8058f897ad84
+#          - entity: device_tracker.honor_8
+#            name: Stijn
+#          - entity: device_tracker.oneplus5t
+#            name: Annelies
           - device_tracker.google_maps_103666873320035558501
         state_filter:
           - 'home'
@@ -267,8 +284,10 @@ views:
           - 'stad'
           - 'station'
           - 'werk_utrecht'
-          - 'werk_zeist'
+          - 'roeigroep'
           - 'winkels'
+          - 'bodysports'
+          - 'lombok'
         card:
           type: glance
           title: Waar is iedereen?
@@ -276,9 +295,9 @@ views:
         type: entity-filter
         entities:
           - person.ted
-          - person.annelies
-          - person.stijn
-          - person.naud
+ #         - person.annelies
+ #         - person.stijn
+ #         - person.naud
         state_filter:
           - 'home'
           - 'not_home'
@@ -290,6 +309,8 @@ views:
           - 'werk_utrecht'
           - 'werk_zeist'
           - 'winkels'
+          - 'bodysports'
+          - 'lombok'
         card:
           type: glance
           title: Waar is iedereen?
@@ -306,11 +327,118 @@ views:
           - zone.stad
           - zone.station
           - zone.werk_utrecht
-          - zone.werk_zeist
+          - zone.roeigroep
           - zone.winkels
+          - zone.lombok
+          - zone.bodysports
      # View tab title.
+  - title: Corona
+    icon: mdi:virus
+    id: Corona
+    # Optional background (overwrites the global background).
+    background: radial-gradient(crimson, skyblue)
+    # Each view can have a different theme applied. Theme should be defined in the frontend.
+    theme: dark-mode
+    # The cards to show on this view.
+    cards:
+      - id: conoro-besmettingen-eu
+        type: history-graph
+        title: Corona besmettingen
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.netherlands_coronavirus_confirmed
+          name: nederland
+        - entity: sensor.belgium_coronavirus_confirmed
+          name: belgie
+        - entity: sensor.france_coronavirus_confirmed
+          name: frankrijk
+        - entity: sensor.united_kingdom_coronavirus_confirmed
+          name: verenigd koningkrijk
+        - entity: sensor.germany_coronavirus_confirmed
+          name: duitsland
+        - entity: sensor.italy_coronavirus_confirmed
+          name: italie
+      - id: hersteld-van-corona-eu
+        type: history-graph
+        title: Hersteld van Corona
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.netherlands_coronavirus_recovered
+          name: hersteld van corona 
+        - entity: sensor.belgium_coronavirus_recovered
+          name: belgie
+        - entity: sensor.france_coronavirus_recovered
+          name: frankrijk
+        - entity: sensor.united_kingdom_coronavirus_recovered
+          name: verenigd koningkrijk
+        - entity: sensor.germany_coronavirus_recovered
+          name: duitsland
+        - entity: sensor.italy_coronavirus_recovered
+          name: italie
+      - id: huidige-besmettingen-eu
+        type: history-graph
+        title: Huidige aantal besmettingen Corona
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.netherlands_coronavirus_current
+          name: nederland
+        - entity: sensor.belgium_coronavirus_current
+          name: belgie
+        - entity: sensor.france_coronavirus_current
+          name: frankrijk
+        - entity: sensor.united_kingdom_coronavirus_current
+          name: verenigd koningkrijk
+        - entity: sensor.germany_coronavirus_current
+          name: duitsland
+        - entity: sensor.italy_coronavirus_current
+          name: italie
+      - id: doden-corona-eu
+        type: history-graph
+        title: Doden ten gevolgen van Corona
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.netherlands_coronavirus_deaths 
+          name: nederland 
+        - entity: sensor.belgium_coronavirus_deaths 
+          name: belgie
+        - entity: sensor.france_coronavirus_deaths 
+          name: frankrijk
+        - entity: sensor.united_kingdom_coronavirus_deaths 
+          name: verenigd koningkrijk
+        - entity: sensor.germany_coronavirus_deaths 
+          name: duitsland
+        - entity: sensor.italy_coronavirus_deaths 
+          name: italie
+      - id: conoro-besmettingen-ww
+        type: history-graph
+        title: Corona besmettingen wereldwijd
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.worldwide_coronavirus_confirmed
+          name: bevestigde besmettingen
+      - id: hersteld-van-corona-ww
+        type: history-graph
+        title: Hersteld van Corona wereldwide
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.worldwide_coronavirus_recovered
+          name: hersteld van corona 
+      - id: huidige-besmettingen-ww
+        type: history-graph
+        title: Huidige aantal besmettingen Corona wereldwijd
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.worldwide_coronavirus_current
+          name: huidige aantal
+      - id: doden-corona-ww
+        type: history-graph
+        title: Doden ten gevolgen van Corona wereldwijd
+        hours_to_show: 48
+        entities: 
+        - entity: sensor.worldwide_coronavirus_deaths 
+          name: corona doden 
   - title: Weer
-    icon: mdi:weather-partlycloudy
+    icon: mdi:weather-partly-cloudy
     id: Weather
     # Optional background (overwrites the global background).
     background: radial-gradient(crimson, skyblue)
@@ -350,8 +478,6 @@ views:
           name: schuur
         - entity: sensor.omgevingssensorvoordeur_temperature
           name: voordeur
-        #- entity: sensor.temperature_158d00027725d7
-        #- entity: sensor.0x00158d00036b2087_temperature
       - id: outsidehumidityoverview
         type: history-graph
         title: Buiten luchtvochtingheid
@@ -365,8 +491,6 @@ views:
           name: schuur
         - entity: sensor.omgevingssensorvoordeur_humidity
           name: voordeur
-        #- entity: sensor.humidity_158d00027725d7
-        #- entity: sensor.0x00158d00036b2087_humidity
       - id: pressureoverview
         type: history-graph
         title: Luchtdruk
@@ -378,7 +502,6 @@ views:
           name: schuur
         - entity: sensor.omgevingssensorvoordeur_pressure
           name: voordeur
-        #- entity: sensor.pressure_158d0002789adf
       - id: windspeedoverview
         type: history-graph
         title: Windsnelheid
@@ -415,21 +538,13 @@ views:
         entities:
         - entity: sensor.omgevingssensorkeuken_temperature
         - entity: sensor.omgevingssensorwoonkamer_temperature
-        #- entity: sensor.temperature_158d0002789adf
-        #- entity: sensor.temperature_158d000273d342
-        #- entity: sensor.temperature_158d000238fcc1
-        #- entity: sensor.temperature_158d00027257cd
-        #- entity: sensor.temperature_158d000231046d
-        #- entity: sensor.temperature_158d00027898b3
-        #- entity: sensor.temperature_158d000273424b
-        #- entity: sensor.sensorzolder_temperature
-        #- entity: sensor.0x00158d000322f660_temperature
       - id: temperatureoverview-boven
         type: history-graph
         title: Boven temperatuur
         hours_to_show: 48
         entities:
         - entity: sensor.omgevingssensorbadkamer_temperature
+        - entity: climate.thermostaatkraan1_climate
         - entity: sensor.omgevingssensorkamernaud_temperature
         - entity: sensor.omgevingssensorkamerstijn_temperature
         - entity: sensor.omgevingssensorslaapkamer_temperature
@@ -451,10 +566,6 @@ views:
         - entity: sensor.bewegingssensorstudeerkamer_illuminance
         - entity: sensor.bewegingssensorvoordeur_illuminance
         - entity: sensor.bewegingssensorgang_illuminance
-        #- entity: sensor.illumination_158d0002584585
-        #- entity: sensor.illumination_158d0002e8d2f1
-        #- entity: sensor.illumination_7c49ebb18b86
-        #- entity: sensor.illumination_158d00029a5cd2
       - id: humidityoverview
         type: history-graph
         title: Luchtvochtigheid
@@ -466,20 +577,10 @@ views:
         - entity: sensor.omgevingssensorkeuken_humidity
         - entity: sensor.omgevingssensorkruipruimte_humidity
         - entity: sensor.omgevingssensoroverloop_humidity
-        - entity: sensor.omgevingssensorschuur_humidity
         - entity: sensor.omgevingssensorslaapkamer_humidity
         - entity: sensor.omgevingssensorstudeerkamer_humidity
         - entity: sensor.omgevingssensorwoonkamer_humidity
         - entity: sensor.omgevingssensorzolder_humidity
-        #- entity: sensor.humidity_158d0002789adf
-        #- entity: sensor.humidity_158d000273d342
-        #- entity: sensor.humidity_158d000238fcc1
-        #- entity: sensor.humidity_158d00027257cd
-        #- entity: sensor.humidity_158d000231046d
-        #- entity: sensor.humidity_158d00027898b3
-        #- entity: sensor.humidity_158d000273424b
-        #- entity: sensor.sensorzolder_humidity
-        #- entity: sensor.0x00158d000322f660_humidity
   - title: Lucht kwaliteit metingen 
     icon: mdi:soundcloud
     id: airquality_measurements
@@ -492,10 +593,10 @@ views:
         title: NO2, O2, PM10 en PM25
         hours_to_show: 168
         entities: 
-        - entity: sensor.airquality_no2
-        - entity: sensor.airquality_o3
-        - entity: sensor.airquality_pm10
-        - entity: sensor.airquality_pm25
+          - entity: sensor.airquality_no2
+          - entity: sensor.airquality_o3
+          - entity: sensor.airquality_pm10
+          - entity: sensor.airquality_pm25
       - id: airquality_indexes
         type: history-graph
         title: Lucht kwaliteit indexen
@@ -514,14 +615,14 @@ views:
         title: Overall lucht kwaliteit
         hours_to_show: 168
         entities: 
-        - entity: sensor.airquality_combined_index
+          - entity: sensor.airquality_combined_index
       - id: luftdaten_22939
         type: history-graph
         title: Luftdaten
         hours_to_show: 168
         entities: 
-        - entity: sensor.luftdaten_22939_p1
-        - entity: sensor.luftdaten_22939_p2
+          - entity: sensor.luftdaten_22939_p1
+          - entity: sensor.luftdaten_22939_p2
   - title: Internet
     icon: mdi:web
     id: internet_overview
@@ -539,6 +640,13 @@ views:
             name: Upload
           - entity: sensor.speedtest_ping
             name: Latency
+      - id: linkquality_thermostaatkranen
+        type: history-graph
+        title: Zigbee Link Quality thermostaatkranen
+        hours_to_show: 48
+        entities:
+          - entity: sensor.thermostaatkraan1_linkquality
+            name: badkamer
       - id: linkquality_deurschakelaar
         type: history-graph
         title: Zigbee Link Quality deurschakelaars
@@ -555,6 +663,10 @@ views:
         entities:
           - entity: sensor.powerplug_linkquality
             name: powerplug
+          - entity: sensor.powerplug1eu_linkquality
+            name: powerplug1eu
+          - entity: sensor.powerplug2eu_linkquality
+            name: powerplug2eu
       - id: linkquality_schakelaars
         type: history-graph
         title: Zigbee Link Quality wandschakelaars
@@ -628,6 +740,57 @@ views:
             name: keuken
           - entity: sensor.trillingssensorwoonkamer_linkquality
             name: woonkamer
+      - id: linkquality_lampen_beneden
+        type: history-graph
+        title: Zigbee Link Quality lampen beneden
+        hours_to_show: 48
+        entities:
+          - entity: sensor.lamp1woonkamerachter_linkquality     
+            name: achter lamp1
+          - entity: sensor.lamp1woonkamervoor_linkquality
+            name: voor lamp1
+          - entity: sensor.lamp2woonkamerachter_linkquality
+            name: achter lamp2
+          - entity: sensor.lamp2woonkamervoor_linkquality
+            name: voor lamp2
+          - entity: sensor.lamp3woonkamerachter_linkquality
+            name: achter lamp3
+          - entity: sensor.lamp3woonkamervoor_linkquality
+            name: voor lamp3
+          - entity: sensor.lampvoordeur_linkquality
+            name: voordeur
+          - entity: sensor.lampgang_linkquality
+            name: gang
+          - entity: sensor.lamphal_linkquality
+            name: halletje
+      - id: linkquality_dimmers_beneden
+        type: history-graph
+        title: Zigbee Link Quality dimmers beneden
+        hours_to_show: 48
+        entities:
+          - entity: sensor.dimmerwoonkamer_linkquality
+            name: woonkamer
+      - id: linkquality_lampen_boven
+        type: history-graph
+        title: Zigbee Link Quality lampen boven
+        hours_to_show: 48
+        entities:
+          - entity: sensor.lampoverloop_linkquality
+            name: overloop
+          - entity: sensor.lampkamernaud_linkquality
+            name: kamer naud
+          - entity: sensor.lampslaapkamer_linkquality
+            name: slaapkamer
+          - entity: sensor.lampstijn_linkquality
+            name: kamer naud
+          - entity: sensor.lampbadkamer_linkquality
+            name: badkamer
+          - entity: sensor.lampstudeerkamer_linkquality
+            name: studeerkamer
+          - entity: sensor.lampwasmachine_linkquality
+            name: wasmachine
+          - entity: sensor.lamptrap_linkquality
+            name: trap
       - id: linkquality_sonoff
         type: history-graph
         title: WIFI Link Quality Sonoff sensors
@@ -647,6 +810,24 @@ views:
             name: pow1
           - entity: sensor.pow2_signal
             name: pow2
+      - id: linkquality_sonoff_zigbee
+        type: history-graph
+        title: Zigbee Link Quality Sonoff switches
+        hours_to_show: 48
+        entities:
+          - entity: sensor.schermlampwoonkamer_linkquality
+            name: schermlamp
+          - entity: sensor.sonoffzigbeebasic2_linkquality
+            name: meterkamer
+      - id: linkquality_xiaomi_switch
+        type: history-graph
+        title: Zigbee Link Quality xiaomi switches
+        hours_to_show: 48
+        entities:
+          - entity: sensor.xiaomiswitch1_linkquality
+            name: xiaomiswitch1
+          - entity: sensor.xiaomiswitch2_linkquality
+            name: xiaomiswitch1
 
   - title: trein
     icon: mdi:train
@@ -729,53 +910,53 @@ views:
             icon: mdi:walk
           - entity: sensor.trein_amsterdam_zuid_utrecht_remarks
             icon: mdi:comment-text-outline
-  - title: postpakketten
-    icon: mdi:package-variant
-    id: postpakketten_overview
-    background: radial-gradient(crimson, skyblue)
-    theme: dark-mode
-    cards:
-      - id: nlpostpakketten
-        type: history-graph
-        title: pakketten bezorging postnl
-        hours_to_show: 384
-        entities:
-          - entity: sensor.postnl
-      - id: postnl-delivery
-        type: "custom:postnl-card"
-        delivery: sensor.postnl_delivery
-        title: aflevering postnl
-        hide:
-          delivered: false
-          first_letter: false
-          header: false
-        date_format: "DD MMM YYYY"
-        time_format: "HH:mm"
-        past_days: 7
-
-      - id: postnl-delivery
-        type: "custom:postnl-card"
-        title: distributie postnl
-        distribution: sensor.postnl_distribution
-        hide:
-          delivered: false
-          first_letter: false
-          header: false
-        date_format: "DD MMM YYYY"
-        time_format: "HH:mm"
-        past_days: 7
-
-      - id: postnl-delivery
-        type: "custom:postnl-card"
-        title: brieven postnl
-        letters: sensor.postnl_letters
-        hide:
-          delivered: false
-          first_letter: false
-          header: false
-        date_format: "DD MMM YYYY"
-        time_format: "HH:mm"
-        past_days: 7
+#  - title: postpakketten
+#    icon: mdi:package-variant
+#    id: postpakketten_overview
+#    background: radial-gradient(crimson, skyblue)
+#    theme: dark-mode
+#    cards:
+#      - id: nlpostpakketten
+#        type: history-graph
+#        title: pakketten bezorging postnl
+#        hours_to_show: 384
+#        entities:
+#          - entity: sensor.postnl
+#      - id: postnl-delivery
+#        type: "custom:postnl-card"
+#        delivery: sensor.postnl_delivery
+#        title: aflevering postnl
+#        hide:
+#          delivered: false
+#          first_letter: false
+#          header: false
+#        date_format: "DD MMM YYYY"
+#        time_format: "HH:mm"
+#        past_days: 7
+#
+#      - id: postnl-delivery
+#        type: "custom:postnl-card"
+#        title: distributie postnl
+#        distribution: sensor.postnl_distribution
+#        hide:
+#          delivered: false
+#          first_letter: false
+#          header: false
+#        date_format: "DD MMM YYYY"
+#        time_format: "HH:mm"
+#        past_days: 7
+#
+#      - id: postnl-delivery
+#        type: "custom:postnl-card"
+#        title: brieven postnl
+#        letters: sensor.postnl_letters
+#        hide:
+#          delivered: false
+#          first_letter: false
+#          header: false
+#        date_format: "DD MMM YYYY"
+#        time_format: "HH:mm"
+#        past_days: 7
   - title: Verbruik
     icon: mdi:flash-outline
     id: verbruik_overview
@@ -784,6 +965,7 @@ views:
     cards:
       - type: entities
         title: energie
+        show_header_toggle: false
         entities:
           - sensor.power_tariff
           - sensor.voltage_sags_phase_l1
@@ -822,15 +1004,20 @@ views:
     cards:
       - type: entities
         title: Zigbee
+        show_header_toggle: false
         entities:
           - entity: binary_sensor.check_hue_bridge
             name: Hue zigbee bridge
+            state_color: true
           - entity: sensor.zigbee2mqtt_bridge_state
             name: Zigbee2mqtt cc2531 coordinator
-          - entity: binary_sensor.0x00124b001bb859ff_router
+            state_color: true
+          - entity: binary_sensor.cc2530router1_router
             name: Zigbee2mqtt cc2530 router1
-          - entity: binary_sensor.0x00124b001d86193f_router
+            state_color: true
+          - entity: binary_sensor.cc2530router2_router
             name: Zigbee2mqtt cc2530router2
+            state_color: true
           - entity: sensor.zigbee2mqtt_version
             name: Zigbee2mqtt version
           - entity: sensor.coordinator_version
@@ -839,6 +1026,7 @@ views:
             name: Zigbee2mqtt settings
       - type: entities
         title: mqtt sensors 
+        show_header_toggle: false
         entities:
           - group.zigbee_group
           #- sensor.0x00158d00025427e0_click
@@ -847,6 +1035,7 @@ views:
           #- sensor.0x00124b001bb859ff_linkquality
       - type: entities
         title: Sonoff plugs 
+        show_header_toggle: false
         entities:
           - switch.basic1
           - switch.basic2
@@ -905,6 +1094,7 @@ views:
           #- automation.power_off_and_power_on_hue_bridge
       - type: entities
         title: Automation zones
+        show_header_toggle: false
         entities:
           - automation.name_entered_zone
   - title: home-assistant battery
@@ -916,6 +1106,7 @@ views:
       - id: bewegingsensors-battery-capacity 
         type: entities
         title: Bewegingsensors - battery capacity
+        show_header_toggle: false
         entities:
           - entity: sensor.bewegingssensorgang_battery
             type: "custom:secondaryinfo-entity-row"
@@ -937,15 +1128,10 @@ views:
             type: "custom:secondaryinfo-entity-row"
             secondary_info: "[[ sensor.bewegingssensorvoordeur_linkquality.last_updated  ]]"
             name: voordeur
-         #- sensor.woonkamer_battery
-          #- sensor.stopcontact_woonkamer_battery
-          #- sensor.keuken_battery
-          #- sensor.viberate_sensor_1_battery
-          #- sensor.viberate_sensor_2_battery
-          #- sensor.0x00158d000322f660_humidity
       - id: omgevingssensor-battery-capacity 
         type: entities
         title: Omgevingssensors - battery capacity
+        show_header_toggle: false
         entities:
           - entity: sensor.omgevingssensorbadkamer_battery 
             type: "custom:secondaryinfo-entity-row"
@@ -991,14 +1177,19 @@ views:
             type: "custom:secondaryinfo-entity-row"
             secondary_info: "[[ sensor.omgevingssensorzolder_linkquality.last_updated  ]]"
             name: zolder
-          #- sensor.lichtsensor_overloop_battery
-          #- sensor.slaapkamer_naud_battery
-          #- sensor.badkamer_battery
-          #- sensor.slaapkamer_annelies_ted_battery
-          #- sensor.schakelaar_links_slaapkamer_naud_battery
+      - id: thermostaat-battery-capacity
+        type: entities
+        title: Thermostaat - battery capacity
+        show_header_toggle: false
+        entities:
+          - entity: sensor.thermostaatkraan1_battery
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.thermostaatkraan1_linkquality.last_updated  ]]"
+            name: badkamer
       - id: deur-schakelaars-battery-capacity
         type: entities
         title: Deurschakelaars - battery capacity
+        show_header_toggle: false
         entities:
           - entity: sensor.schakelaarachterdeur_battery
             type: "custom:secondaryinfo-entity-row"
@@ -1008,12 +1199,10 @@ views:
             type: "custom:secondaryinfo-entity-row"
             secondary_info: "[[ sensor.schakelaarvoordeur_linkquality.last_updated  ]]"
             name: voordeur
-         #- sensor.slaapkamer_stijn_battery
-          #- sensor.studeerkamer_battery
-          #- sensor.lichtsensor_studeerkamer_battery
       - id: schakelaars-battery-capacity
         type: entities
         title: wandschakelaars - battery capacity
+        show_header_toggle: false
         entities:
           - entity: sensor.schakelaarkamernaud_battery
             type: "custom:secondaryinfo-entity-row"
@@ -1027,12 +1216,10 @@ views:
             type: "custom:secondaryinfo-entity-row"
             secondary_info: "[[ sensor.schakelaarslaapkamer_linkquality.last_updated  ]]"
             name: slaapkamer
-           #- sensor.schuur_battery
-          #- sensor.lichtsensor_voordeur_buiten_battery
-          #- sensor.0x00158d00036b2087_battery
       - id: trillingssensors-battery-capacity
         type: entities
         title: trillingssensors - battery capacity
+        show_header_toggle: false
         entities:
           - entity: sensor.trillingssensorkeuken_battery
             type: "custom:secondaryinfo-entity-row"
@@ -1042,9 +1229,15 @@ views:
             type: "custom:secondaryinfo-entity-row"
             secondary_info: "[[ sensor.trillingssensorwoonkamer_linkquality.last_updated  ]]"
             name: woonkamer
-          #- sensor.sensorzolder_battery
-          #- sensor.ted_battery
-          #- sensor.doorswitch2_contact_battery
+      - id: dimmers-battery-capacity
+        type: entities
+        title: dimmers - battery capacity
+        show_header_toggle: false
+        entities:
+          - entity: sensor.dimmerwoonkamer_battery
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.dimmerwoonkamer_linkquality.last_updated  ]]"
+            name: keuken
   - title: home-assistant host
     icon: mdi:server-network
     id: ha_host_overview
@@ -1053,6 +1246,7 @@ views:
     cards:
       - type: entities
         title: Home Assistant
+        show_header_toggle: false
         entities:
           - sensor.ssl_cert_expiry
           - sensor.home_assistant_uptime
