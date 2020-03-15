@@ -24,5 +24,5 @@
 # track google maps shared peaple
 - platform: google_maps
   username: !secret google_gps_username
-  password: !secret google_gps_password
+  #  password: !secret google_gps_password # not needed any more since 0.97
   max_gps_accuracy: 30
