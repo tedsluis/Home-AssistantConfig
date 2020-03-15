@@ -214,7 +214,6 @@ thuis:
 
 default_view:
     name: home
-    view: true
     entities:
         - group.woonkamer
         - group.slaapkamer_annelies_ted
@@ -228,7 +227,6 @@ default_view:
         - group.voordeur
 
 apis:
-    view: true
     name: Apis
     entities:
         - group.internet_access
@@ -239,7 +237,6 @@ apis:
         - group.thuis
 
 alle_lichten:
-    view: true
     name: Lichten
     entities:
         - light.woonkamer_achter
@@ -256,7 +253,6 @@ alle_lichten:
         - group.all_switches
 
 environment:
-    view: true
     name: Klimaat
     entities:
         - group.temperature_sensors
@@ -265,21 +261,17 @@ environment:
         - group.weather
 
 verbruik:
-    view: true
     name: Verbruik
     entities:
         - group.slimme_meter
 
 home-assistant:
-    view: true
     name: HA
     entities:
         - group.system_statistics
         - group.all_automations
 
 zigbee_group:
-    view: false
-    control: hidden
     name: Zigbee2mqtt
     entities:
         - input_boolean.zigbee_permit_join
