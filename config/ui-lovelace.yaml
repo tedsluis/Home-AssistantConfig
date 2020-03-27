@@ -64,10 +64,14 @@ views:
             name: laptop en telefoonladers
             type: "custom:secondaryinfo-entity-row"
             secondary_info: "[[ sensor.pow2_energy_apparentpower ]] watt"
-      - type: picture
-        image: https://192.168.11.121/cgi-bin/currentpic.cgi
-      - type: picture
-        image: http://192.168.11.119
+      - type: entities
+        title: camera's
+        show_header_toggle: false
+        entities:
+          - entity: camera.cam1
+            name: camera 1
+          - entity: camera.cam2
+            name: camera 2
       - type: entities
         title: Slaapkamer Annelies & Ted
         show_header_toggle: false
@@ -177,6 +181,7 @@ views:
         entities:
           - entity: light.lampvoordeur_light
             name: buitenlamp
+            secondary_info: last-changed
           - entity: sensor.omgevingssensorvoordeur_humidity
             name: luchtvochtigheid
           - entity: sensor.omgevingssensorvoordeur_pressure
@@ -315,6 +320,7 @@ views:
           type: glance
           title: Waar is iedereen?
       - type: map
+        default_zoom: 14
         entities:
           - device_tracker.94652dc2aa01
           - device_tracker.c0eefbe296aa
@@ -716,6 +722,10 @@ views:
             name: cc2530router1
           - entity: sensor.cc2530router2_linkquality
             name: cc2530router2
+          - entity: sensor.cc2531router3_linkquality
+            name: cc2531router3
+          - entity: sensor.cc2531router4_linkquality
+            name: cc2531router4
       - id: linkquality_bewegingssensor
         type: history-graph
         title: Zigbee Link Quality bewegingssensors
@@ -816,7 +826,7 @@ views:
         hours_to_show: 48
         entities:
           - entity: sensor.schermlampwoonkamer_linkquality
-            name: schermlamp
+            name: schermerlamp
           - entity: sensor.sonoffzigbeebasic2_linkquality
             name: meterkamer
       - id: linkquality_xiaomi_switch
@@ -829,87 +839,6 @@ views:
           - entity: sensor.xiaomiswitch2_linkquality
             name: xiaomiswitch1
 
-  - title: trein
-    icon: mdi:train
-    id: trein_overview
-    background: radial-gradient(crimson, skyblue)
-    theme: dark-mode
-    cards:
-      - id: treintijden
-        type: history-graph
-        title: treintijden
-        hours_to_show: 1
-        entities:
-          - entity: sensor.utrecht_amsterdam_zuid
-            name: utrecht
-          - entity: sensor.amsterdam_zuid_utrecht_cs
-            name: amsterdam
-      - type: entities
-        title: trein utrecht - amsterdam zuid
-        entities:
-          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_going
-            icon: mdi:train
-          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_time_planned
-            icon: mdi:clock-outline
-          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_time_actual
-            icon: mdi:clock-outline
-          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_delay
-            icon: mdi:train
-          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_platform
-            icon: mdi:hail
-          - entity: sensor.trein_utrecht_amsterdam_zuid_departure_platform_changed
-            icon: mdi:hail
-          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_time_planned
-            icon: mdi:clock-outline
-          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_time_actual
-            icon: mdi:clock-outline
-          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_delay
-            icon: mdi:train
-          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_platform
-            icon: mdi:hail
-          - entity: sensor.trein_utrecht_amsterdam_zuid_arrival_platform_changed
-            icon: mdi:hail
-          - entity: sensor.trein_utrecht_amsterdam_zuid_next
-            icon: mdi:fast-forward
-          - entity: sensor.trein_utrecht_amsterdam_zuid_status
-            icon: mdi:train
-          - entity: sensor.trein_utrecht_amsterdam_zuid_transfers
-            icon: mdi:walk
-          - entity: sensor.trein_utrecht_amsterdam_zuid_remarks
-            icon: mdi:comment-text-outline
-      - type: entities
-        title: trein amsterdam zuid - utrecht
-        entities:
-          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_going
-            icon: mdi:train
-          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_time_planned
-            icon: mdi:clock-outline
-          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_time_actual
-            icon: mdi:clock-outline
-          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_delay
-            icon: mdi:train
-          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_platform
-            icon: mdi:hail
-          - entity: sensor.trein_amsterdam_zuid_utrecht_departure_platform_changed
-            icon: mdi:hail
-          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_time_planned
-            icon: mdi:clock-outline
-          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_time_actual
-            icon: mdi:clock-outline
-          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_delay
-            icon: mdi:train
-          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_platform
-            icon: mdi:hail
-          - entity: sensor.trein_amsterdam_zuid_utrecht_arrival_platform_changed
-            icon: mdi:hail
-          - entity: sensor.trein_amsterdam_zuid_utrecht_next
-            icon: mdi:fast-forward
-          - entity: sensor.trein_amsterdam_zuid_utrecht_status
-            icon: mdi:train
-          - entity: sensor.trein_amsterdam_zuid_utrecht_transfers
-            icon: mdi:walk
-          - entity: sensor.trein_amsterdam_zuid_utrecht_remarks
-            icon: mdi:comment-text-outline
 #  - title: postpakketten
 #    icon: mdi:package-variant
 #    id: postpakketten_overview
@@ -1006,17 +935,20 @@ views:
         title: Zigbee
         show_header_toggle: false
         entities:
-          - entity: binary_sensor.check_hue_bridge
-            name: Hue zigbee bridge
-            state_color: true
           - entity: sensor.zigbee2mqtt_bridge_state
             name: Zigbee2mqtt cc2531 coordinator
             state_color: true
           - entity: binary_sensor.cc2530router1_router
-            name: Zigbee2mqtt cc2530 router1
+            name: Zigbee2mqtt cc2530router1
             state_color: true
           - entity: binary_sensor.cc2530router2_router
             name: Zigbee2mqtt cc2530router2
+            state_color: true
+          - entity: binary_sensor.cc2531router3_router
+            name: Zigbee2mqtt cc2531router3
+            state_color: true
+          - entity: binary_sensor.cc2531router4_router
+            name: Zigbee2mqtt cc2531router4
             state_color: true
           - entity: sensor.zigbee2mqtt_version
             name: Zigbee2mqtt version
@@ -1179,7 +1111,7 @@ views:
             name: zolder
       - id: thermostaat-battery-capacity
         type: entities
-        title: Thermostaat - battery capacity
+        title: Thermostaat kranen - battery capacity
         show_header_toggle: false
         entities:
           - entity: sensor.thermostaatkraan1_battery
@@ -1229,6 +1161,15 @@ views:
             type: "custom:secondaryinfo-entity-row"
             secondary_info: "[[ sensor.trillingssensorwoonkamer_linkquality.last_updated  ]]"
             name: woonkamer
+      - id: co2-battery-capacity
+        type: entities
+        title: co2 sensor - battery capacity
+        show_header_toggle: false
+        entities:
+          - entity: sensor.co2sensor_battery
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.co2sensor_linkquality.last_updated  ]]"
+            name: co2 sensor
       - id: dimmers-battery-capacity
         type: entities
         title: dimmers - battery capacity
@@ -1236,8 +1177,8 @@ views:
         entities:
           - entity: sensor.dimmerwoonkamer_battery
             type: "custom:secondaryinfo-entity-row"
-            secondary_info: "[[ sensor.dimmerwoonkamer_linkquality.last_updated  ]]"
-            name: keuken
+            secondary_info: "[[ sensor.dimmerwoonkamer_linkquality.last_updated ]]"
+            name: dimmer woonkamer
   - title: home-assistant host
     icon: mdi:server-network
     id: ha_host_overview
