@@ -80,7 +80,7 @@
 
 #############################################################################
 # dim light lampboventrap
-- alias: lampboventrap
+- alias: init-lampboventrap-power-on-behavior
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/bridge/log
@@ -92,10 +92,106 @@
       data:
         transition: 30
         brightness_pct: 40
-#    - service: mqtt.publish
-#      data:
-#        topic: "zigbee2mqtt/lampboventrap/set"
-#        payload: '{ "state": "ON", "brightness": "75", "transition": 30 }'
+
+#############################################################################
+# init power on behavior lampgang
+- alias: init-lampgang-power-on-behavior
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/bridge/log
+    payload: '{"type":"device_announced","message":"announce","meta":{"friendly_name":"lampgang"}}'
+    encoding: "utf-8"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/lampgang/set"
+        payload: '{ "hue_power_on_behavior": "on", "hue_power_on_brightness": 75 }'
+
+#############################################################################
+# init power on behavior lamphal
+- alias: init-lamphal-power-on-behavior
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/bridge/log
+    payload: '{"type":"device_announced","message":"announce","meta":{"friendly_name":"lamphal"}}'
+    encoding: "utf-8"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/lamphal/set"
+        payload: '{ "hue_power_on_behavior": "on", "hue_power_on_brightness": 75 }'
+
+#############################################################################
+# init power on behavior lampbadkamer
+- alias: init-lampbadkamer-power-on-behavior
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/bridge/log
+    payload: '{"type":"device_announced","message":"announce","meta":{"friendly_name":"lampbadkamer"}}'
+    encoding: "utf-8"
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "zigbee2mqtt/lampbadkamer/set"
+        payload: '{ "hue_power_on_behavior": "on", "hue_power_on_brightness": 100 }'
+
+#############################################################################
+- alias: update-lamp-brightness
+  trigger:
+    platform: state
+    entity_id: light.lamp1woonkamerachter_light, light.lamp1woonkamervoor_light, light.lamp2woonkamerachter_light, light.lamp2woonkamervoor_light, light.lamp3woonkamerachter_light, light.lamp3woonkamervoor_light, light.lampbadkamer_light, light.lampboventrap_light, light.lampgang_light, light.lamphal_light, light.lampkamernaud_light, light.lampkamerstijn_light, light.lampkeuken_light, light.lampoverloop_light, light.lampslaapkamer_light, light.lampstudeerkamer_light, light.lampvoordeur_light, light.lampwasmachine_light, light.ledcored_light
+  condition:
+    - condition: template
+      value_template: "{{ ((trigger.to_state.attributes.brightness - trigger.from_state.attributes.brightness) | abs) > 1 }}"
+  action:
+    service: notify.slack
+    data_template:
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ trigger.to_state.name  | regex_replace("_light","") }} brightness: {{ trigger.from_state.attributes.brightness }} to {{ trigger.to_state.attributes.brightness }}'
+            target: '#lights'
+
+#############################################################################
+- alias: update-lamp-state
+  trigger:
+    platform: state
+    entity_id: light.lamp1woonkamerachter_light, light.lamp1woonkamervoor_light, light.lamp2woonkamerachter_light, light.lamp2woonkamervoor_light, light.lamp3woonkamerachter_light, light.lamp3woonkamervoor_light, light.lampbadkamer_light, light.lampboventrap_light, light.lampgang_light, light.lamphal_light, light.lampkamernaud_light, light.lampkamerstijn_light, light.lampkeuken_light, light.lampoverloop_light, light.lampslaapkamer_light, light.lampstudeerkamer_light, light.lampvoordeur_light, light.lampwasmachine_light, light.ledcored_light
+  condition:
+    - condition: template
+      value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"
+  action:
+    service: notify.slack
+    data_template:
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ trigger.to_state.name | regex_replace("_light","") }} state: {{ trigger.from_state.state }} to {{ trigger.to_state.state }}'
+            target: '#lights'
+
+#############################################################################
+- alias: update-lamp-color-temp
+  trigger:
+    platform: state
+    entity_id: light.lamp1woonkamerachter_light, light.lamp1woonkamervoor_light, light.lamp2woonkamerachter_light, light.lamp2woonkamervoor_light, light.lamp3woonkamerachter_light, light.lamp3woonkamervoor_light, light.lampbadkamer_light, light.lampboventrap_light, light.lampgang_light, light.lamphal_light, light.lampkamernaud_light, light.lampkamerstijn_light, light.lampkeuken_light, light.lampoverloop_light, light.lampslaapkamer_light, light.lampstudeerkamer_light, light.lampvoordeur_light, light.lampwasmachine_light, light.ledcored_light
+  condition:
+    - condition: template
+      value_template: "{{ trigger.from_state.attributes.color_temp != trigger.to_state.attributes.color_temp }}"
+  action:
+    service: notify.slack
+    data_template:
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ trigger.to_state.name | regex_replace("_light","") }} color temp: {{ trigger.from_state.attributes.color_temp }} to {{ trigger.to_state.attributes.color_temp }}'
+            target: '#lights'
+
+#############################################################################
+- alias: update-lamp-rgb-color
+  trigger:
+    platform: state
+    entity_id: light.lamp1woonkamerachter_light, light.lamp1woonkamervoor_light, light.lamp2woonkamerachter_light, light.lamp2woonkamervoor_light, light.lamp3woonkamerachter_light, light.lamp3woonkamervoor_light, light.lampbadkamer_light, light.lampboventrap_light, light.lampgang_light, light.lamphal_light, light.lampkamernaud_light, light.lampkamerstijn_light, light.lampkeuken_light, light.lampoverloop_light, light.lampslaapkamer_light, light.lampstudeerkamer_light, light.lampvoordeur_light, light.lampwasmachine_light, light.ledcored_light
+  condition:
+    - condition: template
+      value_template: "{{ trigger.from_state.attributes.rgb_color != trigger.to_state.attributes.rgb_color }}"
+    - condition: template
+      value_template: "{{ trigger.to_state.state == trigger.from_state.state }}"
+  action:
+    service: notify.slack
+    data_template:
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: {{ trigger.to_state.name | regex_replace("_light","") }} rgb color: {{ trigger.from_state.attributes.rgb_color }} to {{ trigger.to_state.attributes.rgb_color }}'
+            target: '#lights'
 
 #############################################################################
 # Overloop
@@ -128,10 +224,14 @@
 # and before 7:30 when it is still dark.
 - alias: overloop licht in de nacht
   trigger:
-    platform: state
-    entity_id: binary_sensor.bewegingssensoroverloop_occupancy
-    from: 'off'
-    to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bewegingssensoroverloop_occupancy
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.bewegingssensorgang_occupancy
+      from: 'off'
+      to: 'on'
   condition:
     - condition: time
       after: '00:55:00'
@@ -285,9 +385,10 @@
 #  action:
 #    service: light.turn_on
 #    entity_id: light.gateway_light_7c49ebb18b86
-#
+
 #############################################################################
 # tracking notifications
+#############################################################################
 # https://community.home-assistant.io/t/slack-notifications-leverage-native-slack-messaging-format/25391
 - alias: name entered zone
   trigger:
@@ -323,7 +424,7 @@
 - alias: Turn on studyroom light when there is movement 
   trigger:
     platform: state
-    entity_id: sensor.bewegingssensorstudeerkamer_illuminance
+    entity_id: binary_sensor.bewegingssensorstudeerkamer_occupancy
     from: 'off'
     to: 'on'
   condition:
@@ -353,7 +454,7 @@
 - alias: Turn off studyroom light 30 minutes after last movement
   trigger:
     platform: state
-    entity_id: sensor.bewegingssensorstudeerkamer_illuminance
+    entity_id: binary_sensor.bewegingssensorstudeerkamer_occupancy
     to: 'off'
     for:
       minutes: 30
@@ -384,7 +485,7 @@
 - alias: Turn on voordeur buiten light when there is movement 
   trigger:
     platform: state
-    entity_id: sensor.bewegingssensorvoordeur_illuminance
+    entity_id: binary_sensor.bewegingssensorvoordeur_occupancy
     from: 'off'
     to: 'on'
   condition:
@@ -406,7 +507,7 @@
 - alias: Turn off voordeur buiten light 5 minutes after last movement
   trigger:
     platform: state
-    entity_id: sensor.bewegingssensorvoordeur_illuminance
+    entity_id: binary_sensor.bewegingssensorvoordeur_occupancy
     to: 'off'
     for:
       minutes: 5
@@ -515,20 +616,6 @@
       data:
         topic: "homeasistant/rfbridge1/STATUS"
         payload: "2"
-    # Power on state HUE lights
-    - service: mqtt.publish
-      data:
-        topic: "zigbee2mqtt/lampgang/set"
-        payload: '{ "hue_power_on_behavior": "on", "hue_power_on_brightness": 75 }'
-    - service: mqtt.publish
-      data:
-        topic: "zigbee2mqtt/lamphal/set"
-        payload: '{ "hue_power_on_behavior": "on", "hue_power_on_brightness": 75 }'
-    - service: mqtt.publish
-      data:
-        topic: "zigbee2mqtt/lampbadkamer/set"
-        payload: '{ "hue_power_on_behavior": "on", "hue_power_on_brightness": 100 }'
-
 
 
 ############################################################################
@@ -538,7 +625,7 @@
 - alias: Dimm slaapkamer licht rfswitch1C
   trigger:
   - platform: mqtt
-    topic: "rfbridge1/tele/RESULT"
+    topic: "rfbridge1/tele/RESULT/#"
   condition:
     condition: template
     value_template: "{{ trigger.payload_json['RfReceived']['Data'] == 'F9FFA1' }}"
@@ -547,11 +634,11 @@
     entity_id: light.hue_ambiance_slaapkamer
     data_template:
       brightness: >-
-        {% if states.light.hue_ambiance_slaapkamer.attributes.brightness %}
-          {% if states.light.hue_ambiance_slaapkamer.attributes.brightness - 60 >= 10 %}
-            {{states.light.hue_ambiance_slaapkamer.attributes.brightness - 60}}
+        {% if states.light.lampslaapkamer_light.attributes.brightness %}
+          {% if states.light.lampslaapkamer_light.attributes.brightness - 60 >= 10 %}
+            {{states.light.lampslaapkamer_light.attributes.brightness - 60}}
           {% else %}
-            {{states.light.hue_ambiance_slaapkamer.attributes.brightness}}
+            {{states.light.lampslaapkamer_light.attributes.brightness}}
           {% endif %}
         {% else %}
           10
@@ -561,32 +648,32 @@
 - alias: Uitzetten slaapkamer licht rfswitch1B
   trigger:
   - platform: mqtt
-    topic: "rfbridge1/tele/RESULT"
+    topic: "rfbridge1/tele/RESULT/#"
   condition:
     condition: template
     value_template: "{{ trigger.payload_json['RfReceived']['Data'] == 'F9FFA8' }}"
   action:
     service: light.turn_off
-    entity_id: light.hue_ambiance_slaapkamer
+    entity_id: light.lampslaapkamer_light
 
 # Increase hue light with rfswitch1D 
 - alias: Verlicht slaapkamer licht rfswitch1D
   trigger:
   - platform: mqtt
-    topic: "rfbridge1/tele/RESULT"
+    topic: "rfbridge1/tele/RESULT/#"
   condition:
     condition: template
     value_template: "{{ trigger.payload_json['RfReceived']['Data'] == 'F9FFA4' }}"
   action:
     service: light.turn_on
-    entity_id: light.hue_ambiance_slaapkamer
+    entity_id: light.lampslaapkamer_light
     data_template:
       brightness: >-
-        {% if states.light.hue_ambiance_slaapkamer.attributes.brightness %}
-          {% if states.light.hue_ambiance_slaapkamer.attributes.brightness + 60 <= 255 %}
-            {{states.light.hue_ambiance_slaapkamer.attributes.brightness + 60}}
+        {% if states.light.lampslaapkamer_light.attributes.brightness %}
+          {% if states.light.lampslaapkamer_light.attributes.brightness + 60 <= 255 %}
+            {{states.light.lampslaapkamer_light.attributes.brightness + 60}}
           {% else %}
-            {{states.light.hue_ambiance_slaapkamer.attributes.brightness}}
+            {{states.light.lampslaapkamer_light.attributes.brightness}}
           {% endif %}
         {% else %}
           10
@@ -596,13 +683,13 @@
 - alias: Aanzetten slaapkamer licht rfswitch1A
   trigger:
   - platform: mqtt
-    topic: "rfbridge1/tele/RESULT"
+    topic: "rfbridge1/tele/RESULT/#"
   condition:
     condition: template
     value_template: "{{ trigger.payload_json['RfReceived']['Data'] == 'F9FFA2' }}"
   action:
     service: light.turn_on
-    entity_id: light.hue_ambiance_slaapkamer
+    entity_id: light.lampslaapkamer_light
     data:
       brightness_pct: 100
 
@@ -626,7 +713,7 @@
   action:
       service: notify.slack
       data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: woonkamerlade beweging: {{ states.sensor.trillingssensorkeuken_action.attributes["last_action"] }}'
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: woonkamerlade beweging: {{ trigger.payload }}'
             target: '#drawer'
 
 ############################################################################
@@ -649,8 +736,8 @@
   action:
       service: notify.slack
       data_template:
-            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: keukenlade beweging: {{ states.sensor.trillingssensorkeuken_action.attributes["last_action"] }}'
-            target: '#drawers'
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: keukenlade beweging: {{ trigger.payload }}'
+            target: '#drawer'
 
 ##############################################################################
 # lamp kamer stijn
@@ -682,8 +769,12 @@
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/schakelaarkamerstijn/click
-    payload: 'left_long' 
+    payload: 'both' 
     encoding: "utf-8"
+  condition:
+    condition: state
+    entity_id: light.lampkamerstijn_light
+    state: 'on'
   action:
     service: light.turn_off
     entity_id: light.lampkamerstijn_light
@@ -693,7 +784,7 @@
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/schakelaarkamerstijn/click
-    payload: 'right' 
+    payload: 'both' 
     encoding: "utf-8"
   action:
     service: light.turn_on
@@ -715,8 +806,14 @@
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/schakelaarkamerstijn/click
-    payload: 'right_long'
+    payload: 'both'
     encoding: "utf-8"
+  condition:
+    - condition: state
+      entity_id: light.lampkamerstijn_light
+      state: 'off'
+      for: 
+        seconds: 4
   action:
     service: light.turn_on
     entity_id: light.lampkamerstijn_light
@@ -753,8 +850,14 @@
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/schakelaarkamernaud/click
-    payload: 'left_long' 
+    payload: 'both' 
     encoding: "utf-8"
+  condition:
+    - condition: state
+      entity_id: light.lampkamernaud_light
+      state: 'on'
+      for:
+        seconds: 4
   action:
     service: light.turn_off
     entity_id: light.lampkamernaud_light
@@ -786,8 +889,14 @@
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/schakelaarkamernaud/click
-    payload: 'right_long'
+    payload: 'both'
     encoding: "utf-8"
+  condition:
+    condition: state
+    entity_id: light.lampkamernaud_light
+    state: 'off'
+    for:
+      seconds: 4
   action:
     service: light.turn_on
     entity_id: light.lampkamernaud_light
