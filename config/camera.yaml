@@ -3,3 +3,24 @@
 #  still_image_url: http://192.168.11.116
 #  stream_source: http://192.168.11.116
 #  verify_ssl: false
+
+- platform: generic
+  name: cam1
+  username: root
+  password: ismart12
+  authentication: basic
+  still_image_url: https://192.168.11.126/cgi-bin/currentpic.cgi
+  verify_ssl: false
+  scan_interval: 5
+
+
+- platform: generic
+  name: cam2
+  username: root
+  password: ismart12
+  authentication: basic
+  still_image_url: https://192.168.11.127/cgi-bin/currentpic.cgi
+  verify_ssl: false
+  scan_interval: 5
+
+
