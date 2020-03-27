@@ -1,22 +1,10 @@
 - platform: uptime
   name: Home Assistant uptime
 
-# dutch rail road API
-- platform: nederlandse_spoorwegen
-  email: !secret ns_loginname
-  password: !secret ns_password
-  routes:
-    - name: Utrecht - Amsterdam Zuid
-      from: ut
-      to: asdz
-    - name: Amsterdam Zuid - Utrecht CS
-      from: asdz
-      to: ut
-
 # Dutch post packages delivery API    
-- platform: postnl
-  username: !secret post_nl_loginname
-  password: !secret post_nl_password
+#- platform: postnl
+#  username: !secret post_nl_loginname
+#  password: !secret post_nl_password
 
 # Home assistant host monitoring
 - platform: systemmonitor
@@ -78,20 +66,6 @@
 - platform: template
   sensors:
     
-    #viberate_158d0002b83c5b:
-    #  friendly_name: viberate_sensor_action1
-    #  value_template: '{{ states.binary_sensor.vibration_158d0002b83c5b.attributes["last_action"] }}'
-    #viberate_158d0002b78209:
-    #  friendly_name: viberate_sensor_action2
-    #  value_template: '{{ states.binary_sensor.vibration_158d0002b78209.attributes["last_action"] }}'
-
-    # Last-changed  
-    bewegingssensoroverloop_last_update: 
-      value_template: >-
-          {{ states.sensor.bewegingssensoroverloop_battery.last_updated }}
-      device_class: timestamp
-    #  #value_template: '{{ states.sensor.bewegingssensoroverloop_linkquality.last_changed }}'
-
     # Dutch rail road API  
     trein_utrecht_amsterdam_zuid_departure_going:
       friendly_name: vertrekt
