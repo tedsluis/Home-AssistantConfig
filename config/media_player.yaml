@@ -1,7 +1,7 @@
 - platform: samsungtv
   host: !secret ip_address_samsung_tv_ue32k5600
-  port: 8001
-  name: Samsung TV UE32K5600
+  #port: 8001
+  #name: Samsung TV UE32K5600
 #- platform: ps4
 #  host: xxx.xxx.xxx.xxx
 #  name: play station 4
