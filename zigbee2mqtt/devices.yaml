@@ -1,0 +1,174 @@
+'0x00158d00027898b3':
+  friendly_name: omgevingssensorstudeerkamer
+  retain: false
+'0x00158d00027257cd':
+  friendly_name: omgevingssensorkamerstijn
+  retain: false
+'0x00158d00036b1af7':
+  friendly_name: omgevingssensorzolder
+  retain: false
+'0x00158d0002584585':
+  friendly_name: bewegingssensorstudeerkamer
+  retain: false
+'0x00158d00027c19e9':
+  friendly_name: schakelaarslaapkamer
+  retain: false
+'0x00158d00025427e0':
+  friendly_name: schakelaarkamerstijn
+  retain: false
+'0x00158d000238fcc1':
+  friendly_name: omgevingssensorkamernaud
+  retain: false
+'0x00158d000273424b':
+  friendly_name: omgevingssensorbadkamer
+  retain: false
+'0x00158d0002e24f96':
+  friendly_name: schakelaarachterdeur
+  retain: false
+'0x00158d00025ed544':
+  friendly_name: schakelaarvoordeur
+  retain: false
+'0x00158d00029a5cd2':
+  friendly_name: bewegingssensoroverloop
+  retain: false
+'0x00158d000231046d':
+  friendly_name: omgevingssensorkeuken
+  retain: false
+'0x00158d00027725d7':
+  friendly_name: omgevingssensorschuur
+  retain: false
+'0x00158d0002b78209':
+  friendly_name: trillingssensorwoonkamer
+  retain: false
+'0x00158d0002b83c5b':
+  friendly_name: trillingssensorkeuken
+  retain: false
+'0x00158d000313cdfb':
+  friendly_name: bewegingssensorkeuken
+  retain: false
+'0x00158d000319c29f':
+  friendly_name: bewegingssensorgang
+  retain: false
+'0x00158d00036b2087':
+  friendly_name: omgevingssensorvoordeur
+  retain: false
+'0x00158d0002e8d2f1':
+  friendly_name: bewegingssensorvoordeur
+  retain: false
+'0x00158d00024ae109':
+  friendly_name: powerplug
+  retain: false
+'0x00124b001d86193f':
+  friendly_name: cc2530router2
+  retain: false
+'0x00124b001bb859ff':
+  friendly_name: cc2530router1
+  retain: false
+'0x00158d0001922ebb':
+  friendly_name: thermostaatKraan1
+  retain: false
+'0x00158d000273d342':
+  friendly_name: omgevingssensorslaapkamer
+  retain: false
+'0x00158d000322f660':
+  friendly_name: omgevingssensorkruipruimte
+  retain: false
+'0x00158d00026ba474':
+  friendly_name: schakelaarkamernaud
+  retain: false
+'0x0017880104a0aac9':
+  friendly_name: lampslaapkamer
+  retain: false
+  retrieve_state: true
+'0x0017880102eda719':
+  friendly_name: lampoverloop
+  retain: false
+  retrieve_state: true
+'0x0017880104c81ea4':
+  friendly_name: lampkamernaud
+  retain: false
+'0x0017880100e10913':
+  friendly_name: lamp1woonkamerachter
+  retain: false
+  retrieve_state: true
+'0x0017880100e11f43':
+  friendly_name: lamp2woonkamerachter
+  retain: false
+  retrieve_state: true
+'0x00124b0003cdd8c9':
+  friendly_name: lamp3woonkamerachter
+  retain: false
+  retrieve_state: true
+'0x0017880100e4e5d3':
+  friendly_name: lamp1woonkamervoor
+  retain: false
+  retrieve_state: true
+'0x0017880100d52c7f':
+  friendly_name: lamp2woonkamervoor
+  retain: false
+  retrieve_state: true
+'0x0017880100d7bff7':
+  friendly_name: lamp3woonkamervoor
+  retain: false
+  retrieve_state: true
+'0x00178801035e31ad':
+  friendly_name: lampvoordeur
+  retain: false
+'0x0017880104e36aa7':
+  friendly_name: lampkeuken
+  retrieve_state: true
+  retain: false
+'0x0017880110327073':
+  friendly_name: dimmerwoonkamer
+  retain: false
+'0x0017880102f9e11b':
+  friendly_name: lampboventrap
+  retain: false
+'0x0017880108276fa3':
+  friendly_name: lampwasmachine
+  retain: false
+'0x00178801082092e4':
+  friendly_name: lampstudeerkamer
+  retain: false
+'0x00124b001e72887e':
+  friendly_name: schermlampwoonkamer
+  retain: false
+'0x00124b001e728691':
+  friendly_name: sonoffzigbeebasic2
+  retain: false
+'0x00158d00044c6cf8':
+  friendly_name: xiaomiswitch1
+  retain: false
+'0x000d6f0014f6f701':
+  friendly_name: co2sensor
+  retain: false
+'0x04cf8cdf3c776e34':
+  friendly_name: powerplug1eu
+  retain: false
+'0x04cf8cdf3c777451':
+  friendly_name: powerplug2eu
+  retain: false
+'0x00178801082012f1':
+  friendly_name: lampgang
+  retain: false
+'0x001788010827acd3':
+  friendly_name: lamphal
+  retain: false
+'0x0017880108205280':
+  friendly_name: lampbadkamer
+  retain: false
+'0x001788010827afdf':
+  friendly_name: lampkamerstijn
+  retain: false
+'0x00124b0018e87232':
+  friendly_name: cc2531router3
+  retain: false
+'0x00124b001f7a77ac':
+  friendly_name: ledcored
+  retain: false
+'0x00124b0018e86bc5':
+  retain: false
+  friendly_name: cc2531router4
+'0x00158d0002789adf':
+  retain: false
+  friendly_name: 'omgevingssensorwoonkamer'

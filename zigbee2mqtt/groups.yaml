@@ -1,0 +1,21 @@
+'1':
+  friendly_name: woonkamerachtergroep
+  devices:
+    - '0x0017880100e10913'
+    - '0x0017880100e11f43'
+    - '0x00124b0003cdd8c9'
+'2':
+  friendly_name: woonkamervoorgroep
+  devices:
+    - '0x0017880100e4e5d3'
+    - '0x0017880100d52c7f'
+    - '0x0017880100d7bff7'
+'3':
+  friendly_name: woonkamerdimmergroep
+  devices:
+    - '0x0017880100d7bff7'
+    - '0x0017880100d52c7f'
+    - '0x0017880100e4e5d3'
+    - '0x00124b0003cdd8c9'
+    - '0x0017880100e11f43'
+    - '0x0017880100e10913'

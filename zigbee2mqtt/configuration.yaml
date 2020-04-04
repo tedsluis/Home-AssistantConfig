@@ -1,53 +1,28 @@
 homeassistant: true
-permit_join: true
+permit_join: false
 mqtt:
   base_topic: zigbee2mqtt
-  server: 'mqtt:/***.***.***.***
-  user: ********
-  password: ******************
+  server: 'mqtt://xxx.xxx.xxx.xxx'
+  user: *********
+  password: *************
   reject_unauthorized: false
   include_device_information: true
+zigbee_shepherd_devices: false
 serial:
-  port: /dev/ttyACM0
+  port:    /dev/ttyACM0
   #disable_led: true
 advanced:
-  network_key:
-    - 33
-    - 20
-    - 198
-    - 168
-    - 91
-    - 37
-    - 241
-    - 250
-    - 238
-    - 131
-    - 255
-    - 77
-    - 30
-    - 189
-    - 97
-    - 119
-  #pan_id: 6754
+  network_key: [ xxx, xxx, xxx, xxx, xxx, xxx, xxx, xxx, xxx, xxx, xxx, xxx, xxx, xxx, xxx, xxx]]
   pan_id: 0x165a
-  ext_pan_id:
-    - 221
-    - 121
-    - 221
-    - 121
-    - 221
-    - 221
-    - 121
-    - 221
+  ext_pan_id: [ xxx,xxx,xxx,xxx,xxx,xxx,xxx,xxx]]
   channel: 26
   cache_state: true
-  log_level: debug
+  log_level: info
   last_seen: ISO_8601
   elapsed: false
-  availability_timeout: 0
-  availability_blacklist:
-    - DEVICE_FRIENDLY_NAME
+  availability_timeout: 30
   report: true
+  rtscts: true
   homeassistant_discovery_topic: homeassistant
   homeassistant_status_topic: hass/status
 map_options:
@@ -64,9 +39,22 @@ map_options:
       line:
         active: '#009900'
         inactive: '#994444'
-queue:
-  delay: 250
-  simultaneously: 5
-device_options: null
+#queue:
+#  delay: 250
+#  simultaneously: 5
+device_options:
+  retain: false
+  qos: 1
+  debounce: 1
+  debounce_ignore:
+  - action
+  - brightness
+  - occupancy
+  - light
+  - switch_l1
+  - switch_l2
+  - switch
+  - contact
+  - click
 devices: devices.yaml
 groups: groups.yaml
