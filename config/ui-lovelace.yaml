@@ -49,7 +49,7 @@ views:
             name: schermerlamp
             secondary_info: last-changed
           - media_player.bachstraat20
-   #      - media_player.samsung_tv_ue32k5600
+         #- media_player.samsungtv
           - entity: sensor.omgevingssensorwoonkamer_humidity
             name: luchtvochtigheid
           - entity: sensor.omgevingssensorwoonkamer_pressure
@@ -138,7 +138,7 @@ views:
             state_color: true
           - counter.motion_counter_keuken
           - entity: sensor.bewegingssensorkeuken_illuminance
-            name: bewegingssensor
+            name: licht inval
       - type: entities
         title: Studeerkamer
         show_header_toggle: false
@@ -339,7 +339,7 @@ views:
           - zone.bodysports
      # View tab title.
   - title: Corona
-    icon: mdi:virus
+    icon: mdi:alien-outline
     id: Corona
     # Optional background (overwrites the global background).
     background: radial-gradient(crimson, skyblue)
@@ -352,6 +352,14 @@ views:
         title: Corona besmettingen
         hours_to_show: 48
         entities: 
+        - entity: sensor.worldwide_coronavirus_confirmed
+          name: worldwide
+        - entity: sensor.china_coronavirus_confirmed
+          name: china
+        - entity: sensor.us_coronavirus_confirmed
+          name: us
+        - entity: sensor.spain_coronavirus_confirmed
+          name: spanje
         - entity: sensor.netherlands_coronavirus_confirmed
           name: nederland
         - entity: sensor.belgium_coronavirus_confirmed
@@ -369,8 +377,16 @@ views:
         title: Hersteld van Corona
         hours_to_show: 48
         entities: 
+        - entity: sensor.worldwide_coronavirus_recovered
+          name: worldwide
+        - entity: sensor.china_coronavirus_recovered
+          name: china
+        - entity: sensor.us_coronavirus_recovered
+          name: us
+        - entity: sensor.spain_coronavirus_recovered
+          name: spanje
         - entity: sensor.netherlands_coronavirus_recovered
-          name: hersteld van corona 
+          name: nederland
         - entity: sensor.belgium_coronavirus_recovered
           name: belgie
         - entity: sensor.france_coronavirus_recovered
@@ -386,6 +402,14 @@ views:
         title: Huidige aantal besmettingen Corona
         hours_to_show: 48
         entities: 
+        - entity: sensor.worldwide_coronavirus_current
+          name: worldwide
+        - entity: sensor.china_coronavirus_current
+          name: china
+        - entity: sensor.us_coronavirus_current
+          name: us
+        - entity: sensor.spain_coronavirus_current
+          name: spanje
         - entity: sensor.netherlands_coronavirus_current
           name: nederland
         - entity: sensor.belgium_coronavirus_current
@@ -403,6 +427,14 @@ views:
         title: Doden ten gevolgen van Corona
         hours_to_show: 48
         entities: 
+        - entity: sensor.worldwide_coronavirus_deaths 
+          name: worldwide
+        - entity: sensor.china_coronavirus_deaths 
+          name: china
+        - entity: sensor.us_coronavirus_deaths 
+          name: us
+        - entity: sensor.spain_coronavirus_deaths 
+          name: spanje
         - entity: sensor.netherlands_coronavirus_deaths 
           name: nederland 
         - entity: sensor.belgium_coronavirus_deaths 
@@ -415,34 +447,6 @@ views:
           name: duitsland
         - entity: sensor.italy_coronavirus_deaths 
           name: italie
-      - id: conoro-besmettingen-ww
-        type: history-graph
-        title: Corona besmettingen wereldwijd
-        hours_to_show: 48
-        entities: 
-        - entity: sensor.worldwide_coronavirus_confirmed
-          name: bevestigde besmettingen
-      - id: hersteld-van-corona-ww
-        type: history-graph
-        title: Hersteld van Corona wereldwide
-        hours_to_show: 48
-        entities: 
-        - entity: sensor.worldwide_coronavirus_recovered
-          name: hersteld van corona 
-      - id: huidige-besmettingen-ww
-        type: history-graph
-        title: Huidige aantal besmettingen Corona wereldwijd
-        hours_to_show: 48
-        entities: 
-        - entity: sensor.worldwide_coronavirus_current
-          name: huidige aantal
-      - id: doden-corona-ww
-        type: history-graph
-        title: Doden ten gevolgen van Corona wereldwijd
-        hours_to_show: 48
-        entities: 
-        - entity: sensor.worldwide_coronavirus_deaths 
-          name: corona doden 
   - title: Weer
     icon: mdi:weather-partly-cloudy
     id: Weather
@@ -886,6 +890,48 @@ views:
 #        date_format: "DD MMM YYYY"
 #        time_format: "HH:mm"
 #        past_days: 7
+  - title: camera's
+    icon: mdi:video-outline
+    id: cameras
+    background: radial-gradient(crimson, skyblue)
+    theme: dark-mode
+    cards:
+      - type: picture-entity
+        entity: camera.cam1
+        camera_view: live
+      - type: picture-entity
+        entity: camera.cam1_motion_snapshot
+        camera_view: live
+      - type: entities
+        title: cam1
+        show_header_toggle: false
+        entities:
+          - binary_sensor.cam1_motion_sensor
+          - sensor.cam1_light_sensor
+          - switch.cam1_blue_led
+          - switch.cam1_yellow_led
+          - switch.cam1_ir_filter
+          - switch.cam1_ir_led
+          - switch.cam1_night_mode
+          - switch.cam1_night_mode_auto
+      - type: picture-entity
+        entity: camera.cam2
+        camera_view: live
+      - type: picture-entity
+        entity: camera.cam2_motion_snapshot
+        camera_view: live
+      - type: entities
+        title: cam2
+        show_header_toggle: false
+        entities:
+          - binary_sensor.cam2_motion_sensor
+          - sensor.cam2_light_sensor
+          - switch.cam2_blue_led
+          - switch.cam2_yellow_led
+          - switch.cam2_ir_filter
+          - switch.cam2_ir_led
+          - switch.cam2_night_mode
+          - switch.cam2_night_mode_auto
   - title: Verbruik
     icon: mdi:flash-outline
     id: verbruik_overview
