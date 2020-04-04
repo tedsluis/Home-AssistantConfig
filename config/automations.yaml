@@ -143,6 +143,8 @@
   condition:
     - condition: template
       value_template: "{{ ((trigger.to_state.attributes.brightness - trigger.from_state.attributes.brightness) | abs) > 1 }}"
+    - condition: template
+      value_template: "{{ trigger.to_state.state == trigger.from_state.state }}"
   action:
     service: notify.slack
     data_template:
@@ -171,6 +173,8 @@
   condition:
     - condition: template
       value_template: "{{ trigger.from_state.attributes.color_temp != trigger.to_state.attributes.color_temp }}"
+    - condition: template
+      value_template: "{{ trigger.to_state.state == trigger.from_state.state }}"
   action:
     service: notify.slack
     data_template:
@@ -438,7 +442,7 @@
       before_offset: '01:00:00'
     - condition: numeric_state
       entity_id: sensor.bewegingssensorstudeerkamer_illuminance
-      below: 1000
+      below: 300
   action:
     - service: light.turn_on
       entity_id: light.lampstudeerkamer_light
@@ -472,7 +476,7 @@
   condition:
     - condition: numeric_state
       entity_id: sensor.bewegingssensoroverloop_illuminance
-      below: 1000
+      above: 300
   action: 
     - service: light.turn_off
       entity_id: light.lampstudeerkamer_light 
@@ -1014,3 +1018,26 @@
   action:
     service: zigbee2mqtt_networkmap.update
 
+#################################################
+- alias: turn-on-ir-filter-at-sunrise
+  trigger:
+    - platform: sun
+      event: sunrise
+  action: 
+  - service: switch.turn_on
+    data:
+      entity_id: switch.cam1_ir_filter
+  - service: switch.turn_on
+    data:
+      entity_id: switch.cam2_ir_filter
+- alias: turn-off-ir-filter-at-sunset
+  trigger:
+    - platform: sun
+      event: sunset
+  action: 
+  - service: switch.turn_off
+    data:
+      entity_id: switch.cam1_ir_filter
+  - service: switch.turn_off
+    data:
+      entity_id: switch.cam2_ir_filter
