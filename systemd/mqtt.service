@@ -9,12 +9,13 @@ Restart=always
 ExecStartPre=-/usr/bin/docker stop -t 2 eclipse-mosquitto
 ExecStartPre=-/usr/bin/docker rm -f eclipse-mosquitto
 ExecStartPre=/usr/bin/docker pull eclipse-mosquitto
-ExecStart=/usr/bin/docker run --name="eclipse-mosquitto" \
-                              -p 1883:1883 -p 9001:9001 \
-                              -v /home/homeassistant/mosquitto/etc/mosquitto.conf:/mosquitto/config/mosquitto.conf \
-                              -v /home/homeassistant/mosquitto/data:/mosquitto/data \
-                              -v /home/homeassistant/mosquitto/log:/mosquitto/log \
-                              eclipse-mosquitto
+ExecStart=/usr/bin/docker run --name="eclipse-mosquitto" -p 1883:1883 -p 9001:9001 \
+                                                         -v /home/homeassistant/mosquitto/etc/mosquitto.conf:/mosquitto/config/mosquitto.conf \
+                                                         -v /home/homeassistant/mosquitto/data:/mosquitto/data \
+                                                         -v /home/homeassistant/mosquitto/log:/mosquitto/log \
+                                                         -e TZ=Europe/Amsterdam \
+                                                         --memory="500m" \
+                                                         eclipse-mosquitto
 ExecStop=-/usr/bin/docker stop -t 2 eclipse-mosquitto
 ExecStopPost=-/usr/bin/docker rm -f eclipse-mosquitto
 

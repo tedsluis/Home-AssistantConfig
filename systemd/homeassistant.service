@@ -1,11 +1,12 @@
 Description=Home Assistant Service
-After=docker.service mqtt.service
-Requires=docker.service mqtt.service network.target
+After=docker.service mqtt.service influxdb.service 
+Requires=docker.service mqtt.service network.target influxdb.service 
  
 [Service]
-RestartSec=3
+RestartSec=30
 TimeoutStartSec=300
 Restart=always
+SendSIGKILL=no
 ExecStartPre=-/usr/bin/docker stop -t 2 home-assistant
 ExecStartPre=-/usr/bin/docker rm -f home-assistant
 ExecStartPre=/usr/bin/docker pull homeassistant/home-assistant
@@ -13,8 +14,10 @@ ExecStart=/usr/bin/docker run --name="home-assistant" \
                               -v /home/homeassistant/config:/config \
                               -v /etc/localtime:/etc/localtime:ro \
                               -v /home/homeassistant/dehydrated/certs/tedsluis.duckdns.org:/ssl \
-                              --net=host \
-                              homeassistant/home-assistant
+                              -p 8123:8123 \
+                              -e TZ=Europe/Amsterdam \
+                              --network="host" \
+                              homeassistant/home-assistant:latest
 ExecStop=-/usr/bin/docker stop -t 2 home-assistant
 ExecStopPost=-/usr/bin/docker rm -f home-assistant
  

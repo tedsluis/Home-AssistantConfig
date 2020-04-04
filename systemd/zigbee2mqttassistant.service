@@ -1,0 +1,27 @@
+Description=Zigbee2mqttassistant
+After=docker.service mqtt.service 
+Requires=docker.service mqtt.service network.target 
+
+[Service]
+RestartSec=3
+TimeoutStartSec=300
+TimeoutSec=180
+Restart=always
+ExecStartPre=-/usr/bin/docker stop -t 2 zigbee2mqttassistant
+ExecStartPre=-/usr/bin/docker rm -f zigbee2mqttassistant
+ExecStartPre=/usr/bin/docker pull carldebilly/zigbee2mqttassistant:linux-x64
+# docker run -p 8830:80 -e "Z2MA_SETTINGS__MQTTSERVER=xxx.xxx.xxx.xxx" -e "Z2MA_SETTINGS__MQTTUSERNAME=************" -e "Z2MA_SETTINGS__MQTTPASSWORD=*******" --restart unless-stopped 
+ExecStart=/usr/bin/docker run --name="zigbee2mqttassistant" \
+                              -p 8830:80 \
+                              -e "Z2MA_SETTINGS__MQTTSERVER=xxx.xxx.xxx.xxx" \
+                              -e "Z2MA_SETTINGS__MQTTUSERNAME=**********" \
+                              -e "Z2MA_SETTINGS__MQTTPASSWORD=**********" \
+                              -e TZ=Europe/Amsterdam \
+                              --memory="1000m" \
+                              carldebilly/zigbee2mqttassistant:linux-x64
+ExecStop=-/usr/bin/docker stop -t 2 zigbee2mqttassistant
+ExecStopPost=-/usr/bin/docker rm -f zigbee2mqttassistant
+
+[Install]
+WantedBy=multi-user.target
+
