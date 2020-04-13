@@ -65,6 +65,64 @@ views:
             type: "custom:secondaryinfo-entity-row"
             secondary_info: "[[ sensor.pow2_energy_apparentpower ]] watt"
       - type: entities
+        title: Keuken
+        show_header_toggle: false
+        entities:
+          - entity: light.lampkeuken_light
+            name: plafond verlichting
+            secondary_info: last-changed
+          - entity: sensor.omgevingssensorkeuken_humidity
+            name: luchtvochtigheid
+          - entity: sensor.omgevingssensorkeuken_pressure
+            name: luchtdruk
+          - entity: sensor.omgevingssensorkeuken_temperature
+            name: temperatuur
+          - entity: binary_sensor.bewegingssensorkeuken_occupancy
+            name: bewegingssensor
+            secondary_info: last-changed
+            state_color: true
+          - counter.motion_counter_keuken
+          - entity: sensor.bewegingssensorkeuken_illuminance
+            name: licht inval
+      - type: entities
+        title: Gang
+        show_header_toggle: false
+        entities:
+          - entity: light.lampgang_light
+            name: verlichting
+            secondary_info: last-changed
+          - entity: binary_sensor.bewegingssensorgang_occupancy
+            name: bewegingssensor
+            secondary_info: last-changed
+            state_color: true
+          - counter.motion_counter_gang
+          - entity: sensor.bewegingssensorgang_illuminance
+            name: licht inval
+      - type: entities
+        title: Hal
+        show_header_toggle: false
+        entities:
+          - entity: light.lamphal_light
+            name: verlichting
+            secondary_info: last-changed
+          - entity: binary_sensor.bewegingssensorhal_occupancy
+            name: bewegingssensor
+            secondary_info: last-changed
+            state_color: true
+          - counter.motion_counter_hal
+          - entity: sensor.bewegingssensorhal_illuminance
+            name: licht inval
+      - type: entities
+        title: Kruipruimte
+        show_header_toggle: false
+        entities:
+          - entity: sensor.omgevingssensorkruipruimte_humidity
+            name: luchtvochtigheid
+          - entity: sensor.omgevingssensorkruipruimte_pressure
+            name: luchtdruk
+          - entity: sensor.omgevingssensorkruipruimte_temperature
+            name: temperatuur
+      - type: entities
         title: camera's
         show_header_toggle: false
         entities:
@@ -72,6 +130,10 @@ views:
             name: camera 1
           - entity: camera.cam2
             name: camera 2
+  - icon: mdi:home-floor-1
+    title: eerste-verdieping
+    background: radial-gradient(crimson, skyblue)
+    cards:
       - type: entities
         title: Slaapkamer Annelies & Ted
         show_header_toggle: false
@@ -107,6 +169,39 @@ views:
           - entity: sensor.omgevingssensorkamernaud_temperature
             name: temperatuur
       - type: entities
+        title: Badkamer
+        show_header_toggle: false
+        entities:
+          - entity: light.lampbadkamer_light
+            name: plafond verlichting
+            secondary_info: last-changed
+          - entity: climate.thermostaatkraan1_climate
+            name: thermostaatkraan
+          - entity: sensor.omgevingssensorbadkamer_humidity
+            name: luchtvochtigheid
+          - entity: sensor.omgevingssensorbadkamer_pressure
+            name: luchtdruk
+          - entity: sensor.omgevingssensorbadkamer_temperature
+            name: temperatuur
+      - type: entities
+        title: Overloop
+        show_header_toggle: false
+        entities:
+          - entity: light.lampoverloop_light
+            name: verlichting
+            secondary_info: last-changed
+          - entity: binary_sensor.bewegingssensoroverloop_occupancy
+            name: bewegingssensor
+            secondary_info: last-changed
+            state_color: true
+          - counter.motion_counter_overloop
+          - entity: sensor.bewegingssensoroverloop_illuminance
+            name: licht inval
+  - icon: mdi:home-floor-2
+    title: tweede-verdieping
+    background: radial-gradient(crimson, skyblue)
+    cards:
+      - type: entities
         title: Slaapkamer Stijn
         show_header_toggle: false
         entities:
@@ -119,26 +214,6 @@ views:
             name: luchtdruk
           - entity: sensor.omgevingssensorkamerstijn_temperature
             name: temperatuur
-      - type: entities
-        title: Keuken
-        show_header_toggle: false
-        entities:
-          - entity: light.lampkeuken_light
-            name: plafond verlichting
-            secondary_info: last-changed
-          - entity: sensor.omgevingssensorkeuken_humidity
-            name: luchtvochtigheid
-          - entity: sensor.omgevingssensorkeuken_pressure
-            name: luchtdruk
-          - entity: sensor.omgevingssensorkeuken_temperature
-            name: temperatuur
-          - entity: binary_sensor.bewegingssensorkeuken_occupancy
-            name: bewegingssensor
-            secondary_info: last-changed
-            state_color: true
-          - counter.motion_counter_keuken
-          - entity: sensor.bewegingssensorkeuken_illuminance
-            name: licht inval
       - type: entities
         title: Studeerkamer
         show_header_toggle: false
@@ -166,15 +241,33 @@ views:
           - entity: sensor.bewegingssensorstudeerkamer_illuminance
             name: licht inval
       - type: entities
-        title: Schuur
+        title: Boven aan de trap
         show_header_toggle: false
         entities:
-          - entity: sensor.omgevingssensorschuur_humidity
+          - entity: light.lampboventrap_light
+            name: verlichting
+            secondary_info: last-changed
+          - entity: binary_sensor.bewegingssensorbovenaandetrap_occupancy
+            name: bewegingssensor
+            secondary_info: last-changed
+            state_color: true
+          - counter.motion_counter_bovenaandetrap
+          - entity: sensor.bewegingssensorbovenaandetrap_illuminance
+            name: licht inval
+      - type: entities
+        title: Vliering
+        show_header_toggle: false
+        entities:
+          - entity: sensor.omgevingssensorzolder_humidity
             name: luchtvochtigheid
-          - entity: sensor.omgevingssensorschuur_pressure
+          - entity: sensor.omgevingssensorzolder_pressure
             name: luchtdruk
-          - entity: sensor.omgevingssensorschuur_temperature
+          - entity: sensor.omgevingssensorzolder_temperature
             name: temperatuur
+  - icon: mdi:home-export-outline
+    title: Buiten
+    background: radial-gradient(crimson, skyblue)
+    cards:
       - type: entities
         title: Voordeur buiten
         show_header_toggle: false
@@ -196,74 +289,37 @@ views:
           - entity: sensor.bewegingssensorvoordeur_illuminance
             name: lichtinval
       - type: entities
-        title: Badkamer
+        title: Schuur
         show_header_toggle: false
         entities:
-          - entity: light.lampbadkamer_light
-            name: plafond verlichting
-            secondary_info: last-changed
-          - entity: climate.thermostaatkraan1_climate
-            name: thermostaatkraan
-          - entity: sensor.omgevingssensorbadkamer_humidity
+          - entity: sensor.omgevingssensorschuur_humidity
             name: luchtvochtigheid
-          - entity: sensor.omgevingssensorbadkamer_pressure
+          - entity: sensor.omgevingssensorschuur_pressure
             name: luchtdruk
-          - entity: sensor.omgevingssensorbadkamer_temperature
+          - entity: sensor.omgevingssensorschuur_temperature
             name: temperatuur
       - type: entities
-        title: Overloop
+        title: Steeg
         show_header_toggle: false
         entities:
-          - entity: light.lampoverloop_light
-            name: verlichting overloop
-            secondary_info: last-changed
-          - entity: light.lampboventrap_light
-            name: verlichting boven aan de trap
-            secondary_info: last-changed
-          - entity: binary_sensor.bewegingssensoroverloop_occupancy
-            name: bewegingssensor
+          - entity: binary_sensor.bewegingssensorsteeg_occupancy
+            name: bewegingssensor steeg
             secondary_info: last-changed
             state_color: true
-          - counter.motion_counter_overloop
-          - entity: sensor.bewegingssensoroverloop_illuminance
-            name: licht inval
+          - counter.motion_counter_steeg
+          - entity: sensor.bewegingssensorsteeg_illuminance
+            name: licht inval steeg
       - type: entities
-        title: Gang
+        title: Achter buiten
         show_header_toggle: false
         entities:
-          - entity: light.lampgang_light
-            name: verlichting gang
-            secondary_info: last-changed
-          - entity: light.lamphal_light
-            name: verlichting halletje
-            secondary_info: last-changed
-          - entity: binary_sensor.bewegingssensorgang_occupancy
-            name: bewegingssensor
+          - entity: binary_sensor.bewegingssensorachterbuiten_occupancy
+            name: bewegingssensor achter buiten
             secondary_info: last-changed
             state_color: true
-          - counter.motion_counter_gang
-          - entity: sensor.bewegingssensorgang_illuminance
-            name: licht inval
-      - type: entities
-        title: Zolder
-        show_header_toggle: false
-        entities:
-          - entity: sensor.omgevingssensorzolder_humidity
-            name: luchtvochtigheid
-          - entity: sensor.omgevingssensorzolder_pressure
-            name: luchtdruk
-          - entity: sensor.omgevingssensorzolder_temperature
-            name: temperatuur
-      - type: entities
-        title: Kruipruimte
-        show_header_toggle: false
-        entities:
-          - entity: sensor.omgevingssensorkruipruimte_humidity
-            name: luchtvochtigheid
-          - entity: sensor.omgevingssensorkruipruimte_pressure
-            name: luchtdruk
-          - entity: sensor.omgevingssensorkruipruimte_temperature
-            name: temperatuur
+          - counter.motion_counter_achterbuiten
+          - entity: sensor.bewegingssensorachterbuiten_illuminance
+            name: licht inval achterbuiten
   - title: Map
     icon: mdi:map
     background: radial-gradient(crimson, skyblue)
@@ -576,6 +632,14 @@ views:
         - entity: sensor.bewegingssensorstudeerkamer_illuminance
         - entity: sensor.bewegingssensorvoordeur_illuminance
         - entity: sensor.bewegingssensorgang_illuminance
+        - entity: sensor.bewegingssensorhal_illuminance
+          name: hal
+        - entity: sensor.bewegingssensorbovenaandetrap_illuminance
+          name: boven aan de trap
+        - entity: sensor.bewegingssensorsteeg_illuminance
+          name: steeg
+        - entity: sensor.bewegingssensorachterbuiten_illuminance
+          name: achter buiten
       - id: humidityoverview
         type: history-graph
         title: Luchtvochtigheid
@@ -745,6 +809,14 @@ views:
             name: gang
           - entity: sensor.bewegingssensorstudeerkamer_linkquality
             name: studeerkamer
+          - entity: sensor.bewegingssensorhal_linkquality
+            name: hal
+          - entity: sensor.bewegingssensorbovenaandetrap_linkquality
+            name: boven aan de trap
+          - entity: sensor.bewegingssensorsteeg_linkquality
+            name: steeg
+          - entity: sensor.bewegingssensorachterbuiten_linkquality
+            name: achterbuiten
       - id: linkquality_trillingssensor
         type: history-graph
         title: Zigbee Link Quality trillingssensors
@@ -1106,6 +1178,22 @@ views:
             type: "custom:secondaryinfo-entity-row"
             secondary_info: "[[ sensor.bewegingssensorvoordeur_linkquality.last_updated  ]]"
             name: voordeur
+          - entity: sensor.bewegingssensorhal_battery
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.bewegingssensorhal_linkquality.last_updated  ]]"
+            name: hal
+          - entity: sensor.bewegingssensorbovenaandetrap_battery
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.bewegingssensorbovenaandetrap_linkquality.last_updated  ]]"
+            name: boven aan de trap
+          - entity: sensor.bewegingssensorsteeg_battery
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.bewegingssensorsteeg_linkquality.last_updated  ]]"
+            name: steeg
+          - entity: sensor.bewegingssensorachterbuiten_battery
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: "[[ sensor.bewegingssensorachterbuiten_linkquality.last_updated  ]]"
+            name: achter buiten
       - id: omgevingssensor-battery-capacity 
         type: entities
         title: Omgevingssensors - battery capacity
