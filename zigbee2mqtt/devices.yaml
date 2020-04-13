@@ -171,4 +171,16 @@
   friendly_name: cc2531router4
 '0x00158d0002789adf':
   retain: false
-  friendly_name: 'omgevingssensorwoonkamer'
+  friendly_name: omgevingssensorwoonkamer
+'0x00158d00046603e3':
+  retain: false
+  friendly_name: bewegingssensorhal
+'0x00158d00046663d4':
+  retain: false
+  friendly_name: bewegingssensorbovenaandetrap
+'0x00158d00046608d2':
+  retain: false
+  friendly_name: bewegingssensorsteeg
+'0x00158d00047be924':
+  retain: false
+  friendly_name: 'bewegingssensorachterbuiten'
