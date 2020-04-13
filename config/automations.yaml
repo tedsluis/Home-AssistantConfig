@@ -79,6 +79,67 @@
             target: '#motion'
 
 #############################################################################
+# Motion counter hal
+- alias: Count motion hal
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegingssensorhal_occupancy
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_hal
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging in de hal' 
+            target: '#motion'
+#############################################################################
+# Motion counter bovenaandetrap
+- alias: Count motion boven aan de trap
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegingssensorbovenaandetrap_occupancy
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_bovenaandetrap
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging boven aan de trap' 
+            target: '#motion'
+#############################################################################
+# Motion counter steeg
+- alias: Count motion steeg
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegingssensorsteeg_occupancy
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_steeg
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging in de steeg' 
+            target: '#motion'
+#############################################################################
+# Motion counter achter buiten
+- alias: Count motion achter buiten
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bewegingssensorachterbuiten_occupancy
+    from: 'off'
+    to: 'on'
+  action:
+    - service: counter.increment
+      entity_id: counter.motion_counter_achterbuiten
+    - service: notify.slack
+      data_template:            
+            message: '{{now().strftime("%Y-%m-%d %H:%M:%S")}}: beweging achter buiten' 
+            target: '#motion'
+
+#############################################################################
 # dim light lampboventrap
 - alias: init-lampboventrap-power-on-behavior
   trigger:
