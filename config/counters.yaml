@@ -13,3 +13,15 @@ motion_counter_keuken:
 motion_counter_overloop:
   name: bewegingsteller overloop
   icon: mdi:account
+motion_counter_hal:
+  name: bewegingsteller hal
+  icon: mdi:account
+motion_counter_bovenaandetrap:
+  name: bewegingsteller boven aan de trap
+  icon: mdi:account
+motion_counter_steeg:
+  name: bewegingsteller steeg
+  icon: mdi:account
+motion_counter_achterbuiten:
+  name: bewegingsteller achter buiten
+  icon: mdi:account
